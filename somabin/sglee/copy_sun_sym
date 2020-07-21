@@ -1,0 +1,92 @@
+#! /bin/csh -f
+
+# ===============================================================================
+# Set up variables.
+# ===============================================================================
+set do_sup_clean = `date +%a`
+set do_depend    = "TRUE"
+set do_product   = "TRUE"
+#set yymmdd       = "960606"
+set yymmdd       = `date +%y%m%d`
+set work_dir     = "/cscpu/sglee"
+set tftp_path    = "/tftpboot/sglee"
+set nice_level   = 17
+
+set tree         = "$work_dir/ELC"
+set sun_dir      = "$work_dir/suns"
+set symbol_dir   = "$work_dir/symbols"
+set out          = "$work_dir/Builds/build.${yymmdd}"
+set line         = "========================================"
+
+set branch      = "ELC_branch"
+#set obj_all    = "obj-4k-rvip obj-4k-svip obj-68-c7000"
+#set obj_all    = "obj-4k-rsp obj-4k-c7100"
+ set obj_all    = "obj-4k-rsp"
+#set obj_all    = "obj-4k-c7100"
+
+
+cd $tree/sys
+
+foreach prod ( $obj_all )
+    cd $tree/sys/$prod
+    set now = "`date`"
+    set pwd = "`pwd`"
+
+    # -------------------------------------------------------
+    # Copy the *.sun and *.symbols files into directories. 
+    # -------------------------------------------------------
+    echo "Copying $PWD ..."
+    foreach sun ( *.sun )
+        cp -pr $sun ${sun_dir}/suns.${yymmdd}/${sun}-${yymmdd}
+    end
+    foreach symbol ( *.symbols )
+        cp -pr $symbol ${symbol_dir}/symbols.${yymmdd}/${symbol}-${yymmdd}
+    end
+end
+
+goto END
+
+
+
+# ===============================================================================
+# On DIRT:
+# 1.  Add date stamp to the end of all 'vip*' files.
+# 2.  Move all files into 'images.DATE' diretory.
+# 3.  Create images directory and update soft link.
+# ===============================================================================
+
+# foreach file ( vip21-5 vip2_200-43 )
+#     rsh dirt "mv  ${tftp_path}/${file}  ${tftp_path}/${file}.${yymmdd}"
+# end
+
+rsh dirt "cd ${tftp_path}; .make_dir ${yymmdd}"
+rsh dirt "cd ${tftp_path}; mv [c-z]*.${yymmdd} images.${yymmdd}"
+
+rsh dirt "cd ${tftp_path}; /bin/rm -f current"
+rsh dirt "cd ${tftp_path}; ln -s ./images.${yymmdd} ${tftp_path}/current"
+
+
+# ===============================================================================
+# On POTLICKER, create build message to send to mail aliases.
+# ===============================================================================
+set now = "`date`"
+cat <<EOF >>& $out
+
+
+--------------------------------------------------------------------------------
+$now - Creating build note
+
+EOF
+$work_dir/bin/create_bld_note ${yymmdd}
+
+set now = "`date`"
+cat <<EOF >>& $out
+
+
+--------------------------------------------------------------------------------
+
+$now - Build completed.
+EOF
+
+
+END:

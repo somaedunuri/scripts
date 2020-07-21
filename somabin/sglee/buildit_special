@@ -1,0 +1,53 @@
+#! /bin/csh -x
+
+if ( $#argv == 0 ) then
+    set yymmdd   = `date +%y%m%d`
+else
+    set yymmdd   = $1
+endif
+
+if ( `uname -n` == "potlicker") then
+    set work_dir = "/cscpu/sglee"
+else
+    set work_dir = "/nfs/cscpu/sglee"
+endif
+set tftp_path  = "/tftpboot/sglee"
+set nice_time  = 17
+
+set tree       = "/cscpv/sglee/ELC"
+#set tree       = "$work_dir/ELC"
+set arch_dir   = "$work_dir/Archives"
+set sun_dir    = "$work_dir/suns"
+set sym_dir    = "$work_dir/symbols"
+set out        = "$work_dir/Builds/build_special.${yymmdd}"
+set dash       = "----------------------------------------"
+set line       = "========================================"
+set MAKE       = "make"
+set get_ver    = "${work_dir}/bin/get_version"
+
+set path       = (/router/bin /usr/cisco/bin /usr/local/bin $path)
+
+set prod = "obj-4k-rsp"
+
+
+if ( `date +%H` < $nice_time ) then
+    set nice_val = "+10"
+    set cpu_val  = "-j4"
+else
+    set nice_val = "+4"
+    set cpu_val  = "-j6"
+endif
+
+
+if ( -e $out ) then
+    /bin/rm -f $out
+endif
+touch $out
+
+
+cd ${tree}/sys/${prod}
+
+nice ${nice_val} ${MAKE} -s MAKEFLAG_J=${cpu_val} GDB_FLAG= BIN_SUFFIX=.${yymmdd} \
+	TFTPHOST=potlicker TFTPDIR=${arch_dir}/images.${yymmdd}/${prod}} \
+	rsp-tkpgen-mz			>>& $out
+

@@ -1,0 +1,235 @@
+#! /bin/csh -f
+
+#  nice +9 make  MAKEFLAG_J=-j6 GDB_FLAG= BIN_SUFFIX=.960725 \
+#  TFTPHOST=potlicker TFTPDIR=/cscpu/core_release/Archives/images.960725/ production
+
+# ===============================================================================
+# Set up variables.
+# ===============================================================================
+set nice_time    = 17
+
+if ( `date +%H` < ${nice_time} ) then
+    set nice_val = "+9"
+    set cpu_val  = "-j4"
+else
+    set nice_val = "+4"
+    set cpu_val  = "-j6"
+endif
+
+if ( $#argv == 0 ) then
+    set yymmdd   = `date +%y%m%d`
+else
+    set yymmdd   = $1
+endif
+
+if ( `uname -n` == "potlicker") then
+    set work_dir = "/cscpu/core_release"
+else
+    set work_dir = "/nfs/cscpu/core_release"
+endif
+
+set tree         = "/cscpv/core_release/ELC"
+set branch       = "ELC_branch"
+set tftp_path    = "/tftpboot/core_release"
+
+set bld_host     = "potlicker"
+set arch_dir     = "${work_dir}/Archives"
+set sun_dir      = "${work_dir}/suns"
+set sym_dir      = "${work_dir}/symbols"
+set dash         = "----------------------------------------"
+set line         = "========================================"
+set MAKE         = "make"
+set get_ver      = "/cscpu/core_release/bin/get_version"
+
+set path         = (/router/bin /usr/cisco/bin /usr/local/bin $path)
+
+
+# -------------------------------------------------------------------------------
+# Create Build Menu
+# -------------------------------------------------------------------------------
+cat <<EOF
+
+${dash}${dash}
+Choice	Directory				Image File Name
+${dash}${dash}
+
+   1.	sys/obj-36-c1000	.		c1000-*, cpa1003-*
+   2.	sys/obj-36-c1005	.		c1005-*, cpa1005-*
+
+   3.	sys/obj-4k-c4000	.		c4500-*, cpa45-*
+   4.	sys/obj-4k-c7100	.		c7200-* 
+   5.	sys/obj-4k-rsp		RSP		rsp-*
+   6.	sys/obj-4k-rvip		VIP1		vip21-*
+   7.	sys/obj-4k-svip		VIP2		vip21-*
+
+   8.	sys/obj-68-as5200	.		as5200-*
+   9.	sys/obj-68-c3000	.		cpa25-*, igs-*
+  10.	sys/obj-68-c4000	.		xx-*
+  11.	sys/obj-68-c7000	.		gs7-*
+
+  20.	sys/rommon/obj-36-c1000			.
+  21.	sys/rommon/obj-4k-c4000			.
+  22.	sys/rommon/obj-4k-c7100			.
+  23.	sys/rommon/obj-4k-rsp			.
+  24.	sys/rommon/obj-4k-rsp2			.
+  25.	sys/rommon/obj-4k-svip			.
+  26.	sys/rommon/obj-4k-as5200		.
+
+  30.	sys/obj-4k-rsp/rsp-tkpgen-mz		Special build
+
+ 100.	obj-sp-solaris		.		unix-*
+ 101.	obj-sp-sunos		.		unix-*
+
+   X.     Exit this menu & do nothing.
+
+EOF
+echo ""
+echo -n "Enter choice:  "
+set choice = $<
+echo ""
+
+switch ( ${choice} )
+
+    case  1:
+		set prod = "obj-36-c1000"
+		breaksw
+    case  2:
+		set prod = "obj-36-c1005"
+		breaksw
+    case  3:
+		set prod = "obj-4k-c4000"
+		breaksw
+    case  4:
+		set prod = "obj-4k-c7100"
+		breaksw
+    case  5:
+		set prod = "obj-4k-rsp"
+		breaksw
+    case  6:
+		set prod = "obj-4k-rvip"
+		breaksw
+    case  7:
+		set prod = "obj-4k-svip"
+		breaksw
+    case  8:
+		set prod = "obj-68-as5200"
+		breaksw
+    case  9:
+		set prod = "obj-68-c3000"
+		breaksw
+    case 10:
+		set prod = "obj-68-c4000"
+		breaksw
+    case 11:
+		set prod = "obj-68-c7000"
+		breaksw
+
+
+    case 20:
+		set prod = "obj-4k-rsp"
+		set cmd  = "all"
+		breaksw
+    case 21:
+		set prod = "rommon/obj-4k-c4000"
+		set cmd  = "all"
+		breaksw
+    case 22:
+		set prod = "rommon/obj-4k-c7100"
+		set cmd  = "all"
+		breaksw
+    case 23:
+		set prod = "rommon/obj-4k-rsp"
+		set cmd  = "all"
+		breaksw
+    case 24:
+		set prod = "rommon/obj-4k-rsp2"
+		set cmd  = "all"
+		breaksw
+    case 25:
+		set prod = "rommon/obj-4k-svip"
+		set cmd  = "all"
+		breaksw
+    case 26:
+		set prod = "rommon/obj-4k-as5200"
+		set cmd  = "all"
+		breaksw
+
+
+    case 30:
+		set prod = "rommon/obj-36-c1000"
+		set cmd  = "rsp-tkpgen-mz"
+		breaksw
+
+    case 100:
+		set prod = "obj-sp-solaris"
+		set cmd  = "oddballs"
+		breaksw
+    case 101:
+		set prod = "obj-sp-sunos"
+		set cmd  = "oddballs"
+		breaksw
+
+    case X:
+    case x:
+		echo "Exiting menu.  No action taken."
+		echo ""
+		echo ""
+		goto END
+    default:
+		echo ""
+		echo "WARNING:  ${prod} is not set up.  Please look at the makefile."
+		echo ""
+		echo ""
+endsw
+if (( ${choice} > 0 ) && ( ${choice} < 100 )) then
+    set cmd = "production"
+endif
+
+
+# -------------------------------------------------------------------------------
+# Build command 
+# -------------------------------------------------------------------------------
+set mk_flag1  = "GDB_FLAG= BIN_SUFFIX=.${yymmdd}"
+set mk_flag2  = "TFTPHOST=${bld_host}"
+set mk_flag3  = "TFTPDIR=${arch_dir}/images.${yymmdd}/${prod}"
+set all_flags = "${mk_flag1} ${mk_flag2} ${mk_flag3}"
+
+set out       = "${arch_dir}/images.${yymmdd}/log.${prod}"
+
+mkdir -p ${arch_dir}/images.${yymmdd}/${prod}
+if ( -e ${out} ) then
+    /bin/rm -f ${out}
+endif
+touch ${out}
+cd ${tree}/sys/${prod}
+echo ""						>>& ${out}
+echo "${dash}${dash}"				>>& ${out}
+echo "`date` - Started $PWD."			>>& ${out}
+echo ""						>>& ${out}
+
+nice ${nice_val}  $MAKE -s MAKEFLAG_J=${cpu_val} ${all_flags} ${cmd}  >>& ${out}
+
+echo ""						>>& ${out}
+echo "`date` - Finished $PWD."			>>& ${out}
+echo ""						>>& ${out}
+
+
+# -------------------------------------------------------------------------------
+# Copy the *.sun and *.symbols files into directories. 
+# -------------------------------------------------------------------------------
+if ( ${choice} < 100 ) then
+
+    mkdir -p  ${sun_dir}/suns.${yymmdd}/${prod}
+    foreach sun ( *.sun )
+	cp -p ${sun} ${sun_dir}/suns.${yymmdd}/${prod}/${sun}-${yymmdd}
+    end
+
+    mkdir -p  ${sym_dir}/symbols.${yymmdd}/${prod}
+    foreach symbol ( *.symbols )
+	cp -p ${symbol} ${sym_dir}/symbols.${yymmdd}/${prod}/${symbol}-${yymmdd}
+    end
+endif
+
+
+
+END:

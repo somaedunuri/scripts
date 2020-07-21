@@ -1,0 +1,35 @@
+#!/bin/sh -u
+
+Syntax() {
+	echo 1>&2 ${0}: `/usr/ucb/basename ${0}` [-n <user-to-notify>]
+}
+
+NotificationList=""
+
+case $# in
+0 )
+	# Continue
+	;;
+2 )
+	case ${1} in
+	-n )
+		NotificationList="-n ${2}"
+		;;
+	* )
+		Syntax
+		exit 1
+		;;
+	esac
+	;;
+* )
+	Syntax
+	exit 1
+	;;
+esac
+
+
+for t in 8 9 10 11 12 13 14 19 20 22 23
+do
+	echo Sending notices for ${t}E commits that are missing ...
+	/users/soma/bin/Notify121E -t ${t} ${NotificationList}
+done

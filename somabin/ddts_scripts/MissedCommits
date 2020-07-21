@@ -1,0 +1,106 @@
+#!/bin/sh -u
+
+QDDTS=/vws/aak/qddts/; export QDDTS
+
+Script=`/usr/ucb/basename ${0}`
+
+Error()
+{
+	echo 1>&2 ${Script}: ${@}
+	exit 1
+}
+
+Syntax()
+{
+ echo \
+ "${Script}: Syntax: ${Script} [-c] throttle branch [branch ...] [-e enclosure]"
+}
+
+Cosmos=No
+
+case $# in
+0 )
+	Syntax
+	exit 1
+	;;
+* )
+	case ${1} in
+	"-c" )
+		Cosmos=Yes
+		shift
+		;;
+	-* )
+		Syntax
+		exit 1
+		;;
+	esac
+	;;
+esac
+
+case $# in
+0 | 1 )
+	Syntax
+	exit 1
+	;;
+* )
+	if [ ! -d /release/ccaudit/ios/${1} ]; then
+		Error ${1} is not a valid throttle branch
+	fi
+	ThrottleBranch=${1}
+	shift
+	if [ ! -d /release/ccaudit/ios/${1} ]; then
+		Error ${1} is not a valid branch
+	fi
+	Pattern="[ ]Diffs-[0-9]*\.*[0-9]*[EST]*-${1}[ ]"
+	shift
+	while [ $# -ge 1 ]; do
+		if [ ${1} = "-e" ]; then
+			shift
+			if [ $# -eq 0 ]; then
+				Error Missing enclosure patterns after -e
+			fi
+			while [ $# -ge 1 ]; do
+				Pattern="[ ]${1}[ ]|${Pattern}"
+				shift
+			done
+			break
+		fi
+		if [ ! -d /release/ccaudit/ios/${1} ]; then
+			Error ${1} is not a valid branch
+		fi
+		Pattern="[ ]Diffs-[0-9]*\.*[0-9]*[EST]*-${1}[ ]|${Pattern}"
+		shift
+	done
+esac
+
+case "$Cosmos" in
+Yes )
+	Pattern="[ ]12\.1\([0-9][0-9]*\.05\)E[0-9]*[ ]|${Pattern}"
+	;;
+esac
+
+DDTSlist=/tmp/MissedCommits.ddts
+AddressList=/tmp/MissedCommits.addrs
+/bin/rm -f ${DDTSlist} ${AddressList}
+/bin/touch ${DDTSlist} ${AddressList}
+/bin/chmod 666 ${DDTSlist} ${AddressList}
+
+cd /release/ccaudit/ios/${ThrottleBranch}/CommitPatches
+
+/bin/find . -name \*\.CSC\* -exec /usr/ucb/basename '{}' \; |\
+	/bin/cut -c 17-26 |\
+	/vws/aak/qddts/bin/qreport.pl -width 4000 \
+ 		Identifier ENCLOSURES Integrated-releases |\
+	/usr/ucb/tail +3 |\
+	/bin/grep "^C" |\
+	/bin/sed -e 's/$/ /' |\
+	/bin/sort -u -k 1 |\
+	/bin/egrep -v "${Pattern}" |\
+	/bin/cut -c 1-10 |\
+	/bin/tee ${DDTSlist} |\
+	/vws/aak/qddts/bin/qreport.pl \
+		Identifier Severity Status Engineer DE-manager Headline
+
+/vws/aak/qddts/bin/qreport.pl Engineer DE-manager < ${DDTSlist} |\
+	/bin/nawk 'NR>2 {printf("%s\n%s\n", $1, $2)}' |\
+	/bin/sort -u > ${AddressList}

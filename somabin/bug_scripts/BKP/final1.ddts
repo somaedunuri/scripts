@@ -1,0 +1,1319 @@
+CSCdx13783 4 O palani   FE/GE dot1q + vrf fixes for the GSR
+CSCdx13792 3 R sgannu   LCs not registering with CISCO-ENHANCED-MEMPOOL-MIB
+CSCdx13802 2 J palani   Dual GRP: a GRP hang and a failover cannot occur
+CSCdx13846 3 J ekleung  rfc1483 BPDUs cause input errors
+CSCdx13853 3 R palani   1xGE: Per-VLAN CAR output does not match the configured CIR
+CSCdx13872 3 A abhaskar 1xGE: Per-VLAN byte count statistics incorrect
+CSCdx13895 1 J dalen    ISIS stuck in INIT state with priority 128
+CSCdx13929 4 R pmanson  test plim no  t1 0 1 sbi  enable temux  doesnt work for frostbite
+CSCdx14008 2 D ekleung  FIB gets disable on QOC12 ATM LC when receiving traffic during boot
+CSCdx14037 3 R palani   1-port gige LC does not decrement IP ttl in ip2tag
+CSCdx14058 2 R szhang   E4P: Remove misplaced return statement in gen7_add_receive
+CSCdx14086 3 D ssuri    Losing BGP commands after reload
+CSCdx14112 4 C dojemann 21ST-OSPF Sham Link Scalability w/Regular VPN Using 256/512MB RP Mem
+CSCdx14234 3 R rcascio  Golden testbed gtag-rrr failures because of lost RSVP listener
+CSCdx14258 3 R abhaskar X-B: By doing Clear ip mrou *, all Mcast traffic get dropped
+CSCdx14267 6 A ekleung  service-policy shown as an option under ATM subinterface
+CSCdx14287 3 R fsunaval E4P:ACL:CPUHOG for ACL merge with 3000 line
+CSCdx14351 3 A ssuri    distribute list and def-information get improperly config under vpn
+CSCdx14530 1 R pmanson  vpnv4 tag entries not getting installed on GSR LCs H/w
+CSCdx14574 4 C mwollen  C10720-GE: CAR inaccurate when using exceed-action set - SRP2GEorFE
+CSCdx14590 1 J pmanson  vpnv4 tag entries not getting installed on GSR LCs H/w
+CSCdx14763 3 R palani   GSR SSO: LC to RP event is processed twice on RP (sync introduced)
+CSCdx14961 3 C wingaho  Applying netflow on Eng-2 OC48 causes traffic loss
+CSCdx14979 2 D wingaho  Connectivity lost for MPLS core with eBGP establishment on VRF
+CSCdx15027 1 D fyuan    Software forced crash at delete_watched_boolean
+CSCdx15063 3 R napai    Excessive LinkDown traps sent by sublayer interfaces
+CSCdx15067 4 C palani   %LC-3-IICDEV_NOTRESPOND: IIC Device 0 does not respond,
+CSCdx15076 3 D palani   dot1q config should be deleted if card removed.
+CSCdx15090 3 J dalen    OSPF LSA updates have wrong area id in header
+CSCdx15128 3 D ananda   Halcyon: Cannot configure 256 framers
+CSCdx15140 2 A chpayne  krak: RP mem leak, ip cef disabled after 108th clear ip bgp *
+CSCdx15183 5 R mwollen  C10720: Commit POS API changes to camr_ucode_20_plus
+CSCdx15200 3 U fyuan    MBUS flooded and slto 27 reports incorrect PEM position
+CSCdx15219 3 D jcwong   Same subnet IP addresses can be configured on multiple interfaces
+CSCdx15324 4 C palani   arp cache entry doesnt match interface mac
+CSCdx15369 4 R skufer   APS:completion of protect micro reload cycle affects working traffic
+CSCdx15471 2 D chpayne  krak: IOS reload with 4000fr/160Kroutes takes 1hour 7 min.
+CSCdx15548 3 O szhang   E4: MPLS FRR: Pak loss during primary TE fall back to old path
+CSCdx15564 2 D ssuri    Removal of the neighbor from the peer-group de-activates neighbor.
+CSCdx15570 3 C szhang   E4P:MPLS CSC bgp+ipv4: labeled pak should be accepted w/o tag enable
+CSCdx15573 3 R fyuan    Ping to ethernet self address is not 100% for 1499 size packets
+CSCdx15593 5 R jack     Removing unsupported images in 12.0S branch
+CSCdx15597 3 R andyr    C10720-EoMPLS: .1p bit changed in egress interface
+CSCdx15613 4 D rdubey   Recursive static route breaks lookup on original route on E3/E2
+CSCdx15621 4 R vhathawa update all lcdos firmware in ios
+CSCdx15630 3 A chpayne  when doing unconfig and config with tftp file, vcci points wrong int
+CSCdx15720 3 R pmanson  Blizzard: first MFR bundle doesnt recover after plim reset
+CSCdx15747 4 O wingaho  16oc3 crashes consistently w/ 25k vpn routes
+CSCdx15819 4 R dalen    OSPF NSF: perform NSF abort on NSF-capable routers only
+CSCdx15862 3 D ssuri    default-metric shows up under addr-fam vpnv4 when config globally
+CSCdx15931 4 A ssuri    bgp neighbor weight config doesnt show up
+CSCdx15992 5 R fyuan    cleanup #ifdefs used to track old version of gdb
+CSCdx16013 3 C fsunaval E4P-MPLS: oCAR under MPLS does not work correctly with access list
+CSCdx16039 3 D ssuri    turning on auto-summary under vpn turns it on globally too
+CSCdx16068 2 R tgraf    Making FRR work with SSO Neighbor
+CSCdx16148 3 J chpayne  FIB: Inconsistency between RP routing info and FP routing info
+CSCdx16157 3 A ssuri    advertisement-interval shows up with peer-groups on upgrade-cli
+CSCdx16201 3 R sgannu   ciscoEnvMonFanNotification broken by CSCdw06856 for GSR.
+CSCdx16231 3 A ssuri    problem in assigning members to peer-grp under VRF
+CSCdx16237 4 D ssuri    neigh. x.x.x.x peer-group <name> nvgens twice under vrf
+CSCdx16298 3 R sgannu   Wrong OIDs commited to conn_isp for GSR 12016
+CSCdx16302 3 D mwiedman crash when 2 people were using the NVRAM at the same time
+CSCdx16309 1 R rordeman Bus error crash after removal of ipv6ip Tunnel
+CSCdx16322 2 D vhathawa groups of 2 T1 links in down/down state and peer in up/down state
+CSCdx16324 5 R ekleung  input and output counters in show atm pvc commands needs to incremen
+CSCdx16387 2 R rordeman Static ARP entries are purged from CEF table on cut over
+CSCdx16389 3 A chpayne  TOASTER-2-FAULT: T1 SW Exception: CPU[t1r0c1] 0x00000680
+CSCdx16405 3 A tgraf    Tracebk in tspvif_actions_exec on active RP after shut downstrm link
+CSCdx16411 2 J ananda   NRT:7200 Router does not see three other routers on fddi ring
+CSCdx16447 3 R fyuan    PRP-1: Add support to ST FEPROM (M29W040B) in Romupgrade
+CSCdx16471 3 C fyuan    Occasional Ping packet loss while pinging from GRP
+CSCdx16502 3 A jwelder  7500-HA:SSO:Legacy IPs may cause QA errors
+CSCdx16514 3 A rordeman GSR SSO: Adjacency info for standby RP ethernet0 interface is wrong
+CSCdx16544 3 A lzachery 1oc12pos-1, sonetPathCurrentStatus=48(path unequip,label mismatch)
+CSCdx16556 1 U alanb    CPU run at 100% when ingress LC E2 egress LC SRP
+CSCdx16572 3 R vhathawa LC-ATM : Error msg on configuring a LVC
+CSCdx16635 4 W yvrao    Duplicate arp requests being sent on VLAN subinterfaces
+CSCdx16684 1 V rordeman Crash in __start and rsp_ipfib_switch_tag during SSO cutover
+CSCdx16714 1 R fyuan    GSR+some other platforms: hang/buserr during crash processing
+CSCdx16717 2 D rdubey   Enabling/disabling CAR on EE48 causes the card to crash
+CSCdx16872 2 R chpayne  Packet buffer leak (entire pool) if config tftp copied to running
+CSCdx16881 3 R fsunaval E4P:Netflow shows incorrect dest i/f with multiple possible path/Pbr
+CSCdx16940 2 R szhang   E4: E4 cannot forward traffic to one hop tunnel with tag enabled
+CSCdx17053 3 R lzachery C10K Entity Subsystem Does Not Correctly Support ENTITY-MIB Sync
+CSCdx17055 3 D fyuan    Sequencing Error and Reassembly Error right after reload
+CSCdx17056 3 J fyuan    Line Card off 12000 reloads.(bfrp_send_cmd_msg)
+CSCdx17178 3 D rthaker  unqueue didnt find 5315962C in queue 531E6410
+CSCdx17223 2 U jwelder  FR SSO - CT3 interfaces are causing flaps
+CSCdx17230 2 R rdubey   EE48: VRF pings are failing
+CSCdx17239 3 A chpayne  URD packets ignored on the Omega with PXF switching on
+CSCdx17258 2 D rdubey   EE48: Turning on explicit-null on PE routers brings MP-iBGP sess dow
+CSCdx17269 3 C szhang   E4P:MPLS-FRR: tagged packet to Bakup tunnel intf counted to IP pak
+CSCdx17312 2 C ssuri    peer-groups broken under address-fam multicast after S-ST merge
+CSCdx17318 3 R fyuan    card with persistent LOS after manual oir
+CSCdx17352 1 R pmanson  6PE: download of 6pe routes to LC is broken
+CSCdx17356 4 C fsunaval E4P:PBR applied to packets destined to self
+CSCdx17374 4 R wingaho  show controller psa feat is not showing correct information
+CSCdx17382 3 D vhathawa Traceback occurs after ESR image is booted.
+CSCdx17384 3 A mwiedman error message comes up while saving large config to bootflash
+CSCdx17424 4 R rthaker  IPC should support message retries on a per session basis
+CSCdx17459 2 R dalen    watchdog timeout crash by shut/no shut on Tunnel interface
+CSCdx17476 3 R rordeman Netflow: wrong mask for connected routes; not the longest prefix
+CSCdx17495 3 R palani   Output CAR on E0 with E2 ingress broken
+CSCdx17501 2 D chpayne  krak: RP CPU util 99% with 800vpn, 999(or 4000)vlans, clear ip bgp *
+CSCdx17505 3 R dkhoury  Pim-bidir: Dont NVGEN no ip pim bidir-enable, align defaults
+CSCdx17543 3 I palani   EXMALLOCFAIL on Engine2 Trident card in bowmore-eft3 image.
+CSCdx17565 3 J slegault Multicast: the fast-flags is not set on LC
+CSCdx17568 2 R wingaho  6PE broken due to mBGP send-labels non-configurable
+CSCdx17573 2 V bstetson MPLS doesnt update CEF table with new local tags after SSO cutover
+CSCdx17584 3 A nagi     OC3, OC12 APS: No SD or SF IOS alarm processing
+CSCdx17608 3 D nagi     OC3, OC12 APS: No IOS notification of cutover after OIR
+CSCdx17625 2 D nagi     OC3, OC12 APS: Cutovers can cause invalid packet counts
+CSCdx17637 3 R sgannu   SNMP support for Ashara card
+CSCdx17685 4 R fyuan    PRP-1: reg offsets of some ppc registers wrong
+CSCdx17687 3 J jwelder  7500 Trace occurs upon booting image.
+CSCdx17697 5 A wingaho  Incorrect display of error message
+CSCdx17766 3 R chpayne  redundancy alarm not cleared after cutover
+CSCdx17784 2 R palani   GSR: HA LCs do not boot up after OIR of active RP/CSC
+CSCdx17797 3 R ssastry  Modify mode logic to be persistent over PRE reboot
+CSCdx17851 4 C fsunaval E4P:PBR chooses wrong outgoing interface with multiple set criteria
+CSCdx17893 2 R rdubey   E3: E3 crashed (alpha_tlu_read) with flapping 10K isis routes
+CSCdx17906 3 C rdubey   CSC E3:Scalability test results with 512MB RP
+CSCdx17916 2 R shankar  RTR: RTT packet with wrong values causes router to crash
+CSCdx17955 3 R wingaho  Traffic will not forwarded between interfaces with FR Extended Addre
+CSCdx17960 3 C dojemann 21ST-VRFoSUB on E2 POS Scalability Using 256/512 MB RP memory
+CSCdx18078 3 R andyr    Propagate ucode fixes from 20_plus to 23_plus
+CSCdx18091 6 A ckhuong  confusing error message when running diag command
+CSCdx18121 3 R skufer   VRFS: commit broke netflow and UNINLINE flag build
+CSCdx18125 3 R palani   GSR: HA Switchover fails after an upgrade
+CSCdx18157 6 R andyr    Add ucode support for match cos on dot1q frames
+CSCdx18190 2 R pcjoshi  GSR: HA Removal of controller config for Blizzard not synced.
+CSCdx18232 2 J fsunaval Eng4-OC192 POS Line Cards dont come up
+CSCdx18248 2 D rdubey   EE48: Engine 3 LC crash under low memory condition
+CSCdx18259 3 R fsunaval E4P:PBR:iCAR gets applied to wrong precedence when combined with PBR
+CSCdx18265 4 R ssuri    Traceback at bgp_show_prefixlist_walker
+CSCdx18292 2 J chpayne  Inject 100K BGP route may generate Failed To Alloc Mtrie message
+CSCdx18404 2 D rordeman %FIB-3-NORPXDRQELEMS: Exhausted XDR queuing elements on BGP converge
+CSCdx18434 3 R palani   GSR: SSO LC to RP event count reconiliation not working correctly
+CSCdx18435 3 R palani   Half duplex mode of 8 port FE isnt works well
+CSCdx18517 2 D rordeman Memory fragmentation causes %FIB-4-RADIXINSERT: Error trying to inse
+CSCdx18533 3 C sichen   Ucode reload of QOC12 ATM and 3xGE takes > 10 min during BGP converg
+CSCdx18560 3 C ssuri    BGP long convergence time on RR
+CSCdx18563 3 R palani   Default-network produces incorrect packet on trident linecard
+CSCdx18570 2 R wingaho  OC12 Linecard crash after configuring tag-switching
+CSCdx18575 2 U palani   TCP impact when build ACL
+CSCdx18643 3 R rdubey   Remove crashdump from tag code when memory allocation fails
+CSCdx18658 4 R bstetson mtu field of show tag for display is improperly named
+CSCdx18688 3 D ekleung  LCCEF-3-MACSTR: adjacency (0.0.0.0) has incorrect high word
+CSCdx18746 4 A rordeman spurious access in mtrie_leaf_free with FIB-4-RPPREFIXINCONST1
+CSCdx18841 3 R fyuan    rommon doesnt handle ECC errors
+CSCdx18910 2 J ssuri    configuring maximum-prefix does not change bgp state
+CSCdx18978 3 R chpayne  Cannot ping through frame-relay PVC, instead getting traceback MSGS
+CSCdx18986 2 R abhaskar X-B MPLS: oCAR is broken when router performs TAG imposition
+CSCdx18987 3 U palani   Ping cant go through the trunk between c12008 and cat6509
+CSCdx18989 3 A gharris  7500-HA:Route appears in show ip route table on 7500 standby RP
+CSCdx19002 3 R jcwong   Wrong number of netflow entries on GSR
+CSCdx19023 2 R ekleung  E2 8xOC3 ATM output queue stuck after removing MDRR policy
+CSCdx19089 5 N fyuan    file type not reported correcly for ascii with sh file info cmd
+CSCdx19167 6 R szhang   E4P-VPN: line card drop packets at PE when turning on explicit-null
+CSCdx19178 4 R fsunaval Unnecessary code repetition in ip_policy_forward() caused by sync
+CSCdx19195 3 D szhang   E4P-VPN: explict null tagged packets are countered as IP packets
+CSCdx19253 5 A rordeman CPUHOG seen in CEF LC IPC Background
+CSCdx19277 2 R fsunaval E4:unable to forward traffic to a specific dest prefix with E4ingres
+CSCdx19319 4 A rdubey   EE48: Need to a warning message once hit 1K qos tcam label limitatio
+CSCdx19394 5 R bstetson filter debug tag tfib cef based on access list
+CSCdx19498 5 C wingaho  OC48 POS Feature Performance w/ 12.0(21)ST.0321
+CSCdx19501 5 C wingaho  Scepter 16xOC3 POS Feature Performance w/ 12.0(21)ST.0321
+CSCdx19502 5 C wingaho  QOC12 POS Feature Performance w/ 12.0(21)ST.0321
+CSCdx19503 5 C ravindra Trident 3xGigE Feature Performance w/ 12.0(21)ST.0321
+CSCdx19518 3 R fyuan    MAJOR alarm stays on after one of two PSs was turned off/on
+CSCdx19525 2 R wingaho  Fix of CSCdw92457 break ACL in some scenario
+CSCdx19528 5 C wingaho  OC48 POS Feature Performance w/ 12.0(21.2)S
+CSCdx19529 5 C wingaho  QOC12 POS Feature Performance w/ 12.0(21.2)S
+CSCdx19530 5 C wingaho  Scepter 16xOC3 POS Feature Performance w/ 12.0(21.2)S
+CSCdx19532 5 C ravindra Trident 3xGigE Featurea Performance w/ 12.0(21.2)S
+CSCdx19533 5 C palani   FastE Feature Performance w/ 12.0(21.2)S
+CSCdx19536 2 R alue     Router crashes on configuring mls with loopback interface.
+CSCdx19539 5 C fsunaval QOC48 POS Feature Performance w/ 12.0(21)ST.0321
+CSCdx19579 3 R estest   APS/MSP 6OC3POS: Inconsistent APS status under POS controller
+CSCdx19616 4 R jcwong   PBR: sh ip policy command missing in 120-21.2.S image
+CSCdx19618 4 J jcwong   PBR:ip local policy route-map command missing in both S & ST image
+CSCdx19894 3 R rcascio  Ext Tun ID should match SrcAddr, not router-id
+CSCdx19912 3 R wingaho  BLIZZARD/FROST: Cause of PLIM keepalive failures not know
+CSCdx19923 3 R wingaho  BLIZZARD/FROST: Multilink flows queuing too many fragments
+CSCdx19946 2 D chpayne  MLPPP Packets are dropped with Higher Data Traffic
+CSCdx19987 2 D wingaho  output counters in ocelot show pre-drop statistics
+CSCdx20124 3 D fyuan    GSR syslog logging function stopped
+CSCdx20130 4 D palani   SYS-3-CPUHOG: Task ran for 9516 msec (592/11), process = Exec
+CSCdx20138 3 D jwelder  FR SSO - Invalid XDR slot error messages
+CSCdx20224 3 D fyuan    IPC timeout when executing cle/show log on a slot from the GRP.
+CSCdx20225 2 I ananda   NRT: Routers not seeing each other on an SRP ring
+CSCdx20246 2 U jwelder  7500-HA: dCEF gets disabled
+CSCdx20248 2 R twarwick Malloc Error on GSR after failover with MPLS VPN configs
+CSCdx20340 3 J fyuan    %ALIGN-1-FATAL: Corrupted Program counter pc=0x27000000
+CSCdx20342 5 R ssastry  Invalid argument msg printed from
+CSCdx20443 4 A rordeman VRF Selection: glean adj for connect. subnet prefix in VRF table
+CSCdx20463 4 J jcwong   ACl: sh access-lists # does not give output
+CSCdx20517 3 C rcascio  FRR:NSF needs to be disable/re-enabled for FRR to work successively
+CSCdx20548 3 R anilk    7500-HA:oir of slave rsp causes INDXOBJ-3-INTERRUPT: index
+CSCdx20576 3 R palani   Config sync failed when downgrading to 12.0(16)S
+CSCdx20616 3 R fsunaval E4P:PBR counters show random values when first applied to intf
+CSCdx20618 2 D fsunaval E4P: Fibdisables by doing primary CSC OIR.
+CSCdx20626 3 A rordeman GSR: SSO Spurious memory access made at 0x500A1390 reading 0x2c
+CSCdx20635 3 U ssuri    Nontransitive BGP attribute transiting an AS
+CSCdx20645 3 D jwelder  Missing interfaces after switch over
+CSCdx20657 3 D wingaho  GSR: SSO Tracebacks, virtual int made when MLP configured on Blizard
+CSCdx20807 3 R pmanson  Frostbite commit breaks builds with GLOBAL_DEBUG
+CSCdx20856 4 R dalen    ISIS: sh isis mpls traff down requires a level keyword
+CSCdx20868 2 U anilk    2x PA-MC-8E1 on vip2-50 systems hangs, no console access
+CSCdx20884 3 D dsavage  EIGRP downs neighbor on removal of netcovering secondary IP addr
+CSCdx20897 5 N yvrao    VLAN Broadcast/Multicast counter code may need rework
+CSCdx20922 2 C bstetson Static route inconsistency in 12.0(15)S3
+CSCdx20928 2 J wingaho  OC48 crash with ToFab BMA PLIM error 1000
+CSCdx20946 2 D vravi    NRT:Core_QOS:prec4: Invalid queue-limit : set to -1
+CSCdx20954 1 R wingaho  15 crashes on OC3 LC on reload
+CSCdx20979 2 R vravi    NRT:Configuring absolute values for bw - CLI missing
+CSCdx20986 3 R sgannu   SNMP Auth Informs are not getting generated
+CSCdx21062 2 D wingaho  NRT:Loosing traffic at destination node while testing Fragmentation
+CSCdx21123 2 R rdubey   EE48: acl: tcp udp source port broken
+CSCdx21126 4 R rdubey   EE48: Fix the minbw adjustment for DS3
+CSCdx21145 1 R rordeman 7500-HA:SSO:Chunk corruption in CEF code crashes RSP on switchover
+CSCdx21201 2 R ssastry  ET/Omelet: LC command processing hog (make_runnable error)
+CSCdx21308 4 R dalen    using set metric clause should check for igrp_metric
+CSCdx21409 3 R vhathawa C10K MPLS/QoS featurette commit
+CSCdx21499 3 R palani   Ping fails between (E1/E2) GigabitEthernet interfaces
+CSCdx21502 4 R palani   save memory by rotate fields in rdbtype structure
+CSCdx21825 4 J jcwong   NETFLOW:NF V5 & v8 applied globally causes LC reload
+CSCdx21985 6 J wingaho  L2TPv3 (23S Deliverables)
+CSCdx22021 4 A rdubey   MPLS FRR:Primary tunnel goes down with expl-null turned on
+CSCdx22043 3 I rcascio  EoMPLS primary path between P-PE shut/no shut CEs traffic may stop
+CSCdx22153 6 A mwiedman enhance the output of sh bootflash: all for amd chips
+CSCdx22154 1 C ahaeri   crash with corrupted program counter
+CSCdx22213 4 O szhang   FROM FABRIC SEQUENCE ERRORS ON ENG 4 LC
+CSCdx22248 2 R mwollen  toaster crash intermittenly in POS mode
+CSCdx22290 4 R rordeman debug tunnel doesnt stick until tunnel created; gone after add tun
+CSCdx22320 3 R vhathawa HA:Traceback at the end of HA FSU test with 1CHOC12.
+CSCdx22346 4 R vhathawa T3 Controller flaps up/down during MPLS TDP regression testing
+CSCdx22368 2 J dojemann sh ip bgp vpnv4 all summary is not working
+CSCdx22435 2 D alanb    MERLIN48: Card not recognised after upgrade[224z
+CSCdx22502 2 D rdubey   SR: Removing acl caused E3 card crashed
+CSCdx22614 3 R fsunaval E4P:PBR set ip next-hop <local-router-intf> should not take effct
+CSCdx22620 4 V pmanson  GSR-IPV6: remove ipv6 nd prefix-advertisement from default config
+CSCdx22630 4 N skufer   Spurious APS message seen at boot up
+CSCdx22636 2 R jwelder  7500-HA:Non-HA platforms broken
+CSCdx22690 3 C iwu      Multicast data not fragmented in the fast path causing high CPU Util
+CSCdx22710 4 D pcjoshi  Buffer overflow when sh bootflash <tab> issued
+CSCdx22885 4 R fyuan    fabric error handling on/off switch, LC only error (LOS/CRC)
+CSCdx23001 3 R palani   GSR: HA Boot variable conf by hw-module command synced to standby
+CSCdx23077 4 A palani   GE: MTU Error message keeps popping up on subinterface
+CSCdx23088 2 R palani   Sampled netflow a/c corrupted with ACL on 3port GigE L/C
+CSCdx23150 3 R fsunaval E4P:uRPF:rpf check for source_ip --> null0 doesnt take effect
+CSCdx23168 3 D gharris  MLP SSO : MLP packets do not flow after switchover
+CSCdx23203 2 D wingaho  Tag switching causing Spurious access on GSR linecard
+CSCdx23223 3 O wingaho  Blizzard: MFR bundle has packet loss when links are shut/no shut
+CSCdx23252 2 D gharris  MLP SSO : Switchover with multiple MLP sessions causes RSP to hang
+CSCdx23360 5 P mwiedman Cisco coding style not followed in fslib_dev_intel_scs.c
+CSCdx23361 3 C mwiedman device id of cfi compliant intel chips is not displyed
+CSCdx23494 6 A ssuri    BGP:MD5 key change resets peering session
+CSCdx23538 3 V vhathawa Bowmore:Not sending keepalive causes other end protocol stays down.
+CSCdx23611 2 A ananda   Gigaeth int can not recover from shut/no shut of the int
+CSCdx23743 2 D estest   Sweep Ping test fails on CHOC ints
+CSCdx23764 2 D estest   Sweep Ping test fails on OC12 ints
+CSCdx23785 2 R szhang   E4/E4+: slow path ip->tag broken
+CSCdx23868 3 A rfv      ATM SSO:: Using OAM PVC management, traffic stops after SSO.
+CSCdx23872 3 A rfv      ATM SSO::  ATM SVCs cannot be re-established after SSO.
+CSCdx23908 1 D rcascio  MPLS-ATOM: EoMPLS - Execution of no encap dot1q crashed router
+CSCdx23966 3 R vhathawa Heinz:Assertion failure Traceback on configuring EBGP
+CSCdx23968 3 R pmanson  link FRR with engine 2 card is above 50ms
+CSCdx23975 3 D vhathawa Ping fails on Multilink Interface after microcode reload
+CSCdx23996 3 J skufer   APS Manual switchower for unidirectonal fails on QOC12 POS MM
+CSCdx24013 4 D ssuri    command show ip bgp prefix-list <x> is broken
+CSCdx24133 3 U fyuan    Same Static route entry shows up twice in sh running-config
+CSCdx24242 2 R fsunaval uRPF:incorrect behaviour for valid source ip addr reachable via tag
+CSCdx24260 4 R palani   show sec-slot0: is not working for GSR/NGRP
+CSCdx24298 3 R fyuan    bfrp_check_rommon_faberr not work in NGRP
+CSCdx24399 2 R gharris  CEF switched packet counter not matched expected results
+CSCdx24476 6 A rfv      ATM OAM cell emulation at AToM or L2TPV3 tunnel endpoints
+CSCdx24490 4 C rdubey   EE48: ACL,CAR, MQC scalability study reprot for ODM algorithm
+CSCdx24509 5 A rordeman EE48 MPLS FRR Load-balancing internal error on E2 with E3 protected
+CSCdx24598 3 D chpayne  High inaccuracy for CBWFQ data classes caused by VTMS.
+CSCdx24642 3 R rdubey   MPLS fragmentation broken
+CSCdx24686 1 R palani   3-port gige LC with dot1q: some bits of MPLS label ignored
+CSCdx24725 2 U wingaho  NRT:Packets being double counted in prec account on POS LC
+CSCdx24750 2 R rcascio  MPLS TE: Tunnel takes wrong path when explicit path link is shut
+CSCdx24964 3 R ssastry  Omelet: FDL verification in cmd aggr incorrect
+CSCdx24966 2 U wingaho  NRT:GSR ignoring DF bit being set and still forwarding packet
+CSCdx24975 4 O fsunaval E4P:MQC:class default traffic is ratelimited after removal of polmap
+CSCdx25023 2 R dojemann StaticLabels:Static label not being freed from LFIB after unconfig
+CSCdx25041 3 D rdubey   When basic mpls+oACL on OC48POS, traffic stops frowarded by EE48
+CSCdx25179 4 R wingaho  NRT: %GRPPOS-3-OP: unknown event - 26
+CSCdx25186 3 R ekleung  E2 8xOC3 ATM VC-class not effective until reloading the router
+CSCdx25188 3 R fyuan    ADRSPC_NVRAM_PHYSICAL defined in two places
+CSCdx25279 2 V rthaker  Router crashed when max msg cache usage over 15000
+CSCdx25288 3 V rthaker  ipc msg cache size shrinks to random value after dynamic cache grow
+CSCdx25476 3 R fsunaval E4P: PBR handling for multicast packets
+CSCdx25490 2 C palani   E0,E1 & E2 Performance Degradation 12.0918)S4 --> 12.0(21)S1
+CSCdx25500 5 C wingaho  QOC12POS Feature Performance w/ 12.0(21)S1.0402
+CSCdx25501 5 C wingaho  Scepter 16xOC3 POS Feature Performance w/ 12.0(21)S1.0402
+CSCdx25505 5 C wingaho  OC48 POS Feature Performance w/ 12.0(21)S1.0402
+CSCdx25507 5 C palani   Trident Feature Performance w/ 12.0(21)S1.0402
+CSCdx25536 2 R szhang   E4: Tracebacks in tfib192_collect_hw_rew_stats
+CSCdx25701 1 D ekleung  GSR TAZ:configuring vrf on the ASBR hangs the router
+CSCdx25775 2 D dojemann Static vrf route shows up as untagged and no local binding label
+CSCdx25797 3 D vhathawa bowmore: Some of the interfaces (HDLC) do not comeup after cutover.
+CSCdx25807 2 R ssuri    Redist. static w/ route-map under multicast doesnt work correctly
+CSCdx25901 4 R sgannu   Update WRED MIB after CSCdw56663
+CSCdx25907 3 N bstetson LC-3-PSALOADSHARE MPLS loadsharing inconsistency again with dv16456
+CSCdx25929 4 R ekleung  ATM wred configuration error not preceded by %
+CSCdx25952 3 D wingaho  FR EA: Incorrectly incrementing input packets counters
+CSCdx25971 3 U palani   Unable to configure the router in the rpr-plus mode
+CSCdx25972 1 V napai    Bowmore:ESR crashed while config mixed chnl cards.
+CSCdx25997 5 N palani   psa phb shows incorrect vlan
+CSCdx25999 2 I rordeman 7500/CEF: Pings of 1501 to 1524 bytes failing with CEF enabled.
+CSCdx26068 3 R rdubey   EE48: Conga halt when MTU change under traffic w/ shaping
+CSCdx26077 4 R wingaho  GSR-IPV6: Handle IPv6 over GRE on services card instead of RP
+CSCdx26109 3 C rdubey   CEF accounting: sh ip cef traffic showing incorrect counters
+CSCdx26125 3 R palani   GSR SSO: FSU RPR switchover is broken when config mode is SSO
+CSCdx26161 3 A mwiedman GRP-4-CFGSYNC: Failed to sync private-config to standby RP
+CSCdx26172 1 U mbaroudi 7500-HA:SSO:100 MPLS VPNs config causes malloc fails & router crash
+CSCdx26234 6 R wingaho  Extend coverage for URPF on E2 POS line cards
+CSCdx26244 3 R palani   GSR SSO: enable vc verification on atm RP/LC driver
+CSCdx26266 2 D szhang   E4:Traffic stops forwarding through 1 hop tunnel with E4 LC at Head
+CSCdx26275 6 R palani   GSR SSO: add atm LC show command for vc bitmap values
+CSCdx26688 2 R rthaker  process_send_message traceback MPLS FRR & protected tunnels down
+CSCdx26711 2 R rfv      7500-HA:running config sync when configuring atm crashes standby rsp
+CSCdx26727 3 A fyuan    Constantly Rebooting with Cache Error Exception
+CSCdx26741 6 D ekleung  Change default qlimit to slightly over 1 MTU size
+CSCdx26745 6 D ekleung  Change qlimit of MDRR VCs based on bandwidth allocation
+CSCdx26769 3 R fsunaval E4P:ors:detaching cos-q-group from int doesnt take effect
+CSCdx26870 3 D szhang   E4P:MPLS FRR: FRR not work for loadbalanced one-hop TE tunnels
+CSCdx27020 4 N palani   Alignment correction at bfrp_spd_check
+CSCdx27117 2 R vhathawa Ping fails from src to dest rtr during MPLS VPN basic connectivity
+CSCdx27124 2 J iwu      NRT:MSDP SA Filter In With Route Map Test failed
+CSCdx27174 2 C vhathawa Heinz:Interarea MPLS TE:output buffer not incremented in tunn stats
+CSCdx27180 3 J chpayne  krak: TCP session not up for two PEs when config done via tftp copy
+CSCdx27183 3 V chpayne  BGP accouting counter not resetting at detaching or interface remova
+CSCdx27273 2 D dojemann 7500-HA: RSP crashes with MALLOCFAIL
+CSCdx27285 3 J wingaho  Ocelot: Incorrect output byte counter in the presence of drops
+CSCdx27291 5 R fsunaval SB: Static Analysis : bflc_gen7_fm_car.c
+CSCdx27388 6 R ekleung  GSR TAZ:Enhance the TAZ driver code to support 128 MB SAR SDRAM
+CSCdx27441 3 A chpayne  c10000 fragmentation problem!
+CSCdx27447 2 R dojemann StaticLabels:Cannot configure static label although it is not used
+CSCdx27492 2 R palani   EE48: RPR+ with Dynamic Reprovisioning does not work.
+CSCdx27564 2 I vhathawa Tag forwarding table does not contain destination
+CSCdx27588 2 J vhathawa OSPF ICMP TDP frag. test failed
+CSCdx27591 6 D tgraf    RSVP-TE needs to support SESSION_ATTRIBUTE object C-type 1
+CSCdx27718 2 J palani   Trident: PSA ACL doesnt take effect after being applied to interface
+CSCdx27800 2 C achakreb Post Merge Performance Degradation 18.S4 -> 21.1.S1
+CSCdx27808 3 R ekleung  Remove priority percent CLI from MQC chain
+CSCdx28118 2 D rcascio  MPLS FRR:Error in p_unqueue with large number of tunnels-FRR dies
+CSCdx28167 3 R rdubey   Spurious access in ipfib_ee48sb_is_uidb_valid()
+CSCdx28216 2 R chpayne  buffer leak with netflow for 142-bytes packets.
+CSCdx28323 3 U kumaril  POT1E1 SW_WatchDog not cleared cause vip crashes
+CSCdx28333 2 R fsunaval E4: public buffer leak due to ICMP causing CPUIF-3-NO_MEM
+CSCdx28340 3 R palani   Can not enable SSO and RPR-Plus if running config mode is none
+CSCdx28438 2 R estest   56K DS0 channels act as 64K DS0 channels
+CSCdx28497 2 R pmanson  EE48: OIR of 16xoc3 channelized card causes crash
+CSCdx28663 2 A chpayne  WRED random drop counter not working on ATM interface
+CSCdx28686 3 R ssastry  cht1: yellow alarm generation and detection shutoff not supported
+CSCdx28691 5 A fsunaval E4 Framer should send fixed ptr of 522 for consistency
+CSCdx28693 3 R rdubey   EE48: TX ALPHA ERROR during config. CAR/MQC with traffic
+CSCdx28722 4 A wingaho  engine 0 pos, configure no keep on admin down causes line proto flap
+CSCdx28787 3 D szhang   E4P: MPLS TE LB: ip2tag w/ one push tag one untag, pak punted to CPU
+CSCdx29030 3 R rdubey   EE48/MQC: class-default not updated if port shaping modified
+CSCdx29076 3 D szhang   E4P: MPLS LB: TAG2TAG w/ one pop tag one untagged path not work
+CSCdx29134 3 D szhang   E4P:MPLS LB: TAG2TAG w/ one swap tag one untag not work
+CSCdx29188 3 O iwu      HA:SSO Candidate RP gets unconfigured after Failover
+CSCdx29202 3 U ekleung  GSR TAZ: code can not update subinterface counters correctly
+CSCdx29212 3 R palani   LC report BFREVENT with wrong data type
+CSCdx29301 3 R ekleung  GSR TAZ:Can not change vbr-nrt VC to ubr pcr with the same pcr rate
+CSCdx29319 4 A kparne   E2 4xOC12 ATM: CRC errors when 4 ports with linerate traffic
+CSCdx29393 2 R wingaho  CEF gets disabled on a 16xOC3 when iACLs are configured on each port
+CSCdx29469 2 I estest   VT1.5 Insert AIS, yields Loss of Framing. Shld be Rcvr getg AIS
+CSCdx29510 2 R ssuri    BGP will not resend updates to cleared peer
+CSCdx29513 3 R ananda   FEC: ip add overlap with deleted port-channe interface
+CSCdx29525 3 D rfarzad  TCP should increase congestion window by amount of data acked
+CSCdx29561 3 A dojemann Unable to interrupt routing display
+CSCdx29563 3 R jcwong   SNF packet-interval exported incases when only Full NF on linecard
+CSCdx29611 5 A fsunaval OC-192 MET: Problem with RX packet, length is 104 always w debug
+CSCdx29634 2 R mwollen  C10720-GE: RX lock-up occurs with distinct packet size combinations
+CSCdx29753 1 D palani   1xGigE Performance Degradation 12.0(18)S4 --> 12.0(21)S1
+CSCdx29762 6 R palani   GSR SSO: Enable SSO mode for NGRP
+CSCdx29785 2 U wingaho  Enabling PSA Sampled Netflow results in IPC LC disabled
+CSCdx29797 1 D wingaho  OC12 POS Performance Degradation 12.0(18)S4 --> 12.0(21)S1
+CSCdx29798 6 R mwollen  C10720: Add support for remote wrap led
+CSCdx29828 1 C wingaho  OC48 POS Performance Degradation 12.0(18)S4 --> 12.0(21)S1
+CSCdx29862 1 D wingaho  OC12 POS Performance Degradation 12.0(18)S4 --> 12.0(21.1)S1
+CSCdx29875 1 R palani   1xGigE Performance Degradation 12.0(18)S4 --> 12.0(21.1)S1
+CSCdx29910 1 D wingaho  OC48 POS Performance Degradation 12.0(18)S4 --> 12.0(21.1)S1
+CSCdx29949 3 D dojemann MPLS-ATOM: EoMPLS - mpls ip command is not recognized
+CSCdx29964 3 O fyuan    MBUS-0-DOWNREV: warning even after upgrade fabric-downloader 3 times
+CSCdx30014 2 R vhathawa HA:traffic down for >10 sec then drop for >50 with 3000 mixed hdlc.
+CSCdx30100 3 D wingaho  %FIB-3-LOADINFOGET:Load balance int structure has no owner table
+CSCdx30162 5 R rdubey   Low priority lc->rp drops show up as high-priority drops
+CSCdx30264 4 C bstetson TFIB:Tag forwarding table output shows MRU not MTU
+CSCdx30286 2 O wingaho  MLFR/MLPPP: Incomplete adjacencies for MLFR Interfaces cause drops
+CSCdx30372 3 R ssuri    bgp enforce-first-as does not get removed
+CSCdx30378 5 C wingaho  OC48 POS Feature Performance w/ 12.0(21)S1
+CSCdx30380 1 V chpayne  ESR crashes while tftp loading a over allocated 1CHOC12 config.
+CSCdx30384 5 C wingaho  Scepter 16xOC3 POS Feature Performance w/ 12.0(21)S1
+CSCdx30392 5 C palani   Trident 3xGigE Feature Performance w/ 12.0(21)S1
+CSCdx30438 5 C palani   Fast Ethernet Feature Performance w/ 12.0(21)S1.0402
+CSCdx30445 2 R ekleung  CSCdw75717 needs to be propogated to ATM cards
+CSCdx30499 3 R rcascio  MPLS-TE:FRR doesnt work with single bcast link to SSO nbr
+CSCdx30571 3 R wingaho  E2: 448 line iACL ucode should be disabled when VPNs are enabled
+CSCdx30651 3 C wingaho  QM-4-STUCK appreared in OC-48 POS and interface up/down continuously
+CSCdx30688 3 A mwiedman Simultaneously copy to ATA disk and query flashMIB fails, files lost
+CSCdx30733 4 D ssuri    CDP disabled by default on SRP OC12
+CSCdx30738 2 D rordeman Continual E2 crashes after ISIS migration
+CSCdx30771 3 D napai    SNMP trap port (162) should not be opened unless manager(READPATCH-N
+CSCdx30810 3 R rsargent Fixes CSCdx28672 sh int invalid packet counter sync damage
+CSCdx30816 2 J ssuri    bgp_emergency_msg could corrupt memory
+CSCdx30926 3 A rordeman no ip default-network command removes routes in CEF
+CSCdx30995 3 N jwelder  7500-HA:Spurious memory access made at map_dot1q_vlan_command
+CSCdx31073 6 A fyuan    PRP-1:Packets punted to RP may be lost due to no reassembly buffers
+CSCdx31092 3 D palani   SYS-2-NOTQ: uqueue didnt find message when flap GE with 1K 802.1Q
+CSCdx31149 3 R wingaho  PSA UCode Prep THD_9 MPLS Unicast one clock is redundant
+CSCdx31158 2 R mohans   NRT:PA-MC-8TE1+: E1 no alarm detected when contr on one end is shut
+CSCdx31161 2 J ssuri    BGP session between PE-CE is lost when route-target is added/deleted
+CSCdx31164 3 J ssuri    7500-HA: SSO/NSF: nsf neighbor reports bgp neighbor down then up
+CSCdx31190 1 R palani   SSO:Standby RP continually crashes after switching from primary mode
+CSCdx31291 3 A dojemann internet access via global keyword broken if multiple paths to nh
+CSCdx31347 1 D dojemann CSC+Labels: the feature is broken on E0/E2 LC
+CSCdx31350 3 R mbaroudi GSR HA: tracebacks seen from red_mode_rf_status_event(), others
+CSCdx31377 6 A dojemann MPLS LDP Discov Tran-add IP Add needs to check the existance of IP.
+CSCdx31399 4 N bstetson AutoBW: Bandwidth in show int tunnel# show incorrect number
+CSCdx31512 3 A ssuri    snmptrapID for bgp neighbor up/down is not correct
+CSCdx31525 3 D alanb    %IPCGRP-3-REXEC: Incorrect ipc rexec cmd type
+CSCdx31541 3 R jcwong   VRFS: sh ip vrf select vrf_name cause watchdog timeout
+CSCdx31566 4 N palani   SNF doesnt work on 1-port GigE with acl configured
+CSCdx31748 2 D ekleung  GSR QOC12 ATM:Basic MPLS disposition broken on Inuit
+CSCdx31751 3 J jcwong   uRPF not dropping packets with IP Options set
+CSCdx31757 3 D rdubey   ICE OC48 does policing at 1/16 of configured value.
+CSCdx31789 3 A jwelder  7500-HA:SSO: loopback unacessable after many switchovers
+CSCdx31864 6 R rdubey   Send controll traffic with prec 6,7 to med prio rawq
+CSCdx31898 3 A ssuri    Memory Leak on BGP router and OSPF router Process
+CSCdx32047 3 C bstetson Ping vrf failed when vrf into Loopback and nexthop via Ethernet
+CSCdx32064 3 U palani   Reloading with nego auto custom command causes PING to fail on GSR
+CSCdx32101 3 R pcjoshi  aaa authorisation not working correctly with privilege changes
+CSCdx32108 2 R fsunaval E4 src/dst hash load balance not even
+CSCdx32114 3 A jcwong   empty per protocol stats in sh ip cache flow output
+CSCdx32133 2 R pcjoshi  Bus error in 0x500 after reload_reason_function
+CSCdx32225 2 D ssuri    BGP Next-Hop Behaviour in Ethernet Networks
+CSCdx32294 3 O iwu      DR does not accept *,G register-stop
+CSCdx32308 2 D ssuri    BGP: 3rd party next-hop may not be regenerated
+CSCdx32446 3 R iwu      Correct the patch error for CSCdw52898 in 12.0S
+CSCdx32465 2 D ekleung  ping does not work between directly connected GSR with ATM OC12 LC
+CSCdx32610 3 A rordeman cef checker needs better handling for hardware platforms
+CSCdx32611 3 A rordeman VRF: adjacency still valid after no ip vrf forward applied
+CSCdx32653 2 D sgannu   OIR standby CSC crashed the router
+CSCdx32658 2 R wingaho  Sweep pings fail for several datagrams
+CSCdx32727 3 J rdubey   EE48:  LC crash during counter read from TCAM
+CSCdx32731 3 R bobfish  SSO and LC-ATM co-configuration should be warned as not supported
+CSCdx32908 2 A ekleung  GSR TAZ:Ingress TAZ w/ aal5nlpid generates bad pkt on egress 1xOC48
+CSCdx32974 1 A rordeman 7500-HA:clear ip route * crashed router with lots of isis routes
+CSCdx33014 4 R rdubey   EE48: RP qm queue could not reset with micro reload
+CSCdx33102 4 P wingaho  Unstable behavior of MPLS traceroute with E2 LCs
+CSCdx33170 6 N ekleung  GSRs Cannot Display CRC Errors On A Per VC Basis For Atm Line Cards
+CSCdx33177 3 O palani   Trident: Input MAC accounting does not work with static ARP
+CSCdx33203 6 A ssastry  C10K ESR Pulsar (PRE2) feature code commit to conn_isp
+CSCdx33205 1 D wingaho  no t1 channel-group command causes high CPU in SSH/Virutal Exec Proc
+CSCdx33232 2 A pvyas    ESR enhancement - send VP/VC RDI when Rx end is disconnected
+CSCdx33248 2 D ekleung  mpls/vpn: PE-CE vrf ping broken on ATM E0 LC
+CSCdx33289 3 R rthaker  process_suspend should never force a software reload
+CSCdx33365 3 R wingaho  Perf-oc48(E2) does not clear RDI-P alarm after power-cycle
+CSCdx33420 5 C palani   Fast Ethernet Feature Performance w/ 12.0(21)S1.0413
+CSCdx33427 2 U rordeman Cef interface corruption from RP and Linecard
+CSCdx33428 1 R dojemann StaticLabels:Router crashed with debug mpls static binding enabled
+CSCdx33437 3 U sichen   ENG4: LC-CRASH at gen7_mtrie_node_write
+CSCdx33480 4 A fyuan    S/W OIR of LC causes Traceback
+CSCdx33503 5 N fyuan    PRP: MPLS-TE performance numbers
+CSCdx33543 2 D palani   RPR+:Redundancy failover switch broken in latest conn_isp image
+CSCdx33603 3 D sgannu   ciscoFlashDeviceIndex not-accessible object returned with get
+CSCdx33694 4 I rdubey   (*,G) on 16OC3 POS fails to learn incoming interface
+CSCdx33696 2 R andyr    C10720: complex_restart when explicit-null + MQC + glean adj
+CSCdx33702 3 D ananda   CAR does not work in 2FE-PA
+CSCdx33705 4 D palani   RP: show sec-slot0: command missing
+CSCdx33749 1 V sgannu   C12000 crashed by Bus Error exception
+CSCdx33774 3 A kumaril  7500-HA:CT3-3-LOVEFAIL: CT3-SW-PA-0/0: failed to send MIB curr_prev
+CSCdx33829 5 C palani   Gigabit Ethernet Performance Results w/ 12.0(21)S1.0413
+CSCdx33929 4 R dalen    ISIS: chunk_lock not followed by chunk_free in lsp_print_family_list
+CSCdx33975 2 A palani   %LC-3-BMACMDLOST errors after IOS upgrade
+CSCdx34065 3 R palani   E2:PSA ACL incorrect match for default route handler
+CSCdx34113 2 J jwelder  7500-HA:OIR remove Master RSP all VIPs and Slave RSP disabled/wedged
+CSCdx34148 1 D jwelder  7500-HA:to recover from CSCdx34113, mic rel crashed router
+CSCdx34165 3 R ekleung  GSR ATM: Test and check in SAR new fw version 1.2.10
+CSCdx34174 3 A greitsma NTP authentication not saved after reboot
+CSCdx34199 4 R rdubey   EE48-SNF broken when tag_ip enabled with LB (ip2ip)
+CSCdx34250 3 R rfv      ATM:cAal5VccExtCompEnabled returning true value by default
+CSCdx34257 3 D rfv      ATM:the cAal5VccExtCompEnabled object returning true value by defaul
+CSCdx34258 5 A tgraf    %MPLS_TE-5-TUN: displayed two times
+CSCdx34279 3 A chpayne  %C10K-2-BADRSRCNUM: Invalid resource number from PXF (0)
+CSCdx34291 3 A vhathawa 1choc12 line card failed to recover following ucode reload
+CSCdx34318 2 D vhathawa NRT: VPN test fails with GIGE between ESR & GSR
+CSCdx34326 3 O alanb    Incorrect input packets count on OC48SRP with iACL
+CSCdx34333 2 A chpayne  Toaster crash w/PXF DMA FTC Bad Address Error after reload of peer
+CSCdx34352 3 A chpayne  %SYS-2-NOTQ: unqueue didnt find 618234CC in queue xx tracebacks
+CSCdx34359 4 A chpayne  %ALIGN-3-SPURIOUS traceback messages following ucode reload
+CSCdx34385 2 A vhathawa LC-ATM: Sys msgs appear and ospf neighbors not established w 250vlan
+CSCdx34406 6 R mwollen  C10720: Add L2TPv3 protocol support in microcode
+CSCdx34422 1 C anilk    NRT:Traceback error on rsp router at eepot_cmd(0x604382f8)+0xc8
+CSCdx34429 3 R jwelder  7500-HA:OIR remove Master RSP gives operating mode hsa not simplex
+CSCdx34446 3 D jwelder  7500-HA:red f gives traceback on new active
+CSCdx34604 6 N fyuan    12000 chassis power management
+CSCdx34636 2 R ssuri    BGP: Resetting a neighbor may cause spurious access tracebacks
+CSCdx34684 1 D ekleung  OC12 ATM Performance Degradation 12.0(18)S4 --> 12.0(21)S1
+CSCdx34697 2 R mwollen  C10720: 23S ACL logging crashes the router after a while
+CSCdx34709 3 R sgannu   RPR+: -Process= IPC delayed init call on all LCs with red failover
+CSCdx34722 1 D wingaho  CHOC12->DS3 Performance Degradation 12.0(18)S4 --> 12.0(21)S1
+CSCdx34724 2 R ssastry  cht1: loopback remote states are not supported
+CSCdx34747 2 D alanb    Egress ACL is broken on OC48 SRP
+CSCdx34757 1 D ekleung  OC12 ATM Performance Degradation 12.0(18)S4 --> 12.0(21.1)S1
+CSCdx34765 3 A ssastry  che1t1: %PXF_DMA-2-TBB_SYNC_LC_FAILED on LC mode change
+CSCdx34770 5 A chpayne  show file system gives unknown type for secondary PRE
+CSCdx34778 1 D wingaho  CHOC12->DS3 Performance Degradation 12.0(18)S4 --> 12.0(21.1)S1
+CSCdx34813 4 C palani   RPR+: Standby RP show wrong chassis
+CSCdx34843 3 J ssastry  che1t1: on card mode change to same mode, LC still reset
+CSCdx34864 1 C ekleung  E2: MPLS AToM(aal5 over MPLS) Disposition LC continually crash
+CSCdx34888 3 V ssastry  cht1: clear counters does not permanently clear controller stats
+CSCdx34927 3 A ssastry  cht1: PCVs are not detected in controller statistics
+CSCdx34967 3 R vhathawa Standby chassis not ready error and traceback at bootup.
+CSCdx34970 1 R ekleung  MPLS AToM(aal5 over MPLS) - RP crashes after removing AToM tunnel
+CSCdx34975 4 R dalen    DUP_RTRID_NBR missing Exp and Rec Action in iprouting/msg_ospf.c
+CSCdx34984 2 A fyuan    crash in GSR - valid diagonise block
+CSCdx34997 2 R estest   Missing code changes in CSCdw74632
+CSCdx35012 4 A ssastry  Dir command on secondary PRE gives unknown error 67085.
+CSCdx35227 5 R wingaho  GSR-IPv6: Static Analysis run for P3 integration branch
+CSCdx35349 3 R wingaho  E2-CI: Fix EoMPLS unloading logic to unconditional
+CSCdx35453 3 D rdubey   CBWFQ unable to clear policer counters
+CSCdx35483 3 R mwollen  Non-existent access-list number in match access group-->No error
+CSCdx35510 1 C ananda   POS: VIP packet memory corruption
+CSCdx35532 3 R mwollen  c10720: mpls traceroute busted in yb_23s
+CSCdx35540 3 A chpayne  Under extreme stress, netflow accounting can be inaccurate
+CSCdx35594 3 D palani   SR: Dual RP Spurious memory access at bootup
+CSCdx35596 4 R ekleung  bad keyword choice - taz-sars - in upgrade command
+CSCdx35597 2 J rfv      NRT:subinterface trap didnt generate when subinterface reconfigured
+CSCdx35614 3 A dalen    ISIS: ADJ deleted should only trigger LSP-GEN
+CSCdx35617 2 C chpayne  FP buffer leak when QoS enabled at input&output, feedback,
+CSCdx35620 3 D ckhuong  DIAGPASS status in show led after successful diagnostic test
+CSCdx35632 2 A bstetson pings from RP fail w/ service policy on vrf interface
+CSCdx35693 4 A jwelder  7500-HA: SSO: snmp sysUpTime lost during switchover
+CSCdx35701 3 R wingaho  MFR intfs down after reload -Frost & Blizzard
+CSCdx35906 3 D wingaho  Sweeping ping fails for some packet sizes on E2 LC
+CSCdx35920 2 A shankar  SAA: ipIcmpEcho latency measurements are inaccurate alongside BGP
+CSCdx36080 3 O dojemann InterAS ipv4+labels:ping failed via a non mpls/vpn core with TE
+CSCdx36117 2 R rordeman FIB gets disabled on linecard on Ucode reload
+CSCdx36142 3 A kparne   %IPCGRP-3-CMDOP: IPC command 60 (slot2/1): linecard is disabled
+CSCdx36162 3 A lzachery sonetMediumLoopbackConfig=2 or 4,not change after CLI no loopback<cr
+CSCdx36453 5 A fyuan    PRP: Debug messages seen while changing the config reg in rommon
+CSCdx36525 3 A palani   GSR HA: global config with interface sync to standby and LC OIR issu
+CSCdx36587 2 R fyuan    Bus error exception leads to router crash under low memory condition
+CSCdx36601 3 A ssuri    MPLS VPN IAS: next-hop-unchanged does not work
+CSCdx36606 6 A rdubey   TX QoS not working for ip multicast on Eng3
+CSCdx36618 3 I abhaskar GSR(ip pim sparse-mode)lose packet when input higher than 480x3Mbps
+CSCdx36625 4 C palani   FABRIC-3-ERR_HANDLE: Ignore CRC/LOS from slot 1
+CSCdx36657 3 D alanb    SRP int reports active alarms when int is up and passing traffic.
+CSCdx36692 3 I dkhoury  ip mroute-cache distributed stops multicast traffic
+CSCdx36695 4 R ssastry  che1t1: card mode change tracebacks
+CSCdx36696 4 R lwigley  modify command to see bit vectors for source ip addresses
+CSCdx36726 3 R wingaho  VPN+TE+Explicit Null on tunnel results in corrupt packet at PE
+CSCdx36730 2 R palani   Giants seen on GE when oCAR used on E0
+CSCdx36774 3 R rdubey   EE48/MQC: tx cb shaping too strict if bandwidth config first
+CSCdx36805 2 O wingaho  E2 PPLB not balancing evenly on c12000
+CSCdx36819 2 U fsunaval RPR+: Redundancy swichover crashed E4P QOC48 LC
+CSCdx36865 2 C wingaho  PSA ACL: BGP session may flap under extreme traffic load
+CSCdx36887 3 J ssastry  Removing one ACE from the configuration removes all the ACEs
+CSCdx36895 1 D palani   Gigabitethernet interface wont ping each other after shut - no shut
+CSCdx36963 4 O ekleung  %SE622-4-FRMROP: Error: (5/0) unknown sonetmode (value=0x0000)
+CSCdx37030 3 R fyuan    card with persistent LOS after manual OIR
+CSCdx37058 3 D ekleung  %SE622-4-FRMROP: Error: unknown sonetmode on reload of QOC12 ATM LC
+CSCdx37097 2 R szhang   E4P:vpn:mpls pair alloc fail,missing hw_tag_rew
+CSCdx37139 2 J alanb    OC48SRP:Line protocol does not come up
+CSCdx37140 6 R fsunaval E4 and E4+ RED/MDRR modularity changes/no logic changes
+CSCdx37264 3 N mwollen  C10720: Feedback built up buddy Q and affected performance
+CSCdx37315 3 C szhang   E4P:vpn:sh contr tfib label <label#> broken
+CSCdx37325 2 D kumaril  Configuring ip cef distributed crashes router
+CSCdx37352 4 A abhaskar X-B: Same ACL/oCAR config on 2 different int. share different labels
+CSCdx37384 4 N bstetson GSR: HA Error: update ip rewrite with mtu<=MTU_INDEX
+CSCdx37429 5 C wingaho  OC48 POS Feature Performance w/ 12.0(21.2)S.0412
+CSCdx37433 5 C wingaho  Scepter 16xOC3 POS Feature Performance w/ 12.0(21.2)S
+CSCdx37435 5 C palani   Trident 3xGigE Feature Performance w/ 12.0(21.2)S.0412
+CSCdx37440 5 C wingaho  OC48 POS Feature Performance w/ 12.0(21)S1.0413
+CSCdx37442 3 R szhang   E4P:sh int acc shows erroneous IP counter when tag-sw enabled
+CSCdx37443 5 C wingaho  Scepter 16xOC3 POS Feature Performance w/ 12.0(21)S1.0413
+CSCdx37444 5 C palani   Trident 3xGigE Feature Performance w/ 12.0(21)S1.0413
+CSCdx37539 2 R ekleung  GSR TAZ:VC can not be setup without microcode reload LC
+CSCdx37564 4 R rdubey   EE48: PUNT-TO-CPU VMR label used for any rule applied on a intf.
+CSCdx37583 4 O wingaho  Extend show controller psa feature CLI with unconfig features
+CSCdx37670 2 J ssuri    High BGP Router Process & InQ Wedged
+CSCdx37775 4 A lzachery sonetMediumInvalidIntervals = 1 on OC12ATM, does not change to 0
+CSCdx37849 2 R mwiedman NRP1 Software forced crash
+CSCdx37880 3 C ssuri    no neigh x.x.x.x password broken in BGP
+CSCdx37885 2 R wingaho  Loss of Frame on 12 port E3 after reloading neighbor router
+CSCdx37918 3 R mwiedman PRC : make the filesystem code base PRC compliant
+CSCdx37921 5 J wingaho  sh int counter false when using rate-limit
+CSCdx37955 5 O fsunaval Incorrect reported Tx Optical Power on OC192/POS
+CSCdx37965 2 R chpayne  Netflow can cause pxf crash
+CSCdx37994 4 A fsunaval BHdr->len-8 < IP->tot_len error message
+CSCdx38075 3 A wingaho  CPUHOG seen in CEF process
+CSCdx38109 1 R dojemann NRT: Router crashed after config ldp and isis and no shut interface
+CSCdx38125 2 O palani   3Gige linecard crashes with dot1q and mac accounting
+CSCdx38129 3 N bstetson CEF Hash algorithm becomes corrupt when using LDP over 1 TE Tunnel
+CSCdx38130 3 U vravi    CAR Broken on GEIP
+CSCdx38166 1 R ssastry  Omelet: misdirected traffic flow with 48chan 12timeslot test case
+CSCdx38188 2 R pmanson  ISE OC-3 concatenated cards may get stuck in IOS_STRT
+CSCdx38211 4 N bstetson %TAGCON-4-CFGD_LBL_REGION error message upon reboot of router
+CSCdx38268 2 D rdubey   EE48: Routing protocols go down on a interface with QPPB enabled.
+CSCdx38281 4 R jcwong   ipwrite needs function header comment saying that it may block
+CSCdx38417 3 N greitsma Virtual Exec hung on process_wait_for_event_timed doing DNS lookup
+CSCdx38448 2 D dalen    ISIS: database checksum error and crashes
+CSCdx38746 3 A dojemann MPLS OSPF dynamic routing doesnt function properly
+CSCdx38747 2 C kumaril  PA-MC-T3: T1 channel is down/down and only OIR or reload can fix it
+CSCdx38826 3 A rordeman %FIB-3-THREAD: Thread processing error: bad head during init
+CSCdx38857 2 R rdubey   EE48: Sampled Netflow does not work after ALPHA reloads.
+CSCdx38895 3 A tgraf    MPLS TE:Tunnel not est. when excluded address link is down
+CSCdx38928 5 R iwu      Turning on <debug ip mpack> displays invalid error msg
+CSCdx38981 1 R rdubey   incomplete fix of CSCdx13183
+CSCdx38999 3 C palani   Ingress linecard gigeth engine1 forwards MPLS VPN packet incorrectly
+CSCdx39018 2 A anilk    ifOutOctets sometimes slowly decreasing
+CSCdx39053 2 D vravi    100% packet drop with dCEF, dot1q and output car configured
+CSCdx39057 6 A sgannu   Enhancements to CISCO-CONFIG-MAN-MIB
+CSCdx39107 2 D bstetson NRT: ip->mpls input car, int prec accounting shows no information
+CSCdx39192 3 R mwollen  C10720:CBQOS MIB: Endless loop when mib walking
+CSCdx39261 4 V palani   RPR+: Reload on standby RP gives an error (failed to add stby-slot0)
+CSCdx39359 2 R ananda   NRT: mpls->mpls input car with conform/exceed action of qos fails
+CSCdx39361 3 A rthaker  IPC sequence error happens rarely for an ACK message
+CSCdx39367 3 J wingaho  Malloc failure due to Process TurboACL after ACL was loaded
+CSCdx39384 2 D ssuri    EBGP session flapping: header syn problems
+CSCdx39429 4 R pcjoshi  Ctrl-C cmd is not synced over
+CSCdx39482 2 R tgraf    MPLS TE: Explicit tunnel takes wrong outgoing interface
+CSCdx39560 3 A rordeman PRP:SSO: Sleep with expired managed timer traceback
+CSCdx39571 3 U bstetson TFIB:TE Tunnel missing in tfib after DA change
+CSCdx39618 2 A anilk    dCEF not restored on HSSI and ATM
+CSCdx39637 4 R mwollen  C10720: Inequality in buddy Q hashing when only varying D.A.
+CSCdx39640 2 A chpayne  remove output service policy on atm interface - all traffic stops
+CSCdx39668 2 R rcascio  NRT: TE_AutoBW:could configure frequency lower than 300 seconds
+CSCdx39693 3 R rordeman SNMP MIB:BGPPA-Only 8 buckets are shown in cbpAcctInPacketCount
+CSCdx39710 2 D ssastry  link cannot transmit traffic following a switch over with traffic
+CSCdx39726 2 D wingaho  CSC with IPv4+Labels:fragmentation, encap failures, some packetsizes
+CSCdx39730 3 A mwiedman copy tftp to bootflash time out
+CSCdx39840 5 A wingaho  missing debug for cef encapsulation failed drop on linecard
+CSCdx39851 3 A chpayne  spurios memory access made with certain WRED config
+CSCdx39859 2 D ekleung  TAZ:Shut/noshut on the vrf subinterface causes the vrf to disappear
+CSCdx39999 3 U fsunaval E4P:uRPF allows pks whose source_ip is known only via default route
+CSCdx40084 4 R rdubey   MQC: show policy output needs a newline
+CSCdx40166 3 A rordeman %FIB-3-FIBDISABLE: Fatal Error, slot 3: No window message
+CSCdx40198 3 O dsavage  redis connected not working until shut/no shut
+CSCdx40221 6 A sgannu   snmp-server inform command not checking snmp_serving flag
+CSCdx40265 3 R iwu      MSDP doesnt scale for many SAs
+CSCdx40337 1 R pvyas    Resuming a telnet session once paused crashes router
+CSCdx40436 2 A bobfish  LC-ATM not supported for SSO
+CSCdx40675 4 R vhathawa show ver redundancy crash output is confusing
+CSCdx40685 3 D dojemann MPLS:Traceback ldp_decr_ctx_ref_count observed after remove dir TDP
+CSCdx40788 3 R fsunaval E4/E4P: Linecard Tx multicast table size incorrect
+CSCdx40795 2 R tgraf    FRR dies with large number of tunnels
+CSCdx40816 3 R palani   GSR: HA Coredump feature broken with switchover
+CSCdx40828 3 D palani   CPUHOG in Per-Minute Jobs Process Upon Reboot
+CSCdx40834 2 R jcwong   GSR: SSO Static routes do not signal convergence to RIB
+CSCdx40871 3 R mwollen  C10720: packet drops when queue is not full
+CSCdx40927 2 A rordeman GSR-IPv6: more then 4 equal cost static paths cause crash on reload
+CSCdx41024 4 R jcwong   unnecessary checks in NetFlow code during switching time
+CSCdx41030 3 R dalen    Summary LSAs may not be flushed properly
+CSCdx41059 3 O rkabotsk SW Crypto Engine should use watched queue
+CSCdx41124 3 H jwelder  7500-HA:FSU:Standby RSP console is not available
+CSCdx41157 3 R wingaho  Restore lost TE optimizations
+CSCdx41170 3 J fsunaval SR: E4 Traceback: Failed to allocate counter gen6_counter_alloc
+CSCdx41219 1 R mwiedman Performance of the write operation on the bootflash is 500 bytes/sec
+CSCdx41233 5 D ssuri    BGP: neighbors peergroup membership not being nvgened in ipv4 vrf AF
+CSCdx41250 2 R palani   GSR: SSO E0 interface down after mode change to SSO / switch
+CSCdx41269 5 C fyuan    PRP: Boot and Misc. performance evaluation
+CSCdx41337 4 R iwu      C-RP sends out grp prefixes with both DENY and BIDIR bits
+CSCdx41355 3 A rfv      ATM:The atmInterfaceEXtTable objects are not having correct values
+CSCdx41361 2 C fyuan    System restarted by a Bus Error exception - adjacency_delete_interfa
+CSCdx41483 1 D dojemann MPLS: GSR crashes after no tag ip - tdp_walk_dhcb
+CSCdx41511 3 A ssuri    MP_BGP prefixes not installed in the vrf table
+CSCdx41591 3 A dojemann CSC with IPv4+Labels:traceroute problem
+CSCdx41636 1 D cchou    Multiple router crashes due to memory corruption
+CSCdx41705 6 R pcjoshi  redirect option shows Unknown file system when attaching a linecard
+CSCdx41743 2 R chpayne  OIR after T1 BERT test causes interfaces on T1 to fail
+CSCdx41790 1 R estest   1choc12 T1 interface is down
+CSCdx41819 3 R rdubey   EE48: shared subint ACL on channelized causes label mgr error
+CSCdx41906 3 R rdubey   E3->E4+ support E4+ Tx Feature for E3 HW switched multicast pkts
+CSCdx42022 3 A dojemann %TAGCON-3-DUP_ADDR_RCVD err msg with directed LDP sessions & cutover
+CSCdx42023 4 R fsunaval E4P: VCPU is broken
+CSCdx42053 3 R rfv      CSCdv80428 cause atm create vc fail due to hwidb down on stdby
+CSCdx42103 3 A lzachery wrong value of dsx3LineStatus attribute if no alarm present 1choc12
+CSCdx42114 4 N fyuan    Voltage Margining on boards that dont support
+CSCdx42158 2 U wingaho  BMA errors causes PLIM reset, interfaces go down
+CSCdx42302 3 A vhathawa bowmore: trace backs messages 6027F548 6027F62C 6027F60E0 602760E0
+CSCdx42324 3 A tgraf    MPLS-TE:Incorrect LSP history output
+CSCdx42329 2 C rdubey   E3:Outbound ACL does not take effect on egress E2 linecard.
+CSCdx42422 3 R iwu      IGMP: IGMP static-group state left in IGMP cache when PIM disabled
+CSCdx42429 2 D wingaho  E2: Packet loss after a shut/no shut with iACL/SNF configured
+CSCdx42432 2 R rdubey   EE48 uRPF+ACL:PUNT_TO_CPU entry in TCAM when uRPF enabled before ACL
+CSCdx42438 4 C fyuan    PRP: IGP Performance and Scalability numbers
+CSCdx42501 4 R ekleung  Cleanup code in psa_get_gather
+CSCdx42525 3 C abhaskar 10x1GE MPLS EXP bits not copied to IP TOS
+CSCdx42603 3 A dalen    Malformed ISIS_IPV6_REACHABILITY tlv may crash the router
+CSCdx42615 3 A alanb    MERLIN48: OIR of the srp lc will not bring back the card
+CSCdx42637 2 R dalen    OSPF LSAs getting Maxaged
+CSCdx42679 3 A fyuan    LC logger in an invalid state
+CSCdx42681 2 C rdubey   ISE stops forwarding all ip packets when applying outbound MDRR/WRED
+CSCdx42703 6 R sgannu   Commit of CISCO-ENTITY-FRU-CONTROL-CAPABILTIY file
+CSCdx42707 3 A vhathawa Traceback with oc12 choc cards upon ios reload or lc reset
+CSCdx42726 1 R jcwong   Router crash in ARP processing when running ATM Regression Tests on
+CSCdx42767 2 R wingaho  GSR OC-48 E2 no load sharing based on AToM EOS label
+CSCdx42794 6 R andyr    Add hidden cmd to display buddy Q selection based on src/dest addr
+CSCdx42828 3 U vhathawa bowmore: TFTP PPP config from the server 2nd time, interfaces down
+CSCdx42852 2 R rdubey   ACL logging on E3 breaks ACL
+CSCdx42867 3 A dsavage  When interface mask changes, summary is not removed
+CSCdx42885 3 R rcascio  Tunnel doesnt come up if explicit path contains only rtr ids
+CSCdx42916 2 A wingaho  GSR OC-48 E2 no load sharing based on IP header in MPLS VPN
+CSCdx42955 1 R chpayne  IPM stuck with policy-map configuration change with WRED
+CSCdx42978 4 D rdubey   CSC E3:Ping loback add of CSCPE fails in local cus carrier network
+CSCdx43176 3 D wingaho  POS OC48: %FIB-3-FIBDISABLE: Fatal error, slot 4: No window message
+CSCdx43239 2 R rdubey   EE48: crash aftter malloc fail
+CSCdx43287 3 R rcascio  MPLS TE: Reoptimization and convergence perf need improvement
+CSCdx43459 6 D chpayne  C10k LLQ bw is capped even with no congestion
+CSCdx43565 3 D ssuri    BGP vrf: cannot change a neighbor to a different peer group
+CSCdx43620 5 C palani   PRP HA: Sanity test summary for SSO mode on NGRP.
+CSCdx43640 6 A chpayne  C10K need drop stats per dscp in policy-map
+CSCdx43665 2 R wingaho  ICMPv6 (IPv6) over POS drops for large pkt sizes
+CSCdx43740 3 R ssastry  cht1 LC code missing handling of stale configuration
+CSCdx43880 3 R bstetson Collapse of conn_isp_conv branch breaks gsr-boot-mz build
+CSCdx43908 3 R iwu      Fix mroute banner
+CSCdx43915 3 R iwu      Spurious memory access at ip_address_on_idb
+CSCdx44014 3 A kparne   ciscoEnvMonFanState is not showing correct state of fans
+CSCdx44056 3 C fsunaval Some E4 LCs crash during CSC OIR - do not recover
+CSCdx44074 2 U vhathawa PXF crash 680 software exception
+CSCdx44097 3 R vhathawa C10k-ATM HA  - Flowbit allocation incorrect after switchover
+CSCdx44193 1 R vhathawa HA: 384 I/Fs stayed down after cutover #1
+CSCdx44197 3 R rdubey   EE48/MQC: DRR quantums not accurate if bandwidth <rate>
+CSCdx44207 2 A vhathawa HA: 95% Traffic did not resume after cutover #1
+CSCdx44232 3 C jwelder  7500-HA:SSO:reinit callback invoked in platform dependent way
+CSCdx44239 3 C szhang   miss deviation numbers for backplane
+CSCdx44246 4 R jwelder  7500-HA:RSP going thru RF progressions when not in SSO mode
+CSCdx44480 4 J dsavage  MPLS VPN: CPU-HUG on RIP router very 30 seconds
+CSCdx44549 1 D jcwong   NRT: 7200 Router crash @ ip_arp_refresh_adjacency
+CSCdx44555 1 D rcascio  MPLS-AToM: mpls l2transport command cause Software-forced reload
+CSCdx44644 4 J szhang   E4P:VPN: frfab que buildup going from 1 qoc48-->1 qoc48 on PE router
+CSCdx44662 3 R ssuri    BGP: Code and overhead cleanup of fast convergence
+CSCdx44702 2 R bstetson No outgoing labels for what should be untagged LFIB entries
+CSCdx44712 3 R wingaho  GSR pos-eng-0 linecard: hwidb->state is in IDBS_RESET for up/up int
+CSCdx44730 3 A mwiedman DIR after failed MKDIR crashes the router
+CSCdx44748 3 A ssuri    under address-family vrf, interpret received orf incorrectly
+CSCdx44762 5 D bstetson MPLS TE tag info needs fixup
+CSCdx44950 3 J ssuri    memory allocation problem
+CSCdx44983 3 R rordeman Interrupts not being reenabled for LINK_VLAN_SWITCH adjacencies
+CSCdx45103 2 A vhathawa Heinz: ibgp session down when P rtr ucode reload, TE tunnels config
+CSCdx45161 2 R palani   Traffic drop only on first switchover
+CSCdx45171 2 O alanb    Fabric ping failure for DPT ring.
+CSCdx45235 3 D rfv      RT for p2p ATM subinterface is installed when main interface goes up
+CSCdx45265 4 C vravi    Output packets counter is not updated in CBWFQ policy map
+CSCdx45288 3 R dalen    Update OSPF CLI with Parser Return Codes
+CSCdx45297 2 D vhathawa PRE crash while sending chocolate traffic
+CSCdx45306 2 R vhathawa ESR: active crashes and standby hangs on PRE memory mismatch
+CSCdx45348 1 R vhathawa AU-4-TUG-3 missing content
+CSCdx45355 3 R rfv      FR PVC byte counts incorrect on channelized
+CSCdx45367 1 R ssastry  che1t1:%SYS-6-BLKINFO: Corrupted next pointer blk crash
+CSCdx45368 2 D bstetson NRT: Spurious access at tfib_show_one_rewrite on PE with inter-AS
+CSCdx45405 2 R bstetson NRT: VPN:tfib display not correct causing end to end CE ping failure
+CSCdx45412 1 A vhathawa MLPPP: Not all 336 Multilink I/Fs are coming up as they should
+CSCdx45485 1 R yvrao    ISL config causes crash
+CSCdx45487 3 D vhathawa Assertion failure when shutting down LDP neighbor over GigE port
+CSCdx45512 2 D ssuri    MPLS VPN continually flap due to BGP header synchronization problems
+CSCdx45550 2 I vhathawa T1 channels on oc12 choc cards flap continuously, after some traffic
+CSCdx45564 4 A wingaho  Ping fails for big pkt size when ping interface of myself
+CSCdx45569 4 R ananda   FEC: Passive member list not correct
+CSCdx45613 2 A vhathawa line protocol flapping with input errors increasing after RPR+ cutov
+CSCdx45635 5 N fyuan    PRP: BGP Performance numbers
+CSCdx45653 1 D dojemann CSC with IPv4+Labels:feature is broken due to incomplete LFIB issue
+CSCdx45678 3 C ghaley   clns static routes are missing from clns route table after reload
+CSCdx45679 1 R bstetson NRT: Router crashes in process ip2tag fragmentation switching path
+CSCdx45702 2 R ekleung  MPLS AToM(aal5 over MPLS) broken in 12.0(22)S
+CSCdx45708 2 D bstetson Fail forwarding traffic from mpls link to ip link
+CSCdx45735 2 C jwelder  Slave RP still slave after primary crashes
+CSCdx45739 1 D chpayne  MPLS-VPN untagged routes not setup correctly with tagrwrite
+CSCdx45810 1 U rdubey   CSC-VPN E3:feature is broken due to LDP nei down betw CSCPE & CSCCE
+CSCdx45812 3 R rdubey   EE48 MQC: No CPU-PUNT entry when mqc based on ACL with lots of L4OP
+CSCdx45813 2 D ssastry  Configurating 550 channel groups on 6ct3 most of the intfs not up
+CSCdx45816 2 C nagi     OC3 APS: SF cutover triggered by BIP error rates lower than thrshold
+CSCdx45822 1 A rfarzad  NRT:Routers hang - stopped @ tcp_process_message(0x604f7790)+0x25c
+CSCdx45831 3 R jwelder  7500-HA:redundancy command appears twice under show options
+CSCdx45887 3 I palani   %SYS-3-CPUHOG message with CEF IPC Background
+CSCdx45891 2 U nagi     OC3 APS: SD threshold 10e-5 will cutover when Line BIP = 10e-6
+CSCdx45922 3 R rdubey   EE48: remove acl update counter for merged vmrs
+CSCdx45991 2 D bstetson MPLS VPN: Outgoing tag broken for local prefixes
+CSCdx46014 3 R tgraf    MPLS TE: TE Tunnel Forwarding Adjacency holdtime needs improvement
+CSCdx46089 3 R palani   oCAR on 1xGE or 8xFE breaks path MTU discovery
+CSCdx46195 3 D rdubey   show policy interface counters dont increment for set/police
+CSCdx46243 4 A rdubey   EE48 FR: Once FR sub have a CPU PUNT entry, all packet get droped
+CSCdx46386 3 I ssuri    Spurious Memory Access @ bgp_lexi_peer
+CSCdx46488 3 D rthaker  ipc_process_retry_queue traceback Spurious memory access error
+CSCdx46492 2 J vhathawa HA: Stdby PRE is not in HOT state to perform cutover after 3rd cut
+CSCdx46549 4 R mwiedman Malloc from interrupt level during pxf_crashinfo creation
+CSCdx46554 2 R ssuri    Write term causes crash when going from old routemap to new format
+CSCdx46606 3 A fyuan    Power up failures cause problems with Viking Linear Flash Cards
+CSCdx46634 2 R ssastry  Receive adjacencies not set up properly
+CSCdx46638 1 D dojemann InterAS ipv4+labels: ping failure on E0/E2/E3
+CSCdx46669 3 R rordeman EE48-BGPPA: Int config lost upon router reload due to change in cli
+CSCdx46721 3 J ssuri    NRT:networks did not show in BGP table
+CSCdx46769 3 I rordeman GSR: SSO Adjacency table on LC out of sync with RP
+CSCdx46788 2 U bstetson Basic MPLS broken on E2 8xOC3 ATM
+CSCdx46810 3 R andyr    OC48DPT stops receiving traffic
+CSCdx46828 2 D estest   MSP:All configured I/Fs do not come up after MSP cutover
+CSCdx46869 2 I bstetson NRT: CSC-PE doesnt have tfib entry for PE on its end
+CSCdx46873 3 D tgraf    pcalc fails when ip in explicit is valid but duplicate is admin down
+CSCdx46906 3 O wingaho  OC48 Performance Degradation 12.0(21.2)S -->12.0(21.3)S
+CSCdx46928 3 D wingaho  Sceptor 16xOC3 POS Performance Degradation 12.0(21)S1-->12.0(21.3)S
+CSCdx46949 3 D wingaho  QOC12 POS Performance Degradation 12.0(21.3)S
+CSCdx47014 3 D wingaho  PIRC bundle does not have Multicast
+CSCdx47152 3 A rordeman ip_fib_valid_rib_entry_for_fib Spurious Memory Access
+CSCdx47229 2 R rdubey   E48: QOS group id and port number conflict
+CSCdx47267 3 I fsunaval CPU% is constantly at 100% due to the RIP Router Process
+CSCdx47273 3 A ssuri    duplicated updates are not suppressed for vrf AF
+CSCdx47342 1 R dojemann show mpls forwarding or show tag forwarding crashes router
+CSCdx47398 3 R palani   GSR: HA RPR+ linecards reset on switch/OIR
+CSCdx47426 2 D palani   GSR: PPP traffic interruption after switch over
+CSCdx47462 2 D palani   Eompls on Trident Freezes the Console on reload
+CSCdx47474 3 R rdubey   e48: Frame Relay threads missing source multicast check
+CSCdx47484 1 R fyuan    MBUS upgrade fails
+CSCdx47485 5 A wingaho  PRB command needs to be disabled under E2 POS
+CSCdx47520 3 A sgannu   SNMP ifIndex bulk-sync is broken
+CSCdx47559 3 D rfarzad  FTP client does not handle multi-lines replies correctly
+CSCdx47584 2 U vhathawa Multiple OIR for redundant PRE1 will cause reboots
+CSCdx47619 5 R bstetson Minor cosmetic changes needed for MPLS HA commit
+CSCdx47661 3 A iwu      Need to support 0.0.0.0 for IGMP explicit tracking
+CSCdx47663 2 A asp      NRT: Spurious/misalign access detected at build_token_header_by_hand
+CSCdx47695 3 R wingaho  BLIZZARD/FROST: MFR links flapping under heavy traffic
+CSCdx47702 4 R chpayne  ACL flag bit collision in access.h
+CSCdx47746 3 O wingaho  LC-3-BMAERRS: ToFab BMA PLIM error 5500C seen on 2CHOC3 LC.
+CSCdx47829 3 A tgraf    TEoATM:Incorrect value for RSVP bw after disabling TE on ATM sub
+CSCdx47857 3 R rdubey   EE48:tcam compile qos best-tcam-usage command lost after reload th
+CSCdx47884 2 A estest   SONET Line Active Alarms and AIS counter never indicate alarms
+CSCdx47895 1 D dojemann InterAS vpn E0/E3: end-to-end connectivity is broken
+CSCdx47936 1 R alanb    Configuring Modular QoS on OC48 DPT causes the router to crash
+CSCdx47946 3 N amlamber PPVPN-MPLS-VPN MIB mplsVpnVrfRouteTarget not encoded correctly
+CSCdx47952 4 A ssuri    Spurious memory access made at bgp_msgs_in_outq
+CSCdx47965 3 N amlamber PPVPN MPLS VPN MIB mplsVpnVrfRouteDistinguisher not encoded correctl
+CSCdx48085 5 N fyuan    PRP: IDB scalability numbers
+CSCdx48152 4 A palani   %FIB-3-NOMEM: Malloc Failure, disabling DCEF on linecard
+CSCdx48177 3 R ssuri    ip bgp new-format command is lost
+CSCdx48220 3 J wingaho  E2: uRPF config should not coexist with ACL config
+CSCdx48345 2 D ssuri    put the neighbor under peer-group, then the session flaps
+CSCdx48350 2 D kumaril  VIP crash in hqf_get_policymap
+CSCdx48420 2 R vhathawa VRF on frame-relay subinterface breaks PE to CE connectivity
+CSCdx48434 2 A vravi    VIP crash in rate_limit_loop
+CSCdx48467 2 R rdubey   EE48: MPLS COS is broken
+CSCdx48470 3 C mwiedman Moving flash: directory
+CSCdx48506 3 R palani   GSR: HA no switchover timeout command has no effect
+CSCdx48663 3 C jcwong   PBR fails when setting default interface to GE
+CSCdx48712 3 I dojemann no tag-switching ip propagate-ttl forwarded command seems to be work
+CSCdx48728 3 I ghaley   Crash by bus error - 7200 - likely in clns code
+CSCdx48757 4 O kparne   show psa feat incorrect on ATM linecards
+CSCdx48815 2 U ssastry  Bouncing the T3 controller brings down channelized i/f permanently
+CSCdx48831 3 D anilk    malformed ip address in syslog from logging source-interface
+CSCdx48845 4 N chpayne  domain-server lookup is performed twice instead of once
+CSCdx48848 4 A rdubey   6PE:Tracebacks seen on E3 LC when BGP is deleted
+CSCdx48897 2 I abhaskar Packet Loss on 10 Port Gigabit Ethernet Version B /12410 GSR
+CSCdx48962 2 D wingaho  SR: LC crash at process_rx_packet_pos_flow_fs
+CSCdx49004 2 W chpayne  after few seconds throughput falls below 25% with fragmentation
+CSCdx49010 2 R tgraf    FRR:Tag rewrites does not resolve correctly
+CSCdx49032 3 A chpayne  I/f throughput is low when traffic sent to class-q and default queue
+CSCdx49046 2 D vhathawa Assertion failure in ../toaster/c10k_rp/c10k_mpls.c
+CSCdx49051 2 A jcwong   VRFS: GSR E2/3xGE (Trident Card) support - FIB Subblock requirement
+CSCdx49072 2 R fsunaval E4P: Fragmentation: LC crashes after some time
+CSCdx49088 5 C wingaho  4port oc3 pos lc internal loopback up/up w/SLOS and B1 errors
+CSCdx49109 3 R fsunaval POS link stays up with SF if link is in SF when activated
+CSCdx49118 3 R wingaho  4port OC3 pos lc internal loopback int up/up seeing SLOF-B1 errors
+CSCdx49143 4 R alanb    DPT48: i/f disable command not sent to LC if mate LC is missing
+CSCdx49181 2 R dalen    OSPF IA routes not redistributed when adding new area to PE
+CSCdx49191 3 D sgannu   Interfaces missing from ifTable snmpwalk - ifIndex confused
+CSCdx49195 3 A sichen   Issues with ip pim sparse-mode-register
+CSCdx49248 1 W wingaho  After GSR LC crash card is up/up but, no response until aft lc reloa
+CSCdx49258 2 R bstetson CSCdx43287 breaks tunnels other than TE tunnels
+CSCdx49293 3 C ssuri    GSR - MPLS InterAS - frfab FIA Interrupt
+CSCdx49338 3 N along    l2f/l2tp tunnel not getting established
+CSCdx49351 3 A rordeman Malloc-fail in route-flap test due to CEF: NDB 1 path
+CSCdx49398 2 A yvrao    bus error at isl_fastswitch
+CSCdx49402 2 C rordeman SR: CPUHOG in CEF process
+CSCdx49592 6 A fsunaval SB: CAR
+CSCdx49594 3 A tgraf    MPLS: Prior LSP not take BEST path as expected in caseRRR_precedence
+CSCdx49680 2 C szhang   E4P: MPLS-CoS: EXP setting does not take effect
+CSCdx49688 2 D palani   packets 91-94 bytes fails through 3 port GigE card with in/out ACL
+CSCdx49725 2 A mwiedman Combined ATA monlib changes for 12.0S
+CSCdx49744 2 R dalen    LSA3 not flushed out on PE
+CSCdx49755 3 C palani   Fragmentation incorrect on trident at 2k byte packet
+CSCdx49803 5 A palani   show redundancy output order misleading
+CSCdx49887 3 A ssuri    GSR: SSO Router sends illegal header length notification on switch
+CSCdx49992 4 O skufer   APS: unidir W if improperly removes tx LAIS on alarm clear
+CSCdx50011 3 D palani   PPP over T3 does not come back after switch over
+CSCdx50041 1 C palani   Trident, 3xGigE, Performance Degradation 18.S4 --> 21.1.S1
+CSCdx50042 1 D wingaho  QOC3 POS Performance Degradation 12.0(18)S4 --> 12.0(21)S1
+CSCdx50044 1 D ekleung  QOC3 ATM Performance Degradation 12.0(18)S4 --. 12.0(21)S1
+CSCdx50050 2 R wingaho  Ingress E0/1 with SNF + egress E3 with ACL: low performance
+CSCdx50091 1 O cchou    GRP: crash due to bad refcount in pool_getbuffer
+CSCdx50174 2 U palani   GSR - TLB (load or instruction fetch) exception
+CSCdx50178 2 U palani   GSR - Dual RP - Complete Router Hang
+CSCdx50207 2 C dojemann GSR - InterAS - TAGCON-3-LCLTAG_ALLOC: Cannot allocate local tag
+CSCdx50252 4 A wingaho  SONET PTB should take IPv6 address if no IPv4 address is configured
+CSCdx50264 3 R tgraf    Need new CLI for FRR Promotion
+CSCdx50273 1 U fsunaval ISIS on E4+ create LC-3-ERR_INTR
+CSCdx50295 3 R andyr    C10720: Output policing incorect for different decap and encap sizes
+CSCdx50362 6 R ssastry  Omelet: Change the way the CPU interacts with COMET and FREEDM
+CSCdx50372 3 N bstetson debug mpls packet breaks forwarding
+CSCdx50429 3 D rfv      Some VCs fail to come up with OAM auto-detect
+CSCdx50588 3 A dkhoury  Bidir: Incorrect behavior with Static joins and leaves for bidir Grp
+CSCdx50597 3 R vhathawa BPE shows up in show int and show ip int
+CSCdx50614 4 N pmanson  OIR on Engine 3 LC, traceback %IPCGRP-3-CMDOP
+CSCdx50623 3 C wingaho  Rate-limit counter shows incorrect number of packets
+CSCdx50634 5 R chpayne  Mtrie level is not displayed correctly in sh ha px cp cef command
+CSCdx50802 6 N gharris  PPP SSO: ISIS over PPP encapsulation support
+CSCdx50831 3 A dojemann Spurious accesses at bgp_bestpath_compare_pair
+CSCdx50847 3 D chpayne  PULSAR T1 interfaces come up but fail ping after controller flush
+CSCdx50854 4 A dalen    CLNS LSPID changes after RP switch-over
+CSCdx50907 1 D dojemann Cannot ping a CE router connected to a remote PE in certain cases
+CSCdx50914 1 D bstetson NRT:c7200 router crashed at abort+0x8
+CSCdx50959 2 C bstetson P router does not have head PEs entry in its lfib
+CSCdx50967 2 U rfv      POS interface line protocol down after running for several hours
+CSCdx51031 3 N bstetson Spurious memory access at tfib_info_iterate with MPLS switching
+CSCdx51037 3 D ssuri    %SYS-2-CHUNKSIBLINGS: Attempted to destroy chunck with siblings
+CSCdx51317 2 O ekleung  4OC12/ATM Bus Error exception when applying ACL
+CSCdx51327 3 A sgannu   VPN Aware SNMP
+CSCdx51355 2 C ekleung  atm:NO SHUTDOWN  on PVC wont bring PVC to UP after a shutdown opera
+CSCdx51380 6 A dojemann Avoid need to redistribute IGP->BGP at ipv4+label ASBR
+CSCdx51387 3 U palani   telnet session gets locked in conf t after changing mode to RPR+
+CSCdx51421 3 N lzachery hw-mod <slot> shut command removes card from config
+CSCdx51469 4 A tgraf    MPLS TE:Interface Description field not carried correctly in session
+CSCdx51513 2 D jwelder  FSU Broken
+CSCdx51544 6 A chpayne  C10k LLQ BW is capped even with no congestion
+CSCdx51547 4 R rordeman no ip cef table event-log should restore defaults
+CSCdx51558 3 O palani   Sampled Netflow works like non-SNF with mac-addr acct on fasteth.
+CSCdx51658 3 I wingaho  E2: Need to improve LDP convergence time
+CSCdx51670 4 R wingaho  Perf-oc48(loopback internal) is down-down after removing fibre
+CSCdx51820 2 R rfv      Configuring from frame-relay ietf -> hdlc causes the router to crash
+CSCdx51852 2 U fsunaval E4P: ISIS adjacency causes %RX192-3-HINTR
+CSCdx51865 2 A jwelder  7500-HA:SSO:QA reuse or zero link error right after a switchover
+CSCdx51925 2 D jwelder  QA error crashes router with ATM during switch over
+CSCdx52239 2 I wingaho  GRE Tunnel doesnt come up with GSr 12016
+CSCdx52293 3 A jcwong   %SCHED-3-STUCKTMR:  Sleep with expired timer 53F3A268
+CSCdx52430 2 A bstetson ISIS: 7K ISIS routes flapping cause memory leak and CEF disabled
+CSCdx52578 3 D chpayne  IPCP stays listen status after line flapping
+CSCdx52582 3 D chpayne  LCP doesnt open on ESR with 6CT3
+CSCdx52595 3 D palani   PBR/ACL counters are not accurate on the RP
+CSCdx52623 2 R ekleung  Fix build breakage of gsr-boot-mz caused by CSCdv77371
+CSCdx52718 3 R sgannu   ciscoEnvMonVoltageStatusDescr dont have correct entries for supplies
+CSCdx52749 3 A sgannu   snmp traps not being sent out after unconfiguring config traps
+CSCdx52765 1 J wingaho  Turbo ACL leaking sunrpc
+CSCdx52782 2 R vhathawa CT3 crash after reconfiguring T1 channels
+CSCdx52787 5 A tgraf    request to configure and show various TE elements by name
+CSCdx52807 4 R ananda   FEC:Removing Port-channel int doesnt remove all members
+CSCdx53007 3 N bstetson LFIB: route tag change for  TSPTUN_ONLY no sb error message
+CSCdx53060 3 N bstetson %TFIB-2-CONSISTENCY: Extra tunnel head rewrite
+CSCdx53064 3 A jcwong   VRFS: code review comments
+CSCdx53073 3 N estest   Repeated PXF restarts do not cause PRE switchover
+CSCdx53078 3 R ckhuong  Field Diags fails to load on PRP
+CSCdx53181 5 R chpayne  HA debug info for config added (line card) extension of CSCdx25192
+CSCdx53202 3 N estest   PXF restart performance improvements
+CSCdx53223 6 D palani   need sync encap table for SSO/NSF support
+CSCdx53225 3 N estest   Latent memory error may fail standby RP after switchover
+CSCdx53243 3 R vhathawa Display switchover reason in show red command
+CSCdx53327 3 I ekleung  QOC12 ATM Performance Degradation 12.0(18)S4 -->12.0(21)S1
+CSCdx53418 4 C dkhoury  Documentation for special build on v120_21_st_throttle
+CSCdx53470 3 D mwollen  C10720:Non-Drop Rate performance is less than 1.3Mpps
+CSCdx53502 2 R palani   Jumbo frame support for Trident (upto 9K for big FPGA board)
+CSCdx53570 3 A iwu      Incorrect Join sent by DR when RPF nbr changes but Olist is NULL
+CSCdx53584 2 D wingaho  E2: Intermittent packet loss with > 448 line ACL
+CSCdx53678 3 R rdubey   EE48: CTMGR-3-UNSUPP, TM gets unknown type size
+CSCdx53689 3 R rdubey   EE48: Feature counters on RP do not work for some configs.
+CSCdx53795 2 A ssuri    BGP:incorrect path ordering with deterministic-med
+CSCdx53820 4 A rfv      atm:PVC status is not consistent when shutdown is performed on the i
+CSCdx53846 3 A sgannu   Commit of features SNMP over VPN & VPN aware SNMP into 12.0S
+CSCdx53885 1 I palani   GE-GBIC-SC-B crash with L3FE TX BMA error 208 address 0
+CSCdx53886 4 A rthaker  ipc_get_max_message_data_size() should reurn platform supported size
+CSCdx53893 3 R rthaker  Add PRC-I to command functions
+CSCdx53910 4 R jwelder  7500-HA:FSU:Prompt wrong in HSA mode
+CSCdx54023 2 U ekleung  Bus error at process_rx_packet_atm_fs() on LC-1OC12/ATM-MM
+CSCdx54037 3 I wingaho  Traffic stop flowing from BgpPA configured interf to encap ppp inter
+CSCdx54075 6 N fyuan    traceroute ip + <cr> returns unrecognized host in linecard mode
+CSCdx54112 2 I abhaskar 1 port GIGE crash when MPLS enabled on other interfaces
+CSCdx54187 1 R bstetson 7500-HA:SSO: MEMD carve (during sso) causes through traffic to stop
+CSCdx54193 3 D palani   Gigabit Ethernet Performance Degradation 12.0(21.3)S
+CSCdx54210 3 R wingaho  BLIZZARD/FROST: MFR lost fragment timers broken
+CSCdx54278 2 A chpayne  IPM stuck with overloading, CAR in & CBWFQ-WRED out at 4GigEs
+CSCdx54292 6 W mwiedman verify /md5 ? in linecard mode returns unknown file system
+CSCdx54299 4 A palani   Fast Ethernet(Salsa 3) Performance Degradation with 21.3.S
+CSCdx54301 3 J wingaho  BLIZZARD/FROST: MFR lost fragment timers broken
+CSCdx54322 4 A wingaho  Log message: 6PE: could not find fibidb for nullidb
+CSCdx54358 1 R fsunaval sh diag reporting all the GRPs as GRP-B
+CSCdx54437 3 R rdubey   EE48: default class bw not OK if shaping also configured
+CSCdx54454 3 R rdubey   EE48: Deleteing a port shaping sets the port burst size to 0
+CSCdx54488 2 A vhathawa HA:crypto SSH keys not propagated to standby RP on cutover
+CSCdx54498 3 R wingaho  Explicit Null is not working with Ip color on E2 POS
+CSCdx54596 6 R rdubey   E3: Need human-readable output of VMR
+CSCdx54663 3 R rdubey   EE48: RED Curve segments slopes programmed inaccurately
+CSCdx54798 3 A slesser  GSR: Access list log can not logged to RP
+CSCdx54876 2 A fyuan    Pool manager holding 50M or more of memory
+CSCdx54922 2 A rthaker  PRP-1: crash when reloading router
+CSCdx54949 2 D rthaker  IPC message header cache empty and IPC-5-NULL for Ack Souce_port
+CSCdx55007 3 A dojemann Can not ping the PE interface from neighbor VPN
+CSCdx55097 4 A pvyas    E2 8xOC3 ATM: VC_NOT_EXIST error when modifying a shutdown interface
+CSCdx55126 3 D ssuri    bgp route entry wont be flushed due to incorrect NH info
+CSCdx55138 2 J ssuri    ebgp multihop peering is broken
+CSCdx55146 3 A dojemann Ping loss along with the BGP update for link up of the interface
+CSCdx55147 3 D wingaho  Spurious access at 0x500D90F4 logged during FIB download
+CSCdx55150 3 I rdubey   OSPF neighbors lost when fib table is cleared
+CSCdx55167 2 C anilk    VIP crash with vip_ip_fib_flow_fs and posdw_rx_interrupt also posdw_
+CSCdx55171 2 D ananda   VIP crash with vip_ip_fib_flow_fs, posdw_rx_interrupt, posdw_wrapper
+CSCdx55173 3 R rfv      FR connections not removed when de-encap
+CSCdx55188 2 R ssuri    NRT:Router crashed at etext(0x52acd366)+0x91c2aa
+CSCdx55220 3 D ssastry  %IPCGRP-3-EVENTOP Traceback for GigE card on reload
+CSCdx55236 3 A chpayne  mlp bundle w/1 link, tx stats not updated for injected pkts
+CSCdx55296 1 V jwelder  TLB (Load/Fetch) Exception when boot 12.0(21.3)S1 from slot0/1:
+CSCdx55442 1 D rordeman GSR crashes at fib_thread_length after BGP routes flap
+CSCdx55443 2 W kparne   E0 ATM crashes with LC-4-UNEXPECTED_INP_INFO, input info 0x0
+CSCdx55518 6 I rfv      NRT: inverse arp broken with old-style atm config
+CSCdx55550 2 J ssuri    BGP converges one peer-group or non-peer-group peer at a time
+CSCdx55594 4 A nagi     New lc CMD api definitions break atm ipc msg log
+CSCdx55730 2 I rordeman dCEF rcv adj fails on ATM pvc w/vrf forwarding
+CSCdx55734 5 C palani   GSR: How to decode LC-3-BMAERRS and LC-3-L3FEERRS
+CSCdx55802 3 A lzachery CHARES:GALE getmany ifStackTable loops if oc3atm indicies not consec
+CSCdx55851 3 I rordeman GSR not forwarding traffic correctly
+CSCdx55891 3 J mwollen  C10720: SDCC interface goes down after ping attempt
+CSCdx55898 2 R andyr    C10720: Output interface doesnt fragment giant packets
+CSCdx55901 3 O rordeman C10720: UTI tunnel is bound when tunnel protocol is DOWN
+CSCdx55933 3 R andyr    C10720: camr_show_shadow_tag_rewrite
+CSCdx56117 3 R dalen    crashes with SegV Exception after configuring no ip routing
+CSCdx56125 4 O szhang   E4P:InterAS IPv4 BGP label: traffic loss ~2secs during next-hop chg
+CSCdx56154 3 A iwu      C10720: CPU hog in PIM process when running mcast scalability
+CSCdx56283 3 R rthaker  SYSTEM INIT: INSUFFICIENT MEMORY TO BOOT THE IMAGE!
+CSCdx56355 3 D mwollen  C10720: Removing VTMS queue on 10Mbps FE port kills traffic
+CSCdx56457 3 O wingaho  CEF:Spurious memory access made at adjacency_compute_hash 0x17
+CSCdx56473 3 R fyuan    LCs may crash by removing the backup CSC
+CSCdx56497 5 R achakreb Add env variable for supplementing sys/gdb_required
+CSCdx56580 2 R wingaho  TS_TAG_TYPE_MAX not set correctly in tagsw_tag.h file
+CSCdx56587 4 R ssastry  Omelet T1 loopback CLI command stored incorrectly in NVRAM
+CSCdx56606 2 D sgannu   Duplicate Interface ifIndex noticed on GSR
+CSCdx56637 3 R ssastry  cht1: detect remote loop signal fails to loop ctrlr
+CSCdx56657 1 U estest   Bus error exception:Illegal access to low address -Choc/Tobl tests
+CSCdx56662 3 A ssastry  cht1: ANSI in-band loop support not working
+CSCdx56670 6 A ssastry  cht1: ATT in-band loop support not implemented
+CSCdx56712 3 O szhang   E4-Traceback %TX192-3-PAM_MODULE - tx192_pam_module_error_analyze
+CSCdx56764 3 R dalen    Memory leak while configuring redistribution
+CSCdx56785 4 A szhang   E4P: Traceback at bootup (E4LC-3-ERR_FMGR_MTRIE_WR)
+CSCdx56830 2 J palani   GSR - Tracebacks occurring throughout router reload
+CSCdx56840 6 A ssastry  PRE displays IOS RUN when in rommon state on bus error exception
+CSCdx56855 2 R bstetson Pings from upstream rtr fail when going through tunnel
+CSCdx56860 3 R ananda   POSPA: SDH Path Trace Buffer missing on 12000 when connected to 7500
+CSCdx56871 4 A wingaho  E2: Traceback when link comes up (FIB-3-LOADINFOGET)
+CSCdx56876 2 R andyr    C10720: No label in toaster for untagged addresses.
+CSCdx56921 3 A ssuri    Crash due to Watchdog
+CSCdx56933 3 A fyuan    MBUS agent in slot 4 is running from ROM
+CSCdx56948 3 A pcjoshi  Invalid command causes parser mode to fall back
+CSCdx56988 3 C fyuan    MBUS agent in slot 4 running from ROM
+CSCdx56997 2 R palani   GSR: HA FSU fails. Router stays in RPR mode
+CSCdx57005 3 J ahaeri   12.0(21)ST1 boot image cant recognize NPE400 IO and tftp failed
+CSCdx57033 2 A tgraf    RESV messages not leaving a midpoint
+CSCdx57090 3 C jwelder  7500-HA:OIR removal of Active RSP resets/reloads all line cards
+CSCdx57239 4 A sgannu   C10720: Invalid RPR switchover description due to CSCdv00003 fix
+CSCdx57310 2 D rordeman BGP Policy Accounting config lost after reload
+CSCdx57322 3 N bstetson Spurious in tfib_res_resolve_entry
+CSCdx57386 2 A fsunaval Ping fail on pos192/48 line card under ppp encap.
+CSCdx57425 3 A palani   Trident: Changing mtu on one port affects other ports
+CSCdx57448 3 D yvrao    GSR : Huge memory usage by dot1q subinterface on Linecards
+CSCdx57481 2 D yvrao    bus error crash at get_isl_swidb
+CSCdx57494 2 D alanb    Ping packet drop on SRP OC48 line card
+CSCdx57566 2 D jwelder  All traffic stopped and never came back after switchover
+CSCdx57573 2 A atanwar  InPktDrops on VIP4-50 with PA-A3
+CSCdx57606 3 R dalen    MPLS-TE: ISIS database showing incorrect BW for OC-192
+CSCdx57745 3 D vhathawa LSR: Tracebacks appear on config
+CSCdx57823 3 N estest   4ChOC3:continues to observe alarm in the sh facility-alarm statuslog
+CSCdx57866 2 D jwelder  Packet drop on output queue after switchover
+CSCdx57895 1 A vhathawa ios crash while show access-list
+CSCdx57904 4 R ssastry  cht1: cablelength options in IOS are incorrect lengths
+CSCdx57909 5 N estest   show version displays incorrect port / interface information
+CSCdx57963 4 J rdubey   EE48: Ping fails for packets 15357-15360, if mtu set to 15360
+CSCdx58047 5 D jwelder  %FIB-3-FIBBADXDRSLOT: Invalid XDR slot
+CSCdx58057 2 I bstetson C10720: Label didnt show up in MPLS forwarding until after ping
+CSCdx58105 3 A iwu      (S,G) join incorrectly sent out for a densemode group.
+CSCdx58363 2 R szhang   E4P: L3VPN does not work due to MTRIE_WR error during bootup
+CSCdx58409 4 A mwollen  C10720: Only one set of OID gets incremented in cbQosMatchStmtStat
+CSCdx58483 6 A dojemann Return outlabel from LDP on p2p outgoing link with nhop unspecified.
+CSCdx58538 2 J ssuri    BGP flaps due to illegal header length sent
+CSCdx58569 4 A szhang   E4:SW tag rewrite does not point to any HW rewrite
+CSCdx58575 3 A ekleung  %IP-5-ACL: Log process enqueue failed
+CSCdx58579 2 R mwiedman PRP-1: format new bootflash crashes router
+CSCdx58605 4 D ekleung  Fix static analysis warning in bflc_pm622_cmds.c
+CSCdx58623 3 D ssuri    BGP flaps due to illegal header length
+CSCdx58637 3 C ssuri    Metric on receive side are forced to 4294967294
+CSCdx58647 3 J ssuri    Metric on receive side are forced to 294967294
+CSCdx58668 4 R ekleung  fix static analysis warning in bflc_pm622_cmds.c
+CSCdx58840 2 A rordeman ISIS routes lost on the linecard CEF table after the RP switchover
+CSCdx58854 3 A rthaker  FT QOC48 testing: IPCGRP-3-CMDOP:IPC command x:can not get cmd ipc
+CSCdx58895 2 A bstetson %TFIB-7-SPECIALIDB messages with enabling MPLS
+CSCdx58899 3 I rordeman %FIB-3-FIBXDRLEN message with MPLS
+CSCdx58991 3 C yvrao    dot1q subinterface support for ifInOctets and ifOutOctets
+CSCdx59003 3 I fyuan    ENV_MON messages reporting faulty values
+CSCdx59015 3 A rordeman FIB: Reduce convergence time when using load balanced fib structure.
+CSCdx59048 4 A andyr    C10720: fix IPv6 priority retrieval in camr_tx_mistral
+CSCdx59056 3 A dojemann CSC+Labels:BGP with IPv4 Labels messed with LDP in the same vrf
+CSCdx59089 4 N mwollen  C10720: value of cbQosPoliceConformedPkt64 is wrong
+CSCdx59115 3 I chpayne  Buddy queues can limit gig i/f throughput to 503 Mbps
+CSCdx59116 4 R mwollen  C10720: Value of cbQosPoliceConformedByte64 is wrong
+CSCdx59155 2 D wingaho  NRT: %LCPOS-3-SOP: RX:UnexpectedSop Source=0x4 (Framer)
+CSCdx59158 2 A vhathawa HA:OC12ATM stdby VCs showing up while active VCs are INAC.
+CSCdx59194 3 A dojemann InterAS vpn: traceroute is broken by missing labels
+CSCdx59353 2 R szhang   Spurious memory access made at 0x500D90F4
+CSCdx59358 2 A abhaskar InterAS vpn: ASBR with multiple links, missing local tfib labels
+CSCdx59391 4 A bstetson MPLS FRR:Primary tunnel goes down with expl-null turned on
+CSCdx59393 2 D szhang   GENERAL-3-EREVENT null hw taginfo
+CSCdx59469 2 R bstetson C10720: mpls regression failures due to no TAG adjacencies
+CSCdx59493 6 A chpayne  Support for per ACL entry hit counts on PXF
+CSCdx59513 4 R chpayne  Deconfiguring police causes memory leak
+CSCdx59555 5 C wingaho  Feature performance of OC12POS running 12.0(21.03)S1
+CSCdx59576 5 C wingaho  Feature Performance of QOC3POS running 12.0(21.3)S1
+CSCdx59579 3 R fyuan    Undo CSCdx54358
+CSCdx59585 2 D ssuri    BGP non-peer-group peers do not converge
+CSCdx59589 5 C ekleung  Feature performance of OC12ATM running 12.0(21.03)S01
+CSCdx59595 5 C ekleung  Feature performance of QOC3ATM running IOS 12.0(21.3)S1
+CSCdx59597 1 A abhaskar InterAS vpns: Trident, end-end connectivity broken
+CSCdx59609 5 C wingaho  Feature performance of Jaguar (OC12->DS3) running 12.0(21.3)S1
+CSCdx59627 3 J rordeman sh ip cef exact-route x.x.x.x src-range reloads the box, watchdog
+CSCdx59698 3 A ssastry  Pinging through serial i/f fails after router reload
+CSCdx59726 3 I fsunaval SR: Spurious memory access made at gen6_add_child_to_mnode
+CSCdx59922 1 D jwelder  Secondary RP failed to boot
+CSCdx59933 3 C kparne   High CPU utilization when forwarding traffic over 1xOC12 ATM linecar
+CSCdx60075 4 I wingaho  Traffic shaping doesnt take effect on pos oc3 when changing rate
+CSCdx60119 2 A anilk    No more IPC memd buffers to transmit IPC message
+CSCdx60125 3 J abhaskar X: Tcam size set to zero!
+CSCdx60134 2 A abhaskar An PLU SDRAM ECC correctable error occured address on 3GE-GBIC-SC
+CSCdx60213 1 I abhaskar 3ge reload when catalyst reloaded
+CSCdx60277 3 R wingaho  6xCT3: short burst of frame loss on line state up transition
+CSCdx60287 3 R pvyas    dialer dtr and dialer inband need to make HA aware
+CSCdx60377 1 I vhathawa router crashed at the procedure c10k_cobalt_type0_interrupt
+CSCdx60380 3 I kparne   ipAdEntIfIndex error with 12.0(21)ST1
+CSCdx60490 2 D rordeman DCEF disabled/Malloc Fails-on adding max-path to BGP on GSR
+CSCdx60537 2 J rordeman Adding bgp maximum-path on GSR disabled DCEF with Mallocfails
+CSCdx60545 1 R vhathawa MPLS VPN: Unable to ping through VPN trunk--BGP nei state in Active
+CSCdx60604 2 D rordeman Adding bgp maximum-path on GSR disables DCEF,causes Mallocfails
+CSCdx60631 4 N mwollen  C10720: Output queue counters in sh int do not reflect all queues
+CSCdx60640 3 A sichen   ipAdEntIfIndex snmp problem with GSR
+CSCdx60659 2 D rordeman Adding BGP maximum-path disables DCEF on GSR with Mallocfails
+CSCdx60704 1 R bstetson When running MPLS tests this image locks up 7500s
+CSCdx60723 3 R chpayne  matching on mutiple ACLs fail with match all option
+CSCdx60918 3 O palani   GSR: HA Standby RP crashes on switchover with 1250 IDBs /LC reload
+CSCdx60970 1 C fsunaval E4 LC Crashes with Illegal Packet
+CSCdx61032 6 R palani   GSR SSO: make sso debug commands to be service internal, not hidden
+CSCdx61083 3 D szhang   E4P:MPLS CSC:mtrie_node_write: wrong type client=2
+CSCdx61086 1 A vravi    VSEC: ISA: uCode built w/ New Compiler must be error-free
+CSCdx61112 2 D szhang   E4: Fail to allocate the fmt A+B entry and traceback to gen7_mtrie_n
+CSCdx61141 3 A iwu      RPF neighbor of (S,G) entry gets incorrectly updated
+CSCdx61269 3 O szhang   E4P: MPLS CSC show ip gen7 vrf operation not match sh ip cef vrf
+CSCdx61294 3 I tgraf    MPLS-TE tunnel down after switchover
+CSCdx61337 2 O szhang   E4P:MPLS CSC:One stream but all tag counters for remote BC count
+CSCdx61339 3 C rdubey   ip multicast ttl-threshold and rate-limit missing
+CSCdx61341 1 I ssastry  PXF DMA Toaster Fault - T1 Exception-router crash with 21ST throttle
+CSCdx61360 4 I ssuri    12.0(15)S3 has BGP bug
+CSCdx61398 3 A yvrao    GSR : Inconsistient memory usage by dot1q subinterfaces on LC
+CSCdx61463 2 O palani   1 port GE LC lc-mbus_intr_handle & bflc-intr-dispatch
+CSCdx61507 2 O dsavage  NRT: Spurious accesss @ ipigrp2_route_adjust
+CSCdx61545 3 N andyr    C10720: MPLS counters problem with aggregate label
+CSCdx61600 2 D rordeman Enabling GRE tunnels in dcef mode prevents VIP forwarding
+CSCdx61624 3 R pmanson  Sysclock: OIR results in loss of Sysclock configurations
+CSCdx61632 2 A vhathawa MLP SSO : MLP switchover not working on ESR
+CSCdx61639 3 A ckhuong  GSR E2: Diags not detecting hard ZBT parity error
+CSCdx61684 2 O palani   Trident: Traffic stops after shut/no shut on interface
+CSCdx61696 1 N anilk    NRT: rsp router crashed at r4k_writebus_dummy when OIR of cards done
+CSCdx61707 2 D rdubey   E48: packet egressing HDLC interface with PPP encap
+CSCdx61859 3 D ssastry  che1t1: hw slot reset and card reloads twice
+CSCdx61972 4 R rdubey   TYPO on RPs ACL aggregrate permit counter reset
+CSCdx62017 3 D ssuri    GSR: SSO Scalibility Notifications sent after switch with 200 peers
+CSCdx62057 3 D palani   %SCHED-7-WATCH: Attempt to set uninitialized watched boolean
+CSCdx62123 2 A rthaker  IPC timeout when multicast to local ports
+CSCdx62156 5 C palani   Fast Ethernet(Salsa 3) Performance results with 12.0(21.3)S1
+CSCdx62162 2 D mwiedman Bootloader cannot format bootflash
+CSCdx62165 5 C palani   Gigabit Ethernet(Salsa 4) Performance Results using 12.0(21.3)S1
+CSCdx62277 4 A pmanson  E3 (ISE) has incorrect value for Z0
+CSCdx62328 6 R palani   GSR SSO: add trace facility for RP/LC atm drivers
+CSCdx62352 3 R rdubey   EE48: URPF + Acl: Acl label sharing does not work.
+CSCdx62374 3 J szhang   miss deviation numbers for backplane
+CSCdx62375 3 J szhang   miss deviation numbers for backplane
+CSCdx62442 2 O palani   %FILESYS-4-RCSF: running config too big to sync.. (46453)
+CSCdx62516 2 I anilk    VIP2-50 silently stops transmitting
+CSCdx62532 2 A jwelder  some interfaces do not come up after hw sec reset
+CSCdx62533 2 A ananda   PA-SRP crash in srp_rx_interrupt
+CSCdx62584 2 D palani   GSR HA: red force-switchover command is broken,activeRP not reload
+CSCdx62587 2 R sgannu   show registry causes a crash
+CSCdx62591 2 J palani   Standby GRP software forced crash
+CSCdx62593 2 A rordeman HA: after RPR+ switchover, adjacencies are not properly updated
+CSCdx62645 2 O fyuan    LC crash with hw-module slot # shut command
+CSCdx62649 3 A napai    SNMP Port 162 should be enabled only if manager is enabled
+CSCdx62727 3 A kparne   Subinterface MTU returns 0 when polled by SNMP
+CSCdx62750 2 A tgraf    crash in mgd_timer_walk_down_tree from tspvif_timers
+CSCdx62768 2 I vhathawa HA MPLS/VPN: MPLS traffic did not recover after PRE cutover
+CSCdx62777 3 R chpayne  GRE Tunnelling: Rx punted packets are being double-counted
+CSCdx62781 3 N chpayne  incorrect byte count when mqc/police if set-mpls-exp-transmit
+CSCdx62793 2 A chpayne  suboptimal BW utilization in nested policy map
+CSCdx62867 2 A vhathawa Not all interfaces come up after 3rd switch over (hdlc)
+CSCdx62875 4 O palani   %GRP-4-CFGSYNC: Failed to sync interface config to standby RP
+CSCdx62947 2 A vhathawa traffic convergence takes longer then 10sec after switch-over
+CSCdx62997 3 R fyuan    GRP FRU change
+CSCdx63092 2 O palani   CSAR:No interface available Slot 9 Chan 5 traceback
+CSCdx63095 2 A ananda   packets not switched to SRP interface
+CSCdx63114 2 U vhathawa fragmenting over choc12 768 t3s with mixed encap cause IOS crash
+CSCdx63115 4 N chpayne  When one T1 is shut on the MLPPP Bundle, it takes about 2 to 3 mts t
+CSCdx63141 2 D chpayne  per-packet load balancing broken
+CSCdx63206 2 A ssastry  CE1: could not ping remote after shut/no shut
+CSCdx63279 2 A ssastry  CE1: system crash during MLP config, channelization test ran earlier
+CSCdx63332 2 D rordeman OSPF test traffic stopped, never recovered
+CSCdx63382 3 A vravi    packets marked but not conforming with classed based policing
+CSCdx63447 6 R fsunaval E4/E4P packet memory MBE debug enhancement
+CSCdx63502 3 A ssastry  CE1: MLP interface input counter remain zero or underflow
+CSCdx63503 3 R rordeman ALIGN-3-CORRECT: Alignment correction made at mtrie_leaf_free
+CSCdx63533 3 A mwiedman memory leak in rcsf file system
+CSCdx63653 3 R ekleung  Remove service-policy command from 4xOC3 and 1xOC12 gsr atm interfac
+CSCdx63658 3 A vravi    High latency seen on traffic queued to the same class using CBWFQ
+CSCdx63682 3 N rfv      No link down trap when connection from remote end fails
+CSCdx63780 3 A leungb   4-port OC-12 linecard disabled after reboot with traceback/error msg
+CSCdx63839 3 R rdubey   HW swiching in E3 does not check for MCACHE_LOCAL flag
+CSCdx63930 2 O wingaho  PPLB enabled stops traffic from passing on E2 OC12 and OC48
+CSCdx63950 2 I sichen   mds forwarding table inconsistency on E2 card
+CSCdx64005 2 A bstetson vip drops gre->taggedGRE packets (caused by dGRE commit)
+CSCdx64028 4 R ssastry  cht1: fdl is not disabled when SF framing configured
+CSCdx64087 4 J skufer   APS:unnecessary switch may follow recovery from working router crash
+CSCdx64174 5 C palani   Gigabit Ethernet Performance Results using gsr-p-mz.CSCdx29875
+CSCdx64178 2 I bstetson NRT:No tfib entry for directly connec CE on EBGP router with static
+CSCdx64184 5 C palani   Fast Ethernet(Salsa 3) Performance results for fix CSCdx29875
+CSCdx64204 2 A fyuan    NRT:Spurious access at config_cards_csc(0x5024d6a8)+0x264
+CSCdx64279 2 I rordeman HA SSO Missing FIB entry after switchover
+CSCdx64414 2 A tgraf    GSR: SSO MPLS TE Tunnel down after a switch
+CSCdx64494 3 A chpayne  CT3 cards with certain lcmon exhibit anomalies
+CSCdx64606 2 A wingaho  6PE: tfib-res not cleared when BGP stopped
+CSCdx64661 3 D wingaho  PSA iACLs do not work after router reload with int shutdown
+CSCdx64713 2 A rordeman New Active RP crashed on RP switchover (redund force)
+CSCdx64757 3 A fyuan    PRP: i/o mempool needs to be backed up by processor memory
+CSCdx64925 3 D jcwong   ARP table can grow without bound
+CSCdx65040 3 A jcwong   ACL applied on a slot crashes another slot
+CSCdx65141 3 N tgraf    request to clear sh mpls tr tu sum counters
+CSCdx65148 2 N tgraf    No reference to first hop in rec route info in cli - test impact
+CSCdx65157 3 N chpayne  Traceback with IP_input process sometimes, at clear ip bgp *
+CSCdx65188 1 J wingaho  NRT: gsr router crashed crashdump due to MALLOC fail during oir test
+CSCdx65248 2 I cchou    memory leak on Eng0
+CSCdx65325 2 I dalen    NRT: ospf negative test(send hello, LS update) failed on omega
+CSCdx65333 2 A jwelder  %FIB-3FIBDISABLE:No window message, after RP switchover
+CSCdx65337 3 A rordeman malloc on cef lc stat
+CSCdx65484 6 A rdubey   Extend show access-list hardware for LCs with TCAM based ACLs
+CSCdx65575 2 A palani   %FIB-3-FIBDISABLE: Fatal error, slot 6: Linecard timed out waiting
+CSCdx65597 5 N vravi    show policy-map shows incorrect configured parameters
+CSCdx65614 3 N lzachery no dsx1LineStatusChange traps generated after dsx1LineStatus changed
+CSCdx65715 3 A rdubey   EE48 mqc: Policy in class-default wont take effect for mpls traffic
+CSCdx65717 2 O szhang   E4/E4p cards do not properly recover from exceeding FMGR limits
+CSCdx65766 3 A wingaho  Eng0/Eng2 MQC: percent bandwidth to MDRR weight/quantum math is bad
+CSCdx65805 3 I palani   Fast Ethernet(Salsa 3) Performance degradation with 21.ST1.0520
+CSCdx65872 2 N rordeman Error:Failed to allocate counter gen6_counter_alloc
+CSCdx65876 5 C palani   Trident Feature Performance with 21.ST1.0520
+CSCdx65877 1 I fyuan    Router reloads due to Bus Error(dequeue)
+CSCdx65881 3 A rordeman Update Packing algorithm goes into Normal mode before BGP converges
+CSCdx65955 3 N yvrao    VLAN: FE MTU is decreased when last subinterface is removed
+CSCdx65978 6 A rdubey   EE48: CLI name change for turn off aclmerge
+CSCdx66011 1 D fyuan    Router reloads due to bus error
+CSCdx66131 5 A ssuri    BGP: PRC commit chopped off an error message in community.c
+CSCdx66172 4 C wingaho  MQC GSR ENG2 -- error messages need to be more descriptive
+CSCdx66270 2 A sichen   Packet lost in Engine 4 Quad OC-48 POS
+CSCdx66355 3 I palani   1 port GE crashed with netflow switching
+CSCdx66361 3 D palani   1 port GE crashed with netflow switching
+CSCdx66412 3 A dalen    ISIS: reduce delay between building LSP and flooding
+CSCdx66417 1 I palani   Gigabit Ethernet Line card crashes when netflow sampled configured
+CSCdx66445 2 O cchou    A 7200 might crash due to a Malloc failure
+CSCdx66453 4 R rfv      FR PRC needs to be added to additional commands
+CSCdx66479 3 N dojemann Memory allocation fail & High CPU util due to ISI adjacency flapping
+CSCdx66519 2 A wingaho  E2 POS: L2 Encap 0x00000000 after removing TE tunnel
+CSCdx66524 2 A bstetson CSC-VPN:Ping B CSCPE&CSCCE broken after micreload LC on CSCPE
+CSCdx66545 3 J mwollen  C10720: UTI with output car broken
+CSCdx66585 2 A lzachery KHAFRA:cRFCfgSplitMode and cRFCfgMaintenanceMode both writable
+CSCdx66626 1 A chpayne  ESR not forwarding bootp requests
+CSCdx66716 4 R andyr    DPT48: interface changed to shutdown after line card OIR
+CSCdx66733 2 R chpayne  Netflow: Many feedbacks / flow indentification failure
+CSCdx66798 3 N lzachery dsx1LineStatusLastChange is not changed for T1 contr on 1choc12
+CSCdx66821 4 N andyr    C10720: EoMPLS and UTI has problem to co-exist in same main diff sub
+CSCdx66842 4 N rcascio  AToM: IOS should block to provision eompls and uti in same vlan
+CSCdx66881 3 A wingaho  12DS3 LC crashed in validblock with %SEC-6-IPACCESSLOGS message
+CSCdx66913 2 R chpayne  PPLB table in toaster is not initialized
+CSCdx67011 3 R fyuan    PRP-1: Rommon handling of bad DIMMS and ATA reset delay issue
+CSCdx67057 2 J bstetson C10720 EoMPLS: Cannot send traffic through tunnels
+CSCdx67070 1 A dsavage  NRT:rsp router crashed at igrp2_bandwidth_changed+0x208
+CSCdx67099 3 N ahaeri   Router reloaded by bus error (corrupted program counter)
+CSCdx67197 2 A wingaho  Standard ACL Performance Degradation on OC12POS, 12.0(21)ST.0520
+CSCdx67222 2 D wingaho  Standard ACL Performance Degradation on 4xOC3POS 12.0(21)ST1.0520
+CSCdx67238 5 C pmanson  OC12ATM Performance Results for 12.0(21)ST1.0520
+CSCdx67280 3 A szhang   E4:MPLS CSC:tfib192_allocate_tnodes():get tnode addr=0
+CSCdx67282 5 C pmanson  4xOC3ATM Performance Results for 12.0(21)ST1.0520
+CSCdx67286 2 A palani   oACLs on E3 can cause packet punts on ingress E2 LC
+CSCdx67332 3 A ssuri    Traceback seen in bgp endofrib process
+CSCdx67352 2 A wingaho  SR: CEF inconsistency on linecard for 24 minutes after bootup
+CSCdx67355 3 A rdubey   CSC with IPv4+labels:CSCCE cant get outgoing label for remot prefix
+CSCdx67418 1 O palani   SR: GRPs crash with 512MB in dual RP configuration
+CSCdx67420 2 O szhang   E4P:MPLS CSC_labspf: LDP CSC-CE can spoof into LSP of IPv4 CSC-CE
+CSCdx67608 3 R rthaker  Backout CSCdx56509 as it broke HA command
+CSCdx67661 3 A chpayne  2% traffic loss after switch over<mlppp, hdlc>
+CSCdx67669 3 A kparne   ciscoEnvMonRedundantSupplyNotification has wrong var-binds
+CSCdx67719 2 A szhang   CEF Inconsistency on Eng4 Line Cards
+CSCdx67815 3 N tgraf    Using RSVP hello,Load balance prefix does not go Active on failure.
+CSCdx67827 2 R chpayne  BERT test allowed on a down T1; should not be
+CSCdx67850 2 A chpayne  CT3: ISR storm depletes challoc buffer pool
+CSCdx67857 4 N palani   %IPCGRP-3-ERROR: sending time to standby RP: not supported
+CSCdx67862 3 A wingaho  MPLS E2: Spurious access at process_rx_packet_pos_mpls_gen4
+CSCdx67870 4 N pmanson  E3 POS: with PPP configured, an OIR results in traceback
+CSCdx67876 3 A ssuri    BGP:IPv4 NRLI cant be received using the MP Attributes
+CSCdx67887 1 O fyuan    GSR boot image broken
+CSCdx67893 4 N fyuan    adjacency update routines should be removed from bfrp_encap.c
+CSCdx67905 2 A rdubey   EE48: LC CEF gets disabled or remains stuck at STRTIOS after reload
+CSCdx67934 3 R rdubey   EE48 CAR: qos-group option does not exists
+CSCdx68461 2 N wingaho  Standard ACL Performance Degradation on CHOC12xDS3 12.0(21)ST1.0520
+CSCdx68478 3 N rordeman High CPU util seen in CEF Process w/ large VLAN and BGP configuratio
+CSCdx68494 2 N mturnlun pre c2.95.3-p4 rollout integration
+CSCdx68510 3 N ssuri    import map config to set attribute not working
+CSCdx68533 1 N palani   GSR crashes when changing MTU size on Gig E interface
+CSCdx68579 2 N fyuan    switchover leads to console freeze and line card crash
+CSCdx68603 3 A chpayne  After nochan/chan sequence, ct3 anomalies in some show contr params

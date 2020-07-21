@@ -1,0 +1,9 @@
+for i in `cat $1`
+do
+	if [ -d  $i ]
+	then
+		echo $i >>$1.dirs
+	else
+		echo $i >>$1.files
+	fi
+done

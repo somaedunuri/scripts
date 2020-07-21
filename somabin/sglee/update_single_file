@@ -1,0 +1,21 @@
+#! /bin/csh -f
+
+if ( `uname -n` == "potlicker") then
+    set work_dir = "/cscpv/sglee"
+else
+    set work_dir = "/nfs/cscpv/sglee"
+endif
+
+set yymmdd   = `date +%y%m%d`
+set home     = "/release/111/cvs"
+set src_tree = "/cscpv/core_release/ELC"
+set dirs     = "boot ecmon micro sbe16 str subsys sys"
+set line     = "----------------------------------------"
+set CVS      = "/sw/current/solaris2bin/cvs"
+set log      = "${work_dir}/Checkins/update.${yymmdd}"
+
+
+cd ${src_tree}/ELC
+
+${CVS} -d${home} update -rELC_branch ${1}
+

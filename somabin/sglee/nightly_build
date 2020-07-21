@@ -1,0 +1,38 @@
+#! /bin/csh -f
+
+# ===============================================================================
+#
+# File:
+#   nightly_build
+#
+#
+# Description:
+#   This file is nightly build script used to build 'boot ROM images' for the
+#   ELC_branch.
+#
+#   This script consists of 3 separate scripts to do the nightly build.  They are:
+#
+#   csc_report - This script makes a copy of the /release/111/cvs/ELC_branch log
+#	file that contains all files that were checked into the 'ELC branch'.
+#
+#   update_elc - This script updates the 'ELC' source tree.
+#
+#   buildit - This script creates all the necessary directories and files to 
+#	document the build process for that night.  This script compiles all the
+#	images and archives them on 'potlicker:/cscpu/core_release/Archives'.
+#
+# ===============================================================================
+
+
+# ===============================================================================
+# Set up variables.
+# ===============================================================================
+set home_bin = "/cscpu/core_release/bin"
+set yymmdd   = `date +%y%m%d`
+
+${home_bin}/csc_report
+
+${home_bin}/update_elc
+
+${home_bin}/buildit ${yymmdd}
+

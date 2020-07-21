@@ -1,0 +1,154 @@
+#! /bin/csh -f
+
+set bld_host = "potlicker"
+set tree     = "/cscpv/core_release/ELC"
+set work_dir = "/cscpu/core_release"
+
+if ( `uname -n` != "${bld_host}") then
+    set work_dir = "/nfs/cscpu/core_release"
+endif
+
+set arch_dir = "${work_dir}/Archives"
+set sun_dir  = "${work_dir}/suns"
+set sym_dir  = "${work_dir}/symbols"
+
+set mmddyy   = "`date +%D`"
+set yymmdd   = "$1"
+
+#if ( ${yymmdd} == "" ) then
+#    set yymmdd   = `date +%y%m%d`
+#else
+#    set yymmdd   = "$1"
+#endif
+
+set out      = "${work_dir}/Status/status.${yymmdd}"
+set dash     = "------------------------------------------"
+set line     = "=========================================="
+set get_ver  = "${work_dir}/bin/get_version"
+
+set obj_1      = "obj-4k-c7100 obj-4k-rsp obj-4k-rvip obj-4k-svip obj-68-c7000"
+set obj_2      = "obj-36-c1000 obj-36-c1005 obj-4k-c4000"
+set obj_3      = "obj-68-as5200 obj-68-c3000 obj-68-c4000"
+set obj_4      = "obj-sp-solaris obj-sp-sunos"
+
+set obj_all    = "$obj_1 $obj_2 $obj_3"
+
+chmod 666 ${out}
+
+cd ${work_dir}/Status
+if ( -e ${work_dir}/Status/current ) then
+    /bin/rm -f ${work_dir}/Status/current
+endif
+#ln -s ${out} ${work_dir}/Status/current
+ln -s ${out} current
+
+if ( -e ${out} ) then
+    $get_ver ${out}
+endif
+touch ${out}
+
+cat <<EOF >> ${out}
+${line}${line}
+Build Status for Core Products				`date`
+
+Notes:
+
+  *  Nightly updates & builds start at 9 p.m.  Please check in code before then.
+
+  *  Core Release source tree is ${bld_host}:${tree}.
+
+  *  Build output directories are located on ${bld_host}:
+	. boot images       - ${arch_dir}/images.${yymmdd}
+	. sun               - ${sun_dir}/suns.${yymmdd}
+	. symbols           - ${sym_dir}/symbols.${yymmdd}
+
+	. build logs        - ${work_dir}/Builds/build.DATE
+	. files checked in  - ${work_dir}/Checkins/update.DATE
+	. status messages   - ${work_dir}/Status/status.DATE
+
+        *** Replace DATE with 'yymmdd' (year, month, date) format (eg., ${yymmdd}).
+
+  *  Questions?  Send email to Sammie Lee   (sglee, x7-3169).
+			    or Soma Edunuri (soma,  x7-2327).
+
+${line}${line}
+
+${dash}${dash}
+I.  Build Notes
+${dash}${dash}
+
+*  Images built (${bld_host}:${arch_dir}/images.${yymmdd}):
+
+	obj-36-c1000	obj-4k-c4000	obj-68-as5200	obj-sp-solaris
+	obj-36-c1005	obj-4k-c7100	obj-68-c3000	obj-sp-sunos
+			obj-4k-rsp	obj-68-c4000
+			obj-4k-rvip	obj-68-c7000
+			obj-4k-svip
+	 
+*  All CSCdi bugs checked into the source tree since 6/04/96:
+
+	45148  52427  53846  54755  55949  56786  56807  57022  57322  57738
+	57928  57944  58160  58294  58555  58996  59000  59040  59131  59206
+	59291  59330  59436  59481  59504  59533  59552  59567  59592  59622
+	59640  59664  59700  59777  59788  59800  59969  59976  60415  60432
+
+*  All CSCdi bugs checked into the source tree since 6/18/96:
+
+	58572  59308  59509  60053  60765  60799  60873  60971  61026  61081
+
+*  All CSCdi bugs checked into the source tree since 6/26/96:
+
+	59120  61016  61405  61457  62104  63705  63706
+
+*  All CSCdi bugs checked into the source tree since 7/11/96:
+
+	.
+
+*  Committed CSCdi bug numbers (see /release/cvs/111/CHANGES-ELC_branch):
+	First checkin:  07/25/96 19:06:24 UTC by ssangiah
+	Last  checkin:  07/26/96 23:22:57 UTC by ssangiah
+
+   .
+   
+
+###
+### Checkin at 2701
+###
+
+${dash}${dash}
+II.  Build Problems -- Location:  ${bld_host}:${work_dir}/Builds/builds.${yymmdd}
+${dash}${dash}
+
+*  None.
+
+
+EOF
+
+foreach ii ( 3  4  5 )
+    echo "${dash}${dash}"						>> ${out}
+    switch ( ${ii} ) 
+        case 3:
+	    set jj = "${arch_dir}/images.${yymmdd}"
+	    echo "III.  Boot Images -- Location:  ${bld_host}:${jj}"	>> ${out}
+	    breaksw
+        case 4:
+	    set jj = "${sun_dir}/suns.${yymmdd}"
+	    echo "IV.  Suns -- Location:  ${bld_host}:${jj}"		>> ${out}
+	    breaksw
+        case 5:
+	    set jj = "${sym_dir}/symbols.${yymmdd}"
+	    echo "V.  Symbols -- Location:  ${bld_host}:${jj}"		>> ${out}
+	    breaksw
+	default:
+	    echo ""							>> ${out}
+    endsw
+    echo "${dash}${dash}"						>> ${out}
+#    echo ""								>> ${out}
+    
+    cd ${jj}
+    /bin/ls -lsF obj* | sed -e '/  eng     /s' | grep -v "^total"	>> ${out}
+    echo ""								>> ${out}
+    echo ""								>> ${out}
+end 
+
+# sed -e '/  eng     /s' | grep -v "^total"

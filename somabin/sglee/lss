@@ -1,0 +1,11 @@
+#! /bin/csh -f
+
+START:
+
+clear
+date
+echo ""
+ls -slFtr
+sleep 40
+
+goto START

@@ -1,0 +1,27 @@
+#!/bin/sh -u
+
+Syntax() {
+	echo 1>&2 ${0}: `/usr/ucb/basename ${0}` [user-to-notify]
+}
+
+NotificationList=""
+
+case $# in
+0 )
+	# Continue
+	;;
+1 )
+	NotificationList="-n ${1}"
+	;;
+* )
+	Syntax
+	exit 1
+	;;
+esac
+
+
+for t in 8 9 10 11 12 13 14
+do
+	echo Sending notices for ${t}E commits that are missing ...
+	/users/bjames/bin/Notify121E -t ${t} ${NotificationList}
+done

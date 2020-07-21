@@ -1,0 +1,35 @@
+
+atmcommon	10
+bgp		25
+fib		49
+gsr-10-ge-b	 6
+gsr-3gig-eth	33
+gsr-aps		 5
+gsr-atm		17
+gsr-atm-eng0	10
+gsr-atm-eng2   	31
+gsr-csc-sfc	 7
+gsr-ch-sonet	 6
+gsr-diags	 7
+gsr-dpt-eng2	23
+gsr-ds3e3	20
+gsr-dual-rp	71
+gsr-env-mon	 6
+gsr-fast-eth	 9
+gsr-gig-eth	40
+gsr-gre		56
+gsr-ipv6	12
+gsr-mbus	12
+gsr-multicast	 8
+gsr-netmgmt	19
+sr-pos-e4-mpls	33
+gsr-pos-eng0	35
+gsr-pos-eng2	102
+gsr-pos-eng3	93
+gsr-pos-eng4	44
+mpls        	62
+
+
+
+	
+

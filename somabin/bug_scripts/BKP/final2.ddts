@@ -1,0 +1,39 @@
+CSCin06698 3 C vravi    bandwidh command does not serve its purpose with child policy
+CSCin06716 3 C vravi    dscp option is missing from CLI
+CSCin06795 3 R sgannu   LCs  not registering with CISCO-PROCESS-MIB
+CSCin06905 2 D ananda   MerlinPA: SRP interface stops forwarding traffic
+CSCin06976 3 R mwiedman No warning message for file overwrite in NVRAM
+CSCin07076 1 R kumaril  VIPMLP: Router crashes on booting up with dMLP configured
+CSCin07109 3 A mwiedman improve write operation to disk
+CSCin07112 4 A mwiedman copy to disk gives misleading error message
+CSCin07211 3 R napai    Failed sets could result in resetting standby..
+CSCin07223 6 R anilk    Need support for 450/700/900 Mhz cpu speed on RSP/VIP
+CSCin07615 1 C jwelder  7500-HA:SSO:100 MPLS VPNs config causes malloc fails & router crash
+CSCin08470 2 A kumaril  E1 interfaces with FR change to up/down state with bursty traffic
+CSCin08916 3 U sgannu   No PhysicalEntry for Network Managment Ethernet in entitymib
+CSCin09801 3 C palani   RP Crash after switchover in RPR Mode (diff IOS Images)
+CSCin09832 4 R kumaril  CE3 does not have VC range check in ce3_vip_tx()
+CSCin09976 3 R ananda   Halcyon:After removal of PA, SNMP ifmib info is still shown
+CSCin10046 2 R ananda   Halcyon: Backout of CSCin09976
+CSCin10186 3 R ananda   Halcyon:After removal of PA, snmp ifmib info is still shown
+CSCin10445 3 R ananda   Halcyon: Adding SonetVT MIB support
+CSCin10446 3 A ananda   Halcyon: Adding SonetPath MIB support
+CSCin10693 6 N raghavg  Port Single Cell Relay Support for IMA PA
+CSCuk33245 3 U rordeman CEF: Incomplete adjacencies for P2P interface on LC after s/over
+CSCuk33331 2 D rordeman 50% pkts lost after flapping POS intf (ADJ incomplete on LC)
+CSCuk33346 3 R rordeman CEF: Add CEF global event logger
+CSCuk33375 3 A rthaker  HA : IPC failure (timeout) on secondary after OIR on other slot
+CSCuk33484 3 J palani   Unable to reload secondary GRP from primary GRP using exec slot cmd
+CSCuk33496 2 D fyuan    On CSC failover CSC reports insufficient Fabric Bandwidth
+CSCuk33500 2 U fyuan    CSC Failover causes POS Line card to Coredump
+CSCuk33523 2 R rordeman Add Hooks for BGP to determine CEFs reload state
+CSCuk33554 3 R rordeman cef record event logger tries to malloc memory at interrupt level
+CSCuk33798 3 D sgannu   HA SSO: unitialized boolean (IPC delayed init) after switchover
+CSCuk33800 3 D palani   HA SSO : ALIGN at red_mode_rf_status_event after failover
+CSCuk33835 4 N slesser  2xCHOC3/STM1-T1/E1: MLPPP: %LC_DMLP-4-BUNDLENULL traceback
+CSCuk34286 3 R slesser  2xCHOC3/STM1-T1/E1:MLP stays down when changing links default MTU
+CSCuk34287 4 R rordeman fib_ipc_master_timer needs to be initialised in a better place
+CSCuk34305 2 D slesser  2xCHOC3/STM1-T1/E1: MLPPP is broken on 120-21.3.S
+CSCuk34310 2 R wingaho  Partial rework of CSCdx29393 required
+CSCuk34432 2 D palani   HA/SSO:%GRP-BLOCKTIMEOUT after failover - secondary stalled
+CSCuk34623 2 R rordeman linecard cef disabled after reload

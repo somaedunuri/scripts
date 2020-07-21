@@ -1,0 +1,4 @@
+#! /bin/csh -f
+
+cd /cscpu/sglee/ELC/sys
+/nfs/repr/arkansas/auxiliary/update_sys_tree /release/111/cvs/Xsys

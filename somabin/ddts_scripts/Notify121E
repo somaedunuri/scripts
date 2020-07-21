@@ -1,0 +1,391 @@
+#!/bin/sh -u
+
+MessageAuthor="Matt"
+
+CosmosBranches="\
+	cosmos_e \
+	herschel_ios \
+	herschel_mpls \
+	sagan_7 \
+	hubble \
+	hawking \
+	"
+#
+# Possible other branches that went into cosmos_e somehow?
+#
+#	sagan_5 \
+#
+
+FloridaBranches="\
+	florida \
+	flo_isp \
+	flo_e \
+	flo_11_e \
+	flo_11_e_hubble \
+	14e_port \
+	"
+
+NotificationList=""
+NotificationCClist="\
+	soma \
+	mbernste \
+	devgoyal \
+	esamoran \
+	bjames \
+	shakilac \
+	cosmos-de-mgrs \
+	"
+
+ThrottleNumber=""
+
+Syntax () {
+  echo 1>&2 $0: `/usr/ucb/basename $0` -t throttle-number [-n user-to-notify]
+}
+
+CheckMailError() {
+	case $? in
+	0 )
+		# No problem - continue
+		;;
+	* )
+		echo 1>&2 Email notification failed.
+		echo 1>&2 DDTS count was ${Count}
+		echo 1>&2 To: list was '"'${DistributionList}'"'.
+		echo 1>&2 Cc: list was '"'${NotificationCClist}'"'.
+		echo 1>&2 Other info:
+		ls 1>&2 -l /tmp/MissedCommits.ddts /tmp/MissedCommits.addrs
+		echo 1>&2 /tmp/MissedCommits.ddts:
+		/bin/cat 1>&2 /tmp/MissedCommits.ddts
+		echo 1>&2 /tmp/MissedCommits.addrs
+		/bin/cat 1>&2 /tmp/MissedCommits.addrs
+		;;
+	esac
+}
+
+if [ $# = 0 ]; then
+	Syntax
+	exit 1
+fi
+
+while [ $# -gt 0 ]; do
+	case $# in
+	0 )
+		break
+		;;
+	1 )
+		Syntax
+		exit 1
+		;;
+	* )
+		case $1 in
+		-n )
+			NotificationList="${2}"
+			NotificationCClist=""
+			shift; shift
+			;;
+		-t )
+			ThrottleNumber="${2}"
+			shift; shift
+			;;
+		* )
+			Syntax
+			exit 1
+			;;
+		esac
+		;;
+	esac
+done
+
+if [ -z ${ThrottleNumber} ]; then
+	Syntax
+	exit 1
+fi
+
+ReportFile=/tmp/Missed121ECommits
+/bin/rm -f ${ReportFile}
+/bin/touch ${ReportFile}
+/bin/chmod 666 ${ReportFile}
+
+# ===================================================================
+
+#
+# Check for commits missing from 12.1E
+#
+
+/users/bjames/bin/MissedCommits >> ${ReportFile} \
+	-c v121_${ThrottleNumber}_e_throttle \
+	${CosmosBranches} \
+	-e "Not-required-in-121E"
+
+Count=`/bin/wc /tmp/MissedCommits.ddts | /bin/nawk '{print $1}'`
+
+if [ ${Count} -gt 0 ]; then
+
+if [ -z "${NotificationList}" ]; then
+	DistributionList=`/bin/cat /tmp/MissedCommits.addrs`
+else
+	DistributionList="${NotificationList}"
+fi
+
+/usr/ucb/mail \
+	-s "${ThrottleNumber}E throttle commits missing from cosmos_e" \
+	${DistributionList} << !EOM1
+~c ${NotificationCClist}
+
+The following ${Count} commits to the ${ThrottleNumber}E throttle have
+not been double-committed to the cosmos_e mainline branch, which means
+that they will be missing from the 12.1(19)E release and later releases.
+
+PLEASE:
+
+- If the DDTS does not need to be double-committed to cosmos_e,
+  add an enclosure to the DDTS titled "Not-required-in-121E".
+  This enclosure will screen the DDTS from future automated scans
+  for missed double-commits.
+
+- Otherwise, get the DDTS double-committed to cosmos_e.  Make sure
+  that you build all affected images in your cosmos_e view before
+  committing.
+
+"cosmos_e" is headed toward GD (General Deployment) status after
+14E, and your ${ThrottleNumber}E fixes must not be lost for GD.
+
+Please clear up these ${Count} missing ${ThrottleNumber}E throttle
+commits immediately.
+
+${MessageAuthor}
+
+
+`/bin/cat ${ReportFile}`
+
+!EOM1
+
+CheckMailError
+
+fi # ${Count} -gt 0
+
+# ===================================================================
+
+#
+# Check for commits missing from 12.2S
+#
+#	Commits to the 13E throttle need to be double-committed even
+#	if they are listed as integrated in a cosmos_e interim ("13.5")
+#	because they missed the 13E port.  They are also needed in the
+#	12.2S RLS2 (14S) throttle, and the const2 branch.
+#
+#	Commits to the 14E throttle need to be double-committed even
+#	if they are listed as integrated in a cosmos_e interim ("14.5"),
+#	but are not in general needed in const2 or 14S.  However, they
+#	must be committed to the "14e_port" branch, not flo_isp, until
+#	such time as 14e_port collapses (via ion_s) into flo_isp.
+#
+
+/bin/cp /dev/null ${ReportFile}
+
+if [ ${ThrottleNumber} != "14" ]; then
+
+if [ ${ThrottleNumber} != "13" ]; then
+	CosmosFlag="-c"
+	CBranches="${CosmosBranches}"
+else
+	CosmosFlag=""
+	CBranches=""
+fi
+
+/users/bjames/bin/MissedCommits >> ${ReportFile} \
+	${CosmosFlag} v121_${ThrottleNumber}_e_throttle \
+	${CBranches} \
+	${FloridaBranches} \
+	-e "Not-required-in-122S"
+
+Count=`/bin/wc /tmp/MissedCommits.ddts | /bin/nawk '{print $1}'`
+
+if [ ${Count} -gt 0 ]; then
+
+if [ -z "${NotificationList}" ]; then
+	DistributionList=`/bin/cat /tmp/MissedCommits.addrs`
+else
+	DistributionList="${NotificationList}"
+fi
+
+/usr/ucb/mail \
+	-s "${ThrottleNumber}E throttle commits missing from flo_isp" \
+	${DistributionList} << !EOM2
+~c ${NotificationCClist}
+
+The following ${Count} commits to the ${ThrottleNumber}E throttle were
+not double-committed to the cosmos_e mainline branch in time for
+the cosmos_e ports to 12.2S.  As a result, these commits are
+missing from flo_isp and will be missing from both 12.2S(RLS2)
+and the const2 releases.
+
+PLEASE:
+
+- If the DDTS does not neet to be double-committed to 12.2S,
+  add an enclosure to the DDTS titled "Not-required-in-122S".
+  This enclosure will screen the DDTS from future automated scans
+  for missed double-commits.
+
+- Otherwise: the 12.2S RLS2 throttle has been pulled.  Because this
+  DDTS was not committed to flo_isp before the 12.2S RLS2 throttle
+  pull, it now must be committed to two branches:
+
+      - flo_isp
+      - const2 (for the C2 Appalachians/Tetons releases)
+
+  Make sure that you build all affected images in your up-to-date
+  view of each of these branches, before you commit.  Also be sure
+  that you observe all commit criteria (code reviews, image builds,
+  and sanity tests) before committing.
+
+Please clear up these ${Count} missing ${ThrottleNumber}E throttle
+commits immediately.
+
+${MessageAuthor}
+
+
+`/bin/cat ${ReportFile}`
+
+!EOM2
+
+CheckMailError
+
+fi # ${Count} -gt 0
+
+else # ${ThrottleNumber} != 14
+
+CosmosFlag=""
+CBranches=""
+
+/users/bjames/bin/MissedCommits >> ${ReportFile} \
+	${CosmosFlag} v121_${ThrottleNumber}_e_throttle \
+	${CBranches} \
+	${FloridaBranches} \
+	-e "Not-required-in-122S"
+
+Count=`/bin/wc /tmp/MissedCommits.ddts | /bin/nawk '{print $1}'`
+
+if [ ${Count} -gt 0 ]; then
+
+if [ -z "${NotificationList}" ]; then
+	DistributionList=`/bin/cat /tmp/MissedCommits.addrs`
+else
+	DistributionList="${NotificationList}"
+fi
+
+/usr/ucb/mail \
+	-s "${ThrottleNumber}E throttle commits missing from flo_isp" \
+	${DistributionList} << !EOM2A
+~c ${NotificationCClist}
+
+The following ${Count} commits to the ${ThrottleNumber}E throttle were
+not double-committed to the cosmos_e mainline branch in time for the
+cosmos_e ports to 12.2S.  As a result, these commits are missing from
+the "14e_port" branch, which has now collapsed into "ion_s" (the
+12.2S RLS3 PI branch).
+
+PLEASE:
+
+- If the DDTS does not neet to be double-committed to 12.2S,
+  add an enclosure to the DDTS titled "Not-required-in-122S".
+  This enclosure will screen the DDTS from future automated scans
+  for missed double-commits.
+
+- Otherwise, get the DDTS double-committed to "ion_s".  Make sure
+  that you build all affected images in your up-to-date "ion_s"
+  view before committing.  Be sure you observe all commit criteria
+  (code reviews, image builds, and sanity tests) before committing.
+
+Please clear up these ${Count} missing ${ThrottleNumber}E throttle
+commits immediately.
+
+${MessageAuthor}
+
+
+`/bin/cat ${ReportFile}`
+
+!EOM2A
+
+CheckMailError
+
+fi # ${Count} -gt 0
+
+fi # ${ThrottleNumber} != 14
+
+# ===================================================================
+
+#
+# Check for missing commits to the 14E throttle
+#
+#	This really should accept cosmos_e commits only up to the
+#	14E throttle pull ... but I'm getting tired of this whole
+#	exercise, so if they commit to cosmos_e and *not* the 14E
+#	throttle, that'll have to be their bad.
+#
+
+/bin/cp /dev/null ${ReportFile}
+
+/users/bjames/bin/MissedCommits >> ${ReportFile} \
+	-c v121_${ThrottleNumber}_e_throttle \
+	${CosmosBranches} v121_14_e_throttle \
+	-e "Not-required-in-121E" "Not-required-in-14E"
+
+Count=`/bin/wc /tmp/MissedCommits.ddts | /bin/nawk '{print $1}'`
+
+if [ ${Count} -gt 0 ]; then
+
+if [ -z "${NotificationList}" ]; then
+	DistributionList=`/bin/cat /tmp/MissedCommits.addrs`
+else
+	DistributionList="${NotificationList}"
+fi
+
+/usr/ucb/mail \
+	-s "${ThrottleNumber}E throttle commits missing from 14E throttle" \
+	${DistributionList} << !EOM3
+~c ${NotificationCClist}
+
+The following ${Count} commits to the ${ThrottleNumber}E throttle were
+not double-committed to the cosmos_e mainline branch in time for
+the 12.1(14)E throttle pull. As a result, these commits are
+missing from v121_14_e_throttle and will be missing from the
+12.1(14)E release.
+
+PLEASE:
+
+- If the DDTS does not neet to be double-committed to 12.1(14)E,
+  add an enclosure to the DDTS titled "Not-required-in-14E".
+  This enclosure will screen the DDTS from future automated scans
+  for missed double-commits.
+
+  ***NOTES***:
+
+      If you have already added a "Not-required-in-121E"
+      enclosure, that is sufficient - you do not need to
+      add another enclosure.
+
+      If the fix is for a Cat6k-only issue, you do not need
+      to double-commit to the 14E throttle.  In that case
+      please add the "Not-required-in-14E" enclosure.
+
+- Otherwise, get the DDTS double-committed to v121_14_e_throttle.  Make
+  sure that you build all affected images in your v121_14_e_throttle
+  view before committing.
+
+Your need to get your ${ThrottleNumber}E throttle fixes into
+v121_14_e_throttle for the 12.1(14)E release.
+
+Please clear up these ${Count} missing ${ThrottleNumber}E throttle
+commits immediately.
+
+${MessageAuthor}
+
+
+`/bin/cat ${ReportFile}`
+
+!EOM3
+
+CheckMailError
+
+fi

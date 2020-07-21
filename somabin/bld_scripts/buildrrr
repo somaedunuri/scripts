@@ -1,0 +1,333 @@
+#! /bin/csh -f
+
+# Parameters which needs change when build script is ported
+# a different build machine
+
+set bld_host       = "damselfly"
+set data_partition = "/nfs/corerel9/rrrbuild"
+set rel_staff      = "soma"
+
+# Parameters which might change for every build
+
+set do_superclean  = "FALSE"
+set do_dependency  = "FALSE"
+set do_tags_id     = "FALSE"
+
+set label	   = "rrr_eft26build"
+set tree	   = "/view/soma-{$label}/vob/ios"
+set image_name	   = "120-2.6.RRR.0126"
+
+# ====================================================================
+# Set up Build Variables.
+# ====================================================================
+set make_silent    	= "FALSE"
+set do_create_dir  	= "TRUE"
+set do_sys_production 	= "TRUE"
+set cp_sys_production 	= "TRUE"
+
+# --------------------------------------------------------------
+# This is a list of all images to be built.
+# --------------------------------------------------------------
+set obj_1 = "obj-4k-rsp obj-4k-c7100 obj-4k-bfrp"
+set obj_2 = "obj-4k-c4000 obj-4k-c3620 obj-4k-c3640"
+set obj_3 = "obj-m860-c2600 obj-68-c3000"
+
+#set obj_all = "${obj_1} ${obj_2} ${obj_3}"
+set obj_all = "obj-4k-c7100 obj-4k-bfrp"
+
+# ------------------------------------------------------------------------------
+# Set flag to include or exclude "-s" make option.  If option is true, the
+# output is short else the output is long.
+# ------------------------------------------------------------------------------
+if ( ${make_silent} == "TRUE" ) then
+    set mk_short = "-s"
+else
+    set mk_short = ""
+endif
+
+# ------------------------------------------------------------------------------
+# Create date (year, month, day) extension.
+# ------------------------------------------------------------------------------
+if ( $#argv == 0 ) then
+    set yymmdd   = `date +%y%m%d`
+else
+    set yymmdd   = $1
+endif
+
+# --------------------------------------------------------------
+# Set Build priority and how many CPU's to use.
+# --------------------------------------------------------------
+set nice_val = "+10"
+set cpu_val  = "-j12"
+
+# --------------------------------------------------------------
+# Check the build server Name 
+# --------------------------------------------------------------
+if ( `uname -n` == "${bld_host}" ) then
+    set work_dir = "${data_partition}"
+else
+    echo "WARNING:  Compiling across servers is prohibited!!!"
+    echo "          Please login into ${bld_host} and start $0 script."
+    echo ""
+    echo ""
+    exit 1
+endif
+
+set tftp_path  = "/tftpboot/soma"
+
+set image_dir  = "${work_dir}/images"
+set sun_dir    = "${work_dir}/sun"
+set sym_dir    = "${work_dir}/sym"
+set logs_dir   = "${work_dir}/logs"
+set out        = "${work_dir}/logs/build.${yymmdd}"
+set out2       = "${work_dir}/logs/build.${yymmdd}.settings"
+set dash       = "----------------------------------------"
+set line       = "========================================"
+set MAKE       = "make"
+set get_ver    = "${work_dir}/bin/get_version"
+
+set path       = (/router/bin /usr/cisco/bin /usr/local/bin $path)
+
+
+# ==============================================================
+# Create directories. We keep the older build logs if we need to
+# compile more than once a day.
+# ==============================================================
+
+if ( ${do_create_dir} == "TRUE" ) then
+    cd ${work_dir}
+    foreach dir ( ${image_dir} ${sun_dir} ${sym_dir} )
+
+        cd ${dir}
+        if ( -e ${yymmdd} ) then
+            ${get_ver} ${yymmdd}
+        endif
+
+        cd ..
+    end
+
+    cd ${logs_dir}
+    if ( -e build.${yymmdd} ) then
+            ${get_ver} build.${yymmdd}
+    endif
+endif
+
+
+# ==============================================================================
+# Create mail message of build settings.
+# ==============================================================================
+
+echo ""								>!  ${out}
+echo "Disk space left on archive directory:"			>>  ${out}
+echo ""								>>  ${out}
+echo "`/usr/ucb/df ${work_dir}`"				>>  ${out}
+echo ""								>>  ${out}
+echo ""								>>  ${out}
+
+cat ${out}							>! ${out2}
+echo "Build variable settings:"					>> ${out2}
+echo ""								>> ${out2}
+echo "        Create directories	:  $do_create_dir"	>> ${out2}
+echo "        Make super clean		:  $do_superclean"	>> ${out2}
+echo "        Make dependencies		:  $do_dependency"	>> ${out2}
+echo ""								>> ${out2}
+echo "        Build production images	:  $do_sys_production"	>> ${out2}
+echo ""								>> ${out2}
+echo "	      Copy the production images:  $cp_sys_production"	>> ${out2}
+echo ""								>> ${out2}
+
+/usr/ucb/mail -s "${tree} - Build started"  ${rel_staff} < ${out2}
+/bin/rm -f ${out2}
+
+
+# ==============================================================================
+# Setup mail message and do superclean and make depend 
+# ==============================================================================
+
+cd ${tree}/sys
+echo "++ `date` - Build started."				>> ${out}
+echo ""								>> ${out}
+echo "Current working directory	:  ${tree}."			>> ${out}
+echo ""								>> ${out}
+echo "Nice value set to		:  ${nice_val}"			>> ${out}
+echo "Number of CPU's used	:  ${cpu_val}"			>> ${out}
+echo ""								>> ${out}
+echo "Disk space left on directory:"				>> ${out}
+echo ""								>> ${out}
+echo "`/usr/ucb/df ${work_dir}`"				>> ${out}
+echo ""								>> ${out}
+echo ""								>> ${out}
+
+echo "${line}${line}"						>> ${out}
+if ( ${do_superclean} == "TRUE" ) then
+    echo "++ `date` - make super clean."			>> ${out}
+    echo ""							>> ${out}
+    nice ${nice_val} ${MAKE} ${mk_short} MAKEFLAG_J=${cpu_val} superclean >>& ${out}
+    echo ""							>> ${out}
+    echo "${dash}${dash}"					>>  ${out}
+    echo ""							>> ${out}
+    echo "++ `date` - make nodependencies."			>> ${out}
+    echo ""							>> ${out}
+    nice ${nice_val} ${MAKE} ${mk_short} MAKEFLAG_J=${cpu_val} nodepend	>>& ${out}
+    echo ""							>> ${out}
+    echo ""							>> ${out}
+endif
+
+echo "${line}${line}"						>> ${out}
+if ( ${do_dependency} == "TRUE" ) then
+    echo "++ `date` - make dependencies."			>> ${out}
+    echo ""							>> ${out}
+    nice ${nice_val} ${MAKE} ${mk_short} MAKEFLAG_J=${cpu_val} dependancies >>& ${out}
+    echo ""							>> ${out}
+else
+    echo "++ `date` - Skipped make nodepend & dependacies."	>> ${out}
+    echo ""							>> ${out}
+endif
+ 
+echo "${dash}${dash}"						>>  ${out}
+if ( ${do_tags_id} == "TRUE" ) then
+    echo ""                                                     >> ${out}
+    echo "++ `date` - make TAGS file"                           >> ${out}
+    echo ""                                                     >> ${out}
+    nice ${nice_val} ${MAKE} ${mk_short} MAKEFLAG_J=${cpu_val} tags >>& ${out}
+    echo "++ `date` - make ID file"                             >> ${out}
+    echo ""                                                     >> ${out}
+    nice ${nice_val} ${MAKE} ${mk_short} MAKEFLAG_J=${cpu_val} id >>& ${out}
+    echo ""                                                     >> ${out}
+    echo ""                                                     >> ${out}
+else
+    echo "++ `date` - Skipped make TAGS and ID "     		>> ${out}
+    echo ""                                                     >> ${out}
+endif
+
+# =========================================================================
+# Building images start here.
+# =========================================================================
+
+echo "${line}${line}"						>> ${out}
+echo "++ `date` - Build images."				>> ${out}
+echo ""								>> ${out}
+
+if (${do_sys_production} == "TRUE" ) then
+    mkdir -p ${image_dir}/${yymmdd}
+    mkdir -p ${sun_dir}/${yymmdd}
+    mkdir -p ${sym_dir}/${yymmdd}
+    foreach sys_prod ( ${obj_all} )
+        cd ${tree}/sys/${sys_prod}
+        echo ""							>>  ${out}
+        echo "${dash}${dash}"					>>  ${out}
+        echo "++ `date` - Building image ${sys_prod}."		>>& ${out}
+        echo ""							>>  ${out}
+    
+        #  Example:
+        #    nice +10 make  MAKEFLAG_J=-j6 GDB_FLAG= BIN_SUFFIX=image_name \
+	#    TFTPHOST=potlicker TFTPDIR=${work_dir}/yymmdd   production
+        #
+        set mk_flag1 = "GDB_FLAG=-g  BIN_SUFFIX=.${image_name}"
+        set mk_flag2 = "TFTPHOST=${bld_host} TFTPDIR=${image_dir}/${yymmdd}"
+    
+	# Depending on the platform, build the specific images which are 
+	# required for ISP customers. Number of images and names of
+	# images are different for each platform
+	
+        if ($sys_prod == "obj-4k-rsp") then
+           ${MAKE} MAKEFLAG_J=${cpu_val} -k ${mk_flag1} ${mk_flag2} \
+                rsp-pv-mz >>& ${out}
+        endif 
+        if ($sys_prod == "obj-4k-c7100") then
+           ${MAKE} MAKEFLAG_J=${cpu_val} -k ${mk_flag1} ${mk_flag2} \
+                c7200-p-mz >>& ${out}
+        endif 
+	if ($sys_prod == "obj-4k-bfrp") then
+           ${MAKE} MAKEFLAG_J=${cpu_val} -k ${mk_flag1} ${mk_flag2} \
+                gsr-p-mz >>& ${out}
+	endif 
+	if ($sys_prod == "obj-4k-c4000") then
+           ${MAKE} MAKEFLAG_J=${cpu_val} -k ${mk_flag1} ${mk_flag2} \
+                c4500-p-mz >>& ${out}
+	endif 
+	if ($sys_prod == "obj-4k-c3640") then
+           ${MAKE} MAKEFLAG_J=${cpu_val} -k ${mk_flag1} ${mk_flag2} \
+                c3640-p-mz				>>& ${out}
+	endif 
+	if ($sys_prod == "obj-4k-c3620") then
+           ${MAKE} MAKEFLAG_J=${cpu_val} -k ${mk_flag1} ${mk_flag2} \
+                c3620-p-mz				>>& ${out}
+	endif 
+	if ($sys_prod == "obj-m860-c2600") then
+           ${MAKE} MAKEFLAG_J=${cpu_val} -k ${mk_flag1} ${mk_flag2} \
+                c2600-p-mz				>>& ${out}
+	endif 
+	if ($sys_prod == "obj-68-c3000") then
+           ${MAKE} MAKEFLAG_J=${cpu_val} -k ${mk_flag1} ${mk_flag2} \
+                c2500-p-l				>>& ${out}
+	endif
+
+        # ---------------------------------------------------------------------
+        # Copy the *.sun and *.symbols files into directories. 
+        # ---------------------------------------------------------------------
+        if (${cp_sys_production} == "TRUE" ) then
+    	   set nonomatch
+    	   foreach sun ( *.sun )
+    	  	mv ${sun} ${sun_dir}/${yymmdd}/${sun}.${image_name}
+    	   end
+    	   unset nonomatch
+    
+    	   set nonomatch
+    	   foreach symbol ( *.symbols )
+		mv ${symbol} ${sym_dir}/${yymmdd}/${symbol}.${image_name}
+    	   end
+    	   unset nonomatch
+        endif
+
+        # ---------------------------------------------------------------------
+        # For svip and bfr LCs, copy symbols and sun files and delete objects
+        # ---------------------------------------------------------------------
+	if ($sys_prod == "obj-4k-rsp") then
+	    cd ${tree}/sys/obj-4k-svip
+	    mv svip-dw-m.bin ${image_dir}/${yymmdd}/svip-dw-m.${image_name}
+	    mv svip-dw-m.symbols \
+		${sym_dir}/${yymmdd}/svip-dw-m.symbols.${image_name}
+	    mv svip-dw-m.sun ${sun_dir}/${yymmdd}/svip-dw-m.sun.${image_name}
+	endif
+
+	if ($sys_prod == "obj-4k-bfrp") then
+	    cd ${tree}/sys/obj-4k-bflc1
+	    mv glc1-lc-m ${image_dir}/${yymmdd}/glc1-lc-m.${image_name}
+	    mv glc1-lc-m.symbols \
+		${sym_dir}/${yymmdd}/glc1-lc-m.symbols.${image_name}
+	    mv glc1-lc-m.sun ${sun_dir}/${yymmdd}/glc1-lc-m.sun.${image_name}
+	endif
+
+    end
+    echo ""							>>  ${out}
+endif
+
+# ---------------------------------------------------------------------
+# Delete the extra images, symbols and sun files which are created
+# ---------------------------------------------------------------------
+rm ${image_dir}/${yymmdd}/rsp-dw-m.ucode.${image_name}		>>  ${out}
+rm ${sym_dir}/${yymmdd}/rsp-dw-m.symbols.${image_name}		>>  ${out}
+rm ${sun_dir}/${yymmdd}/rsp-dw-m.sun.${image_name}		>>  ${out}
+rm ${sym_dir}/${yymmdd}/c7200-atafslib-m.symbols.${image_name}	>>  ${out}
+rm ${sym_dir}/${yymmdd}/c7200-fslib-m.symbols.${image_name}	>>  ${out}
+rm ${sym_dir}/${yymmdd}/rsp-atafslib-m.symbols.${image_name}	>>  ${out}
+rm ${sym_dir}/${yymmdd}/rsp-fslib-m.symbols.${image_name}	>>  ${out}
+rm ${sym_dir}/${yymmdd}/bfrp-fslib-m.symbols.${image_name}	>>  ${out}
+
+echo ""								>>  ${out}
+echo "++ `date` - Build completed."				>>  ${out}
+
+
+cd ${image_dir}
+echo ""								>!  ${out2}
+echo "Disk space left on archive directory:"			>>  ${out2}
+echo ""								>>  ${out2}
+echo `/usr/ucb/df ${work_dir}`					>>  ${out2}
+echo ""								>>  ${out2}
+echo ""								>>  ${out2}
+
+/usr/ucb/mail -s "${tree} - Build completed"  ${rel_staff} <  ${out2}
+/bin/rm -f ${out2}
+
+END:

@@ -1,0 +1,11 @@
+#! /bin/csh -x
+
+set yymmdd       = "960605"
+set tftp_path    = "/tftpboot/sglee"
+set objs         = "c7200* gs7* rsp* vip*"
+
+rsh dirt "cd ${tftp_path}; .make_dir $yymmdd"
+rsh dirt "cd ${tftp_path}; mv $objs  images.${yymmdd}"
+
+rsh dirt "cd ${tftp_path}; /bin/rm -f current"
+rsh dirt "cd ${tftp_path}; ln -s ./images.${yymmdd} ${tftp_path}/current"

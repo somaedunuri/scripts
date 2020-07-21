@@ -1,0 +1,1 @@
+ findbug -p CSC.sys -fAOINPW "((Version has 12.0) && ((Version has S) && (Version hasno ST && Version hasno SC && Version hasno SL && Version hasno SX && Version hasno SP)))" | bugval Identifier Severity Status DE-manager Headline 

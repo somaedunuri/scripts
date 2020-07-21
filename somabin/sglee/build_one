@@ -1,0 +1,28 @@
+#! /bin/csh -f
+
+
+# set obj_all = "obj-4k-rvip obj-4k-svip obj-68-c7000 obj-4k-rsp obj-4k-c7100"
+
+if ( $#argv == 0 ) then
+    set yymmdd   = `date +%y%m%d`
+else
+    set yymmdd   = $1
+endif
+
+
+set obj_dir  = `basename $PWD`
+set arch_dir = "/cscpu/core_release/Archives"
+
+mail -s "START ${obj_dir}" sglee < /dev/null
+
+# nice +7 make  MAKEFLAG_J=-j4 GDB_FLAG= BIN_SUFFIX=.960720 TFTPHOST=potlicker \
+#	TFTPDIR=/cscpu/core_release/Archives/images.960720/
+#	production >&! /cscpu/core_release/Archives/images.960720/out-  
+#	oddballs   >&! /cscpu/core_release/Archives/images.960720/out-  
+	
+
+nice +9  make  MAKEFLAG_J=-j4 GDB_FLAG= BIN_SUFFIX=.${yymmdd} \
+	TFTPHOST=potlicker TFTPDIR=${arch_dir}/images.${yymmdd}/${obj_dir} \
+	production >&! ${arch_dir}/images.${yymmdd}/out-${obj_dir}
+
+mail -s "DONE ${obj_dir}" sglee < /dev/null

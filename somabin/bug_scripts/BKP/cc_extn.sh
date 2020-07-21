@@ -1,0 +1,1 @@
+findbug -p CSC.sys -fAOINPW "(((Version has CC) || (To-be-fixed has CC) || (Apply-to has CC)) && ((Found has customer-use) || (Found has beta-testing) || (Found has field-test)))" | bugval Identifier Status Severity DE-manager Headline 

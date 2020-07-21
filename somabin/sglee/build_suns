@@ -1,0 +1,194 @@
+#! /bin/csh -f
+
+# ===============================================================================
+# Set up variables.
+# ===============================================================================
+set clean_day     = "Thu"
+set do_sup_clean  = `date +%a`
+set do_create_dir = "FALSE"
+set do_depend     = "FALSE"
+set do_product    = "TRUE"
+
+if ( $#argv == 0 ) then
+    set yymmdd   = `date +%y%m%d`
+else
+    set yymmdd   = $1
+endif
+
+if ( `uname -n` == "potlicker") then
+    set work_dir = "/cscpu/core_release"
+else
+    set work_dir = "/nfs/cscpu/core_release"
+endif
+set tftp_path  = "/tftpboot/core_release"
+set nice_time  = 17
+
+set branch     = "ELC_branch"
+set tree       = "${work_dir}/ELC"
+set arch_dir   = "${work_dir}/Archives"
+set sun_dir    = "${work_dir}/suns"
+set sym_dir    = "${work_dir}/symbols"
+set out        = "${work_dir}/Builds/build.${yymmdd}"
+set dash       = "----------------------------------------"
+set line       = "========================================"
+set MAKE       = "make"
+set get_ver    = "${work_dir}/bin/get_version"
+
+set path       = (/router/bin /usr/cisco/bin /usr/local/bin $path)
+
+
+set obj_1      = "obj-sp-solaris obj-sp-sunos"
+set obj_all    = "$obj_1"
+
+
+# ===============================================================================
+# On POTLICKER:
+# 1.  Create directories and update links pointing to latest build output.
+# 2.  Make sure build log is up to date.  We keep the old ones if we need
+#     to compile more than once a day.
+# ===============================================================================
+
+if ( ${do_create_dir} == "TRUE" ) then
+    # -------------------------------------------------------------------------------
+    # Set up /cscpu/core_release/suns and /cscpu/core_release/symbols directories.
+    # -------------------------------------------------------------------------------
+    cd ${work_dir}
+    foreach dir (  ${sun_dir}  ${sym_dir} )
+        cd ${dir}
+        set name = `basename ${dir}`
+        set name_date = "${name}.${yymmdd}"
+
+        if ( -e ${name_date} ) then
+            ${get_ver} ${name_date}
+        endif
+
+        mkdir ${name_date}
+        if ( -e ${dir}/current ) then
+           /bin/rm -f ${dir}/current
+        endif
+        ln -s ${name_date} ${dir}/current
+
+        cd ..
+    end
+
+
+    # -------------------------------------------------------------------------------
+    # Set up /cscpu/core_release/Builds directory.
+    # -------------------------------------------------------------------------------
+    cd ${work_dir}/Builds
+    if ( -e ${out} ) then
+        ${get_ver} ${out}
+    endif
+    touch ${out}
+    
+    if ( -e ${work_dir}/Builds/current ) then
+       /bin/rm -f ${work_dir}/Builds/current
+    endif
+    ln -s  ${out} ${work_dir}/Builds/current
+    
+    
+    # -------------------------------------------------------------------------------
+    # Set up /cscpu/core_release/Archives directory.
+    # -------------------------------------------------------------------------------
+    cd ${arch_dir}
+    if ( -d images.${yymmdd} ) then
+        ${get_ver} images.${yymmdd}
+    endif
+    mkdir images.${yymmdd}
+    
+    if ( -e ${arch_dir}/current ) then
+       /bin/rm -f ${arch_dir}/current
+    endif
+    ln -s images.${yymmdd} ${arch_dir}/current
+endif
+
+
+# ===============================================================================
+# On POTLICKER, start the build.
+#
+# If before 5 p.m., then adjust process priority to lower value.
+# ===============================================================================
+cd ${tree}/sys
+echo "`date` - Build started."					>>& ${out}
+echo ""								>>& ${out}
+echo "Current working directory:  $tree."			>>& ${out}
+echo "Nice build enforced until:  ${nice_time}00 hours."	>>& ${out}
+echo ""								>>& ${out}
+echo ""								>>& ${out}
+
+if ( `date +%H` < ${nice_time} ) then
+    set nice_val = "+9"
+    set cpu_val  = "-j4"
+else 
+    set nice_val = "+4" 
+    set cpu_val  = "-j6"
+endif
+
+if ( ${do_sup_clean} == ${clean_day} ) then
+    echo "${line}${line}"					>>& ${out}
+    echo "`date` - make super clean."				>>& ${out}
+    echo ""							>>& ${out}
+    nice ${nice_val} $MAKE -s MAKEFLAG_J=${cpu_val} superclean	>>& ${out}
+    echo ""							>>& ${out}
+    echo ""							>>& ${out}
+endif
+
+echo "${line}${line}"						>>& ${out}
+if ( ${do_depend} == "TRUE" ) then
+    echo "`date` - make nodependencies."			>>& ${out}
+    echo ""							>>& ${out}
+    nice ${nice_val} $MAKE -s MAKEFLAG_J=${cpu_val} nodepend	>>& ${out}
+    echo ""							>>& ${out}
+    echo ""							>>& ${out}
+    echo "${line}${line}"					>>& ${out}
+    echo "`date` - make dependencies."				>>& ${out}
+    echo ""							>>& ${out}
+    nice ${nice_val} $MAKE -s MAKEFLAG_J=${cpu_val} depend	>>& ${out}
+    echo ""							>>& ${out}
+else
+    echo "`date` - Skipped make nodepend depend."		>>& ${out}
+    echo ""							>>& ${out}
+endif
+
+echo "${line}${line}"						>>& ${out}
+echo "`date` - make production."				>>& ${out}
+echo ""								>>& ${out}
+
+# PRODUCTION
+foreach prod ( ${obj_all} )
+    cd ${tree}/sys/${prod}
+    mkdir -p ${arch_dir}/images.${yymmdd}/${prod}
+    echo ""							>>& ${out}
+    echo "${dash}${dash}"					>>& ${out}
+    echo "`date` - Building $PWD."				>>& ${out}
+    echo ""							>>& ${out}
+
+    #  nice +10 make  MAKEFLAG_J=-j6 GDB_FLAG= BIN_SUFFIX=.960714 \
+    #  TFTPHOST=potlicker TFTPDIR=/cscpu/core_release/Archives/images.960714/   production
+    #
+    set mk_flag1 = "GDB_FLAG= BIN_SUFFIX=.${yymmdd} TFTPHOST=potlicker"
+    set mk_flag2 = "TFTPDIR=${arch_dir}/images.${yymmdd}/${prod}"
+
+    if ( `date +%H` < ${nice_time} ) then
+        nice ${nice_val} $MAKE    MAKEFLAG_J=${cpu_val} ${mk_flag1} ${mk_flag2} \
+		oddballs >>& ${out}
+    else
+        nice ${nice_val} $MAKE    MAKEFLAG_J=${cpu_val} ${mk_flag1} ${mk_flag2} \
+		oddballs >>& ${out}
+    endif
+
+    # -------------------------------------------------------
+    # Copy the *.sun and *.symbols files into directories. 
+    # -------------------------------------------------------
+    foreach sun ( *.sun )
+        cp -pr ${sun} ${sun_dir}/suns.${yymmdd}/${sun}-${yymmdd}/${prod}
+    end
+    foreach symbol ( *.symbols )
+        cp -pr ${symbol} ${sym_dir}/symbols.${yymmdd}/${symbol}-${yymmdd}/${prod}
+    end
+end
+echo ""							>>& ${out}
+echo "`date` - Build completed."			>>& ${out}
+
+
+END:

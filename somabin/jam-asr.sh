@@ -1,0 +1,1 @@
+rm -rf jam-asr ; mkdir jam-asr  ; cd jam-asr; rm /tmp/date ; date >/tmp/date ; acme nw -lineup xr-dev.lu -sb ios_ena ; cat /tmp/date ; date ; cp ~soma/soma.sh . ; soma.sh asr9k-px ; soma.sh asr9k-px ; soma.sh asr9k-px ;

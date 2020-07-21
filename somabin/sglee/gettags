@@ -1,0 +1,59 @@
+#
+#	This scripts generates the list of source files under cvs control
+#	and gets their version number
+#
+
+CVSROOT=/release/111/cvs
+export CVSROOT
+
+if [ "x$CVSROOT" = "x" ]; then
+	echo "$0: CVSROOT environment variable must be set"
+	echo "usage: $0 [revision_tag]"
+	exit 1
+fi
+
+cd $CVSROOT
+
+#
+# set the directory variables
+#
+
+DIRS="Xboot Xecmon Xmicro Xsbe16 Xstr Xsubsys Xsys"
+
+#
+#	Findout the list of all Source File Names
+#
+
+find $DIRS -name '*,v' -print | \
+(
+	while read j ; do
+		RCSNAME=`dirname $j`/`basename $j ',v'`
+		echo "$RCSNAME" >>/tmp/temp.$$
+	done
+) 
+
+#
+# Delete the extra files like Attic etc. and Remove X from names
+#
+
+CVS=/router/bin/cvs 
+
+cd /cscpu/core_release/ELC
+
+cat /tmp/temp.$$ | sed /#cvs/d | sed /Attic/d | sed s/X// | \
+	while read RCSNAME ; 
+	do
+           if [ -d $RCSNAME ] ; then
+                        echo $RCSNAME >/dev/null
+                else
+                if [ -r $RCSNAME ] ; then
+                        echo -n $RCSNAME
+                        $CVS stat $RCSNAME | grep "Sticky Tag:" | awk '{print " "$5}' | sed s/\)//g
+                fi
+           fi
+        done
+
+# House Cleaning
+
+rm /tmp/temp.$$ 
+

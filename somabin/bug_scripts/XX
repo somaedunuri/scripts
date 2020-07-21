@@ -1,0 +1,19 @@
+#!/bin/sh +x
+
+QDDTS=/vws/aak/qddts
+EBASE=/auto/cweb0/www-home/virtual/wwwin-release/relops/IOSX/ddts1/bin
+export QDDTS EBASE
+
+if [ "-$QDDTS" = "-" ]; then
+    echo "QDDTS environmental variable not set"         >&2
+    exit 1
+else
+    . $QDDTS/lib/sh_init
+fi
+ echo $1
+
+query.pl                                        \
+        Project:CSC.ena and Severity:1,2,3 and 	\
+                Version:05.00              and  \
+		org:$1		| table.pl 120501 120630 -weekly -closed CJUDMRV inc closed out
+

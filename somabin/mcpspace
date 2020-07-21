@@ -1,0 +1,275 @@
+#!/bin/sh
+
+SCRIPT=asrspace
+MY_VERSION=5.6
+MODIFICATION="Jan 18, 2013"
+cmd=null
+EXP_LBL=BLD_MCP_DEV_LATEST_20130103_050017
+EXP_PROJ_LBL=BLD_V153_2_S_XE39_THROTTLE_LATEST_20130105_121217
+EXP_PROJ=xe39_throttle
+EXP_IOS_LBL=BLD_MCP_DEV_LATEST_20130103_050017
+
+example()
+{
+    echo "Examples: "
+    echo "please add --start to the command to start pull binos and create ios view"
+    echo " <To create binos and mcp_dev latest and ios latest view on nobackup>"
+    echo "      $SCRIPT -p main -b mcp_dev --path /nobackup/$USER"
+    echo
+    echo " <To create binos view and ios view using the binos_label on workspace>"
+    echo "      $SCRIPT --path /ws/$USER --binos $EXP_LBL" 
+    echo
+    echo " <To create binos and mcp_dev latest and ios latest view on nobackup>"
+    echo "      $SCRIPT -p main -b mcp_dev"
+    echo
+    echo " <To create binos and ios view using the binos_label on nobackup>"
+    echo "      $SCRIPT --binos $EXP_LBL"
+    echo
+    echo " <To create binos and ios view using the personal tag on nobackup>"
+    echo "      $SCRIPT -t CSCsv100000 --binos $EXP_LBL"
+    echo 
+    echo " <To provide tftp_server to get download string printed out"
+    echo "      $SCRIPT --binos $EXP_LBL --tftp_server 223.255.254.254"
+#    echo " <To create split cpp/binos ws and ios view using the personal tag on nobackup>"
+#    echo "      $SCRIPT -s -t CSCsv100000 --binos $EXP_LBL"
+    echo " <To create binos and ios view for throttled project and its label"
+    echo "      $SCRIPT -p $EXP_PROJ --binos $EXP_PROJ_LBL"  
+    echo
+}
+
+usage_help()
+{
+    echo "------- $SCRIPT version $MY_VERSION $MODIFICATION------------------"
+    echo "===================================================="
+    echo "This tool is to setup ASR1000 build space"
+    echo 
+    echo " Developed by Shibin Zhang (shibzhan@cisco.com)"
+    echo " Dec. 23, 2008" 
+    echo " Run this tool to:"
+    echo "  1. create BINOS view and IOS view"
+    echo "  2. set view to IOS view"
+    echo "  3. setenv BINOS_ROOT" and setenv TFTP_SERVER
+    echo "  4. ready to run asrmake to build ASR1000 images"
+    echo "Usage:"
+    echo "  $SCRIPT [--binos binos_label] [-p proj] [--ios ios_label] [-b
+branch] [--tftp_server server] [-t tag] [--path path] [--start]"
+    echo " "
+    echo "--binos   BINOS label"
+    echo "--ios     IOS label, if not provided use BINOS label for ios"
+    echo "-p        BINOS project, can be $EXP_PROJ"
+    echo "-t        personal tag to IOS view name and BINOS_ROOT directory name"
+    echo "-b        IOS view from branch latest, If not provided, use the BINOS binos_label"
+#    echo "-s        split workspace for cpp and binos"
+    echo "--path    define path to store binos and IOS view, default /nobackup/$USEr"
+    echo "--tftp_server   tftp server ip for downloading to router"
+    echo "--start   start execution"
+    echo 
+    example
+}
+
+dump_input()
+{
+    echo "==============================="
+    echo "SCRIPT             $SCRIPT"
+    echo "binos_label        $binos_label"
+    echo "MODIFICATION       $MODIFICATION"
+    echo "ios_label          $ios_label"
+    echo "proj               $proj"
+    echo "usews              $usews"
+    echo "branch             $branch"
+    echo "ptag               $ptag"
+#    echo "split              $split"
+	echo "bdir               $bdir"
+    echo "not_start          $not_start"
+    echo "BINOS_ROOT         $BINOS_ROOT"
+    echo "TFTP_SERVER        $TFTP_SERVER"
+    echo "==============================="
+}
+
+
+syntax_check()
+{
+  args=("$@")
+  binos_label=Null
+  ios_label=Null
+  proj=Null
+  tftp_server=Null
+  branch=Null
+  split=0
+  wspath="/nobackup/$USER"
+  not_start=1
+
+  numargs=$#
+  #echo "numargs $numargs"
+
+  for (( i=0;i<$numargs;i++)); do
+    para=${args[${i}]}
+    #echo $para, $i 
+
+    if [ "$para" == "--binos" ]; then
+        let "i+=1"
+        binos_label=${args[${i}]}
+    else
+      if [ "$para" == "--ios" ]; then
+        let "i+=1"
+        ios_label=${args[${i}]}
+      else
+       if [ "$para" == "-p" ]; then
+         let "i+=1"
+         proj=${args[${i}]}
+       else
+            if [ "$para" == "-b" ]; then
+                let "i+=1"
+                branch=${args[${i}]}
+            else 
+               if [ "$para" == "-s" ]; then
+                split=1
+                else 
+                if [ "$para" == "--start" ]; then
+                not_start=0
+                else 
+                    if [ "$para" == "--path" ]; then
+	                let "i+=1"
+                        wspath=${args[${i}]}
+                    else if [ "$para" == "--tftp_server" ]; then
+	                let "i+=1"
+                        tftp_server=${args[${i}]}
+                    else if [ "$para" == "-t" ]; then
+                      let "i+=1"
+                      ptag=${args[${i}]}
+                   fi 
+        fi
+        fi
+        fi
+        fi
+        fi
+      fi
+    fi
+  fi
+  done
+
+  if [ "$1" == "" ] ; then
+    usage_help
+    exit 0;
+  fi
+  if [ "$proj" == "Null" ] ; then
+    if [ "$binos_label" == "Null" ] ; then
+      echo ":(binos binos_label is not provided"
+      usage_help
+      exit 0
+    fi
+  fi
+}
+
+execute_cmd()
+{
+ echo "---------------------------------------------------"
+ echo "EXECUTE: $cmd"
+ if [ "$not_start" == "0" ]; then
+       $cmd
+ fi
+ echo "---------------------------------------------------"
+}
+
+######################### main #################################
+  ptag=`date +%m%d_%H%M`
+  echo $ptag
+  syntax_check $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10} ${11} ${12} ${13}
+  starttime=$(date +%s)
+  #echo "start $SCRIPT at $starttime"
+
+  dump_input
+  #myws=/ws/$USER
+  swspath=/auto/cpp-tools/bin/
+  
+  if [ "$proj" == "Null" ] ; then
+    bname=$binos_label
+  else
+    if [ "$binos_label" != "Null" ]; then
+       bname=$binos_label
+    else 
+       bname=$proj
+    fi 
+  fi
+
+  bname=$bname"_"$ptag
+  echo "wspath $wspath"
+  bdir=$wspath/$bname
+  vdir=$wspath/views
+
+  if [ $split -eq 1 ]; then
+      cppdir=$wspath/"cpp"_$bname   
+  fi
+
+  echo "bdir $bdir"
+  if [ -e $bdir ]; then
+    echo "the view already exists, please add or change a tag"
+    exit 
+  fi
+  cmd="mkdir -p $bdir"
+  execute_cmd
+  cmd="cd $bdir"
+  execute_cmd
+
+  # create binos and cpp ws
+  if [ $split -eq 1 ]; then
+	  cmd="mkdir -p $cppdir"
+	  execute_cmd
+      if [ "$proj" == "Null" ] ; then
+          if [ "$binos_label" == "Null" ]; then 
+              cmd="$swspath/sws -cmd nw -proj main -platform_ws_root $bdir -cpp_ws_root $cppdir"
+	      else  
+              cmd="$swspath/sws -cmd nw -proj main -ver $binos_label -platform_ws_root $bdir -cpp_ws_root $cppdir"
+          fi
+      else
+          if [ "$binos_label" == "Null" ]; then 
+              cmd="$swspath/sws -cmd nw -proj $proj -platform_ws_root $bdir -cpp_ws_root $cppdir"
+          else 
+              cmd="$swspath/sws -cmd nw -proj $proj -ver $binos_label -platform_ws_root $bdir -cpp_ws_root $cppdir"
+          fi
+      fi 
+  else 
+     if [ "$proj" == "Null" ] ; then
+          cmd="acme nw -sb binos -proj main%$binos_label"
+      else
+          if [ "$binos_label" == "Null" ]; then 
+              cmd="acme nw -sb binos -proj $proj"
+          else 
+              cmd="acme nw -sb binos -proj ${proj}%$binos_label"
+          fi 
+      fi 
+  fi
+  execute_cmd
+
+  cmd="mkdir -p $vdir"
+  execute_cmd
+  AOPTION="-a"
+
+  # create IOS view 
+  if [ "$branch" != "Null" ]; then
+     cmd="start_task -b $branch -v /vob/ios -f -t $bname $AOPTION -d $vdir" 
+  else 
+     if [ "$ios_label" != "Null" ]; then 
+       view_label=$ios_label
+     else
+	   view_label=$binos_label
+     fi
+     cmd="start_task -l $view_label -v /vob/ios -f -t $bname $AOPTION -d $vdir" 
+  fi
+  execute_cmd
+  cmd="export BINOS_ROOT=$bdir"
+  execute_cmd
+  if [ "$tftp_server" != "Null" ]; then
+      cmd="export TFTP_SERVER=$tftp_server"
+      execute_cmd
+  fi 
+  cmd="cleartool setview $USER"-"$bname"
+  execute_cmd
+  endtime=$(date +%s)
+  difftime=$(( $endtime - $starttime ))
+  let min=difftime/60
+  let sec=difftime%60
+  echo "$SCRIPT took $min minutes $sec seconds."
+  #usage_help
+  exit 0
+################ end of main ########################

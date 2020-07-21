@@ -1,0 +1,20 @@
+#! /bin/csh -x
+
+if ( $#argv == 0 ) then
+    set yymmdd   = `date +%y%m%d`
+else
+    set yymmdd   = $1
+endif
+
+set subject  = "ELC branch build status"
+set note     = "/cscpu/core_release/Status/status.${yymmdd}"
+set people   = "devtest-core, vip-bringup, pred-sw, elc-branch-trolls, soma"
+
+
+
+  mail -s "$subject" $people < $note
+
+# mail -s "$subject" $people < ./note1
+
+# mail -s "$subject" sglee < $note
+

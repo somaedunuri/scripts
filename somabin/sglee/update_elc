@@ -1,0 +1,54 @@
+#! /bin/csh -f
+
+set yymmdd   = `date +%y%m%d`
+set work_dir = "/cscpu/core_release"
+set home     = "/release/111/cvs"
+set tree     = "/cscpv/core_release/ELC"
+set dirs     = "boot ecmon micro sbe16 str subsys sys"
+set line     = "----------------------------------------"
+set CVS      = "/sw/current/solaris2bin/cvs"
+set log      = "${work_dir}/Checkins/update.${yymmdd}"
+set get_ver  = "/cscpu/core_release/bin/get_version"
+
+set path     = (/router/bin /usr/cisco/bin /usr/local/bin /usr/ucb $path)
+
+if ( -e ${log} ) then
+    ${get_ver} ${log}
+endif
+touch ${log}
+
+if ( -e ${work_dir}/Checkins/current ) then
+    /bin/rm -f  ${work_dir}/Checkins/current
+endif
+ln -s ${log} ${work_dir}/Checkins/current
+
+cd ${tree}
+
+echo "`date` - Update started."			>>& ${log}
+echo ""						>>& ${log}
+echo "Current directory:  $tree"		>>& ${log}
+echo ""						>>& ${log}
+
+foreach i ( $dirs )
+    echo ""					>>& ${log}
+    echo "${line}${line}"			>>& ${log}
+    echo "`date` - Updating ${i}."		>>& ${log}
+    echo ""					>>& ${log}
+    ${CVS} -d${home} update -rELC_branch ${i}	>>& ${log}
+end
+
+grep "^U " ${log}				>!  ${log}.tmp
+if ( ! -z ${log}.tmp ) then
+    echo ""					>>& ${log}
+    echo ""					>>& ${log}
+    echo "${line}${line}"			>>& ${log}
+    echo "`date` - Updated files."		>>& ${log}
+    echo ""					>>& ${log}
+    cat ${log}.tmp				>>& ${log}
+endif
+/bin/rm -f ${log}.tmp
+
+echo ""						>>& ${log}
+echo ""						>>& ${log}
+echo "`date` - Update completed."		>>& ${log}
+

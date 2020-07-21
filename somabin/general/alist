@@ -1,0 +1,1 @@
+cat /var/aliases/lists/$1 |more

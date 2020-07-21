@@ -1,0 +1,71 @@
+# ===============================================================================
+# Product Info                                                                
+#
+#
+#   Source Tree         Code Name       Router Part     Image File Name       
+#   -----------		--------	-----------	---------------
+#
+#   obj-4k-rsp          RSP             c7000, c7500    .
+#
+#   obj-4k-rvip         VIP1            c7200		c7200*
+#
+#   obj-4k-svip         VIP2            .               vip*
+#
+#   obj-4k-c7100        .               c7100           .
+#
+#   obj-68-c7000        .               c7000           gs7*
+#
+# ===============================================================================
+
+
+#   obj-4k-rvip
+ 760 -rw-r--r--  1 sglee      768272 Jun  7 17:13 vip21-40.960607
+
+
+#   obj-4k-svip
+ 704 -rw-r--r--  1 sglee      708352 Jun  7 17:18 vip2_21-40.960607
+
+
+#   obj-68-c7000
+4408 -rw-r--r--  1 sglee     4500762 Jun  7 17:35 gs7-aj-mz.960607
+5128 -rw-r--r--  1 sglee     5241460 Jun  7 17:47 gs7-ajv-mz.960607
+3816 -rw-r--r--  1 sglee     3893461 Jun  7 17:31 gs7-j-mz.960607
+4536 -rw-r--r--  1 sglee     4634128 Jun  7 17:43 gs7-jv-mz.960607
+2520 -rw-r--r--  1 sglee     2566471 Jun  7 17:24 gs7-p-mz.960607
+1744 -rw-r--r--  1 sglee     1777076 Jun  7 17:26 gs7-s-mz.960607
+
+
+#   obj-4k-rsp
+4456 -rw-r--r--  1 sglee     4553700 Jun  7 18:31 rsp-aj-mz.960607
+6576 -rw-r--r--  1 sglee     6725272 Jun  7 18:58 rsp-ajv-mz.960607
+5416 -rwxr-xr-x  1 sglee     5532348 Jun  7 18:18 rsp-boot-m.960607*
+ 608 -rw-r--r--  1 sglee      612050 Jun  7 18:46 rsp-dw-m.ucode.960607
+ 456 -rw-r--r--  1 sglee      452892 Jun  7 18:12 rsp-dw-mz.960607
+3888 -rw-r--r--  1 sglee     3968280 Jun  7 18:25 rsp-j-mz.960607
+6008 -rw-r--r--  1 sglee     6139448 Jun  7 18:44 rsp-jv-mz.960607
+2544 -rw-r--r--  1 sglee     2595676 Jun  7 17:58 rsp-p-mz.960607
+4664 -rw-r--r--  1 sglee     4767496 Jun  7 18:10 rsp-pv-mz.960607
+
+
+#   obj-4k-c7100
+3728 -rw-r--r--  1 sglee     3804228 Jun  7 19:17 c7200-aj-mz.960607
+2656 -rwxr-xr-x  1 sglee     2711288 Jun  7 19:09 c7200-boot-m.960607*
+2656 -rw-r--r--  1 sglee     2707728 Jun  7 19:21 c7200-dr-mz.960607
+1976 -rw-r--r--  1 sglee     2009300 Jun  7 19:24 c7200-inl-mz.960607
+3152 -rw-r--r--  1 sglee     3219324 Jun  7 19:08 c7200-j-mz.960607
+
+
+
+set obj_all     = "obj-4k-rvip obj-4k-svip obj-68-c7000 obj-4k-rsp obj-4k-c7100"
+
+# build objs
+
+#  nice +1  make -s MAKEFLAG_J=-j6 GDB_FLAG= BIN_SUFFIX=.960607 production
+#  nice +5  make -s MAKEFLAG_J=-j6 GDB_FLAG= BIN_SUFFIX=.960607 production
+#  nice +8  make -s MAKEFLAG_J=-j6 GDB_FLAG= BIN_SUFFIX=.960607 production
+#  nice +10 make -s MAKEFLAG_J=-j6 GDB_FLAG= BIN_SUFFIX=.960607 production
+
+#  nice +1  make -s MAKEFLAG_J=-j4 GDB_FLAG= BIN_SUFFIX=.960607 production
+#  nice +5  make -s MAKEFLAG_J=-j4 GDB_FLAG= BIN_SUFFIX=.960607 production
+#  nice +8  make -s MAKEFLAG_J=-j4 GDB_FLAG= BIN_SUFFIX=.960607 production
+#  nice +10 make -s MAKEFLAG_J=-j4 GDB_FLAG= BIN_SUFFIX=.960607 production

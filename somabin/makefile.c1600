@@ -1,0 +1,263 @@
+# $Id$
+# $Source$
+#------------------------------------------------------------------
+# Makefile for system software for 1600 (Volcano)
+#
+# March 1996, Eric Fronber
+#
+# Copyright (c) 1996-1998 by cisco Systems, Inc.
+# All rights reserved.
+#------------------------------------------------------------------
+# $Log$
+#------------------------------------------------------------------
+# $Endlog$
+#
+
+ifeq ($(origin SYSROOT), undefined)
+SYSROOT :=       $(shell ../scripts/sysroot)
+endif
+
+default_images = c1600-nsy-l c1600-nsy-mz
+default: $(default_images)
+default_test_images = $(addsuffix .test,$(default_images))
+default.test: $(default_test_images)
+
+PLATFORM_OTHER   = c1000_ukernel.o
+PLATFORM_MONITOR = asm_68_monitor.o
+PLATFORM_IF_NAME = if_name_unit.o
+PLATFORM_IMAGE_PREFIX = C1600
+
+include ../makefile.tools
+include ../makefile.36
+include ../makefile
+include ../obj-36-c1600/c1600_make_common_defs
+
+
+RAM_LDFLAGS = -e __start -N -nostdlib -Ttext 2005000
+RELOC_LDFLAGS  = -e __start -N -nostdlib -Ttext 0 -Tdata 0 -r
+RELOC_SUNFLAGS = -e __start -N -nostdlib -Ttext 0 -Tdata 0
+XFLAG = x
+
+RELOC_LD_OPTIONS =    -text 8000060 -data 2005000
+RELOC_MKSUM_OPTIONS =
+RELOC_PIC = relocate
+RELOC_MKSUM = reloc_mksum
+RELOC_LD = reloc_ld
+
+#
+# Options depending on image type:
+#
+NAS_I_OPTIONS =	$(COMMSERVER) $(MENUS) $(LPD)
+NAS_D_OPTIONS =	$(NAS_I_OPTIONS)
+
+NAS_P_OPTIONS =
+
+#
+# Define platform specific mibs
+#
+MIBS := $(MIBS) $(FLASH_LES_MIB) $(STACKMAKER_MIB)
+
+#
+# Defines for fast switching
+#
+FAST_MEDIA       = fr_fast_les.o
+FAST_ATALK	 = at_fast_les.o
+FAST_ATSMRP      = at_smrpfast_les.o at_smrpfast.o smrp_fast_les.o
+FAST_IPNAT	 = ipnat_les.o
+FAST_IP		 = ipfast_les.o ipasm.o fspr_chain.o $(FLOW) ipfast_flow_les.o
+FAST_FLOW	 = $(FLOW) $(FLOW_IOS) $(RN_FLOW_IOS) ipfast_flow_les.o
+FAST_IPMCAST	 = ipmfast_les.o platform_les_ipmfast.o 
+FAST_MTAG        = mtag_les.o
+FAST_TUNNEL	 = tfast_les.o
+FAST_IPX	 = novfast_les.o
+FAST_IPNAT	 = ipnat_les.o
+FAST_PPP	 = mlp_fast_les.o
+FAST_TBRIDGE	 = tbridge.o tbridge_les.o 
+FAST_IBM	 = fastsrb.o fastdlsw.o les_srb.o 
+FAST_SRB_MODULARITY = fastsrb.o les_srb.o 
+FAST_VPN 	 = vpn_fast_les.o vpn_ipfast.o l2f_fast_les.o
+FAST_FIB 	 = $(FIB) $(ADJACENCY) $(FIB_IOS) $(FIB_FLOW) $(FIB_FLOW_IOS) \
+		   mtrie.o ipfib_les.o
+FAST_VP 	 = vp_fast_les.o
+
+DRIVERS = $(QUICC_ETHER) $(ETHER) $(SERIAL) \
+	  $(DRIVER_ISDN_C1600) $(WAN_ISDN_C1600) \
+	  $(DRIVER_SERIAL_C1600)
+
+DRIVER_MIBS = $(ETHERMIB) $(CSU_DSU_MIB)
+
+PLATFORM_PARTS = $(FAST_FR) $(ISDN) $(ISDNMIB) $(CALLMIB) $(BRI) \
+		 $(ISDNUIFMIB) $(ISDN_C1600_HTTP) $(X28) $(IPNAT) $(IPNAT_PLUS)
+#
+# PLATFORM_PLUS is used for the bnr2sy, bnr2sy40 and bnr2sy56 images only.
+# The c1000 makefile also has a similar variable but defines a different
+# PLUS pack. For all other plus images (e.g. -sy-, -nsy- and -bsy-) new
+# SUBSET variables have been created in makeimages (e.g. SUBSET_SY, SUBSET_BSY
+# SUBSET_NSY) as each plus image contains a different set of plus features.
+# For the reason stated above, we did not define a SUBSET_BNSY
+# as it would not be common to both the c1600 and the c1000.
+#
+PLATFORM_PLUS = $(Y_PLUS_OPTIONS) $(BY_PLUS_OPTIONS) $(NY_PLUS_OPTIONS) \
+		$(FTP_CLIENT) $(BULK_FILE)
+#
+# C1600 Subsystem information
+#
+include $(SYSROOT)/obj-36-c1600/makesubsys.c1600
+
+ifeq ($(OBJECTS),)
+include ../makesubsys
+endif
+
+#
+# Include code flow and coverage definitions
+#
+include ../makecflow
+
+#
+# Include the definitions for final targets. This *must* come after
+# the local definitions of subsystems
+#
+
+include ../makeimages
+
+#
+# The "official" production set of images supplied to manufacturing
+#
+production_images = c1600-sy-l c1600-y-l c1600-ny-l c1600-bnr2y-l \
+		    c1600-sy-mz  c1600-y-mz c1600-ny-mz c1600-bnr2y-mz  \
+                    c1600-bnr2sy-l c1600-bnr2sy-mz \
+		    c1600-oy-mz c1600-oy-l c1600-nosy-mz c1600-nosy-l
+
+#
+# Removed images CSCdj46947:   c1600-by-mz  c1600-bsy-l c1600-bsy40-l c1600-bsy56-l
+#                              c1600-nsy40-l c1600-nsy56-l c1600-bny-l
+#                              c1600-nr2y-l   c1600-nr2sy-l c1600-nr2sy40-l c1600-nr2sy56-l
+# Removed images CSCdj50860: c1600-bnsy-l c1600-bnsy40-l c1600-bnsy56-l
+#
+# Removed images CSCdk41751: c1600-bnor2sy56-l c1600-bnor2sy56-mz 
+# c1600-bnr2sy40-l c1600-bnr2sy40-mz c1600-bnr2sy56i-l
+# c1600-bnr2sy56i-mz c1600-bnr2sy56-l c1600-bnr2sy56-mz c1600-nsy-l
+# c1600-nsy-mz c1600-sy56i-l c1600-sy56i-mz 
+
+production: $(production_images)
+
+production_test_images = $(addsuffix .test,$(production_images))
+
+production.test: $(production_test_images)
+
+#
+# Crypto production available only to the crypto gang and release meisters
+#
+crypto_images =   c1600-sy40-l c1600-sy56-l \
+		  c1600-sy40-mz c1600-sy56-mz \
+		  c1600-bnor2sy56i-mz c1600-bnor2sy56i-l \
+		  c1600-osy56i-l c1600-osy56i-mz
+
+crypto: $(crypto_images)
+
+crypto_test_images = $(addsuffix .test,$(crypto_images))
+crypto.test: $(crypto_test_images)
+
+
+#
+# The "unofficial" engineering specials
+#
+oddball_notyet = c1600-tddr-m c1600-tiv-m
+oddball_images = c1600-tatalk-m c1600-tic-m c1600-tip-m c1600-tli-m \
+                 c1600-p-mz
+
+oddballs: $(oddball_images)
+
+oddball_test_images = $(addsuffix .test,$(oddball_images))
+
+oddballs.test: $(oddball_test_images)
+
+#
+# Build suite of modular images, then delete them.
+#
+modular: $(MODULAR)
+	rm -f $(MODULAR)
+
+#
+# These images need a little modularity work
+#
+modular_notyet: $(MODULAR_NOTYET) $(oddball_notyet)
+
+#
+# Build all images 
+#
+everything: production oddballs modular
+
+#
+# Generic Link rules.
+#
+# reloc_ld processes a .sun file with relocation info and creates a
+# cisco relocatable image that has a special header, a position
+# independent relocator, and relocation tables sandwiched between the
+# a.out header and the text segment.
+# reloc_ld also creates the final .sun file from which the .symbols
+# file is generated.
+# reloc_mksum processes the relocatable image and inserts checksums.
+#
+
+c1600-%-l.relocbin: c1600-%-l.sun
+	./$(RELOC_MKSUM_PROG) $(RELOC_MKSUM_OPTIONS) $@
+	ls -l $@
+
+c1600-%-l.sun: lock check-req-% main-gs-%-l gs-%.lego \
+	$(RELOC_LD_PROG) $(RELOC_MKSUM_PROG) $(RELOC_PIC)
+	$(QUIET_COM)echo Linking $@...
+	$(QUIET_CC)$(LD) $(RELOC_LDFLAGS) -o gs-$*-l.reloctemp \
+	Main_main-gs-$*-l.o cisco-gs-$*-l.o $(image-gs-$*)
+	mv gs-$*-l.reloctemp c1600-$*-l.reloctemp
+	$(RELOC_LD_PROG) $(RELOC_LD_OPTIONS) c1600-$*-l.reloctemp \
+	$(RELOC_PIC) c1600-$*-l.relocbin c1600-$*-l.temp \
+	|| (rm -f c1600-$*-l.reloctemp ; exit 1)
+	rm -f c1600-$*-l.reloctemp
+	mv c1600-$*-l.temp $@
+	rm -f test.lock
+
+c1600-%-m.czsun: lock check-req-% main-gs-%-m gs-%.lego
+	$(QUIET_COM)echo Linking $@...
+	$(QUIET_CC)$(LD) $(RAM_LDFLAGS) -o gs-$*-m.temp \
+	Main_main-gs-$*-m.o cisco-gs-$*-m.o $(image-gs-$*)
+	rm -f test.lock
+	mv gs-$*-m.temp $@
+
+c1600-%-m.sun: lock check-req-% main-gs-%-m gs-%.lego
+	$(QUIET_COM)echo Linking $@...
+	$(QUIET_CC)$(LD) $(RAM_LDFLAGS) -o gs-$*-m.temp \
+	Main_main-gs-$*-m.o cisco-gs-$*-m.o $(image-gs-$*)
+	rm -f test.lock
+	mv gs-$*-m.temp $@
+
+
+#
+# Image rules
+#
+c1600-%-l: c1600-%-l.reloc
+	@
+c1600-%-m: c1600-%-m.tftp
+	@
+c1600-%-mz: c1600-%-mz.tftp
+	@
+
+c1600-boot-r:
+	@echo "Sorry, you must build $@ in the obj-36-c1600-boot directory"
+ 
+c1600-boot-m:
+	@echo "Sorry, you must build $@ in the obj-36-c1600-boot directory"
+ 
+.PRECIOUS: c1600-%-m.sun c1600-%-m.czsun \
+	c1600-%-l.sun c1600-%-by.sun
+
+#
+############################################################################
+#
+# 			Libraries and the Like
+#
+############################################################################
+include ../makedist
+
+include dependancies.specific
+include $(SYSROOT)/dependancies

@@ -1,0 +1,35 @@
+#! /bin/csh -f
+
+set yymmdd   = `date +%y%m%d`
+
+set work_dir = /cscpu/sglee/Archives
+
+set dir1     = "obj-36-c1000  obj-36-c1005 obj-4k-c4000"
+set dir2     = "obj-68-as5200 obj-68-c3000 obj-68-c4000"
+
+
+if ( $#argv == 0 ) then
+    echo ""
+    echo "NOTE:  Must specify which archive directory to delete."
+    echo "       For example, '$0 images.${yymmdd}'"
+    echo ""
+    exit 1
+else
+    set dir = $1
+    echo ""
+    echo "You chose to delete ${work_dir}/${dir}."
+    echo "Type control-C to abort."
+    echo ""
+    sleep 3
+    cd ${work_dir}/${dir}
+
+    foreach i ( $dir1 $dir2 )
+       /bin/rm -fr $i
+       echo "Deleting ... $i"
+    end
+    echo ""
+    df .
+    echo ""
+    echo "Done."
+endif
+

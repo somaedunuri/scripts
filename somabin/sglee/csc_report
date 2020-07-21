@@ -1,0 +1,13 @@
+#! /bin/csh -f
+
+set yymmdd = `date +%y%m%d`
+
+cd /cscpu/core_release/CSCdi
+
+cp /release/111/cvs/CHANGES-ELC_branch csc.${yymmdd}
+
+grep "^Commit" csc.${yymmdd} >! commit.all
+
+sort -u commit.all     >! commit.list
+
+

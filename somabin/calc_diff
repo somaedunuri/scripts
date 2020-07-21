@@ -1,0 +1,231 @@
+#!/usr/local/bin/perl5.6 
+#------------------------------------------------------------------
+#
+# Copyright (c) 1998, 2004-2005 by cisco Systems, Inc.
+# All rights reserved.
+#
+# Version 1.1
+#
+# Count the number of lines added, deleted and changed, based on the
+# output of cc_diff.
+#
+# For lines added, parse the output for blank lines and comments (or
+# block of C comments), and exclude it from the count.
+#
+# For changed lines:
+#   lines changed from > lines changed to: 
+#      lines changed to is counted lines changed
+#      lines deleted += lines changed from - lines changed to
+#   lines changed from < lines changed to: 
+#      lines changed from is counted lines changed
+#      lines added += lines changed to - lines changed from
+#
+# This script will be used till a supported script is developed and
+# released by the CC Tools Team.
+#
+#------------------------------------------------------------------
+
+push(@INC, "/usr/local/lib/atria/perl");
+push(@INC, "/usr/local/lib/ccperl");
+push(@INC, "/usr/local/lib/perl5");
+ 
+require "getopts.pl";
+
+#
+# Sub routine to display usage
+#
+($loc,$total_changed,$comment,$commenstate,$blank,$changed,$deleted) = (0,0,0,0,0,0,0);
+($num_elem, $change_from, $change_to, $debug, $new_elem_count, $change_elem_count) = (0,0,0,0,0,0);
+($new_loc, $change_loc, $new_comment, $change_comment, $new_blank, $change_blank) = (0,0,0,0,0,0);
+($BLANK,$COMMENT,$LOC) = (1,2,3);
+
+sub Usage {
+    print STDERR "usage: calc_diff [-l] -f diff_file\n";
+    print STDERR "where:\n";
+    print STDERR "\t-l: print out lines added by new files\n";
+    print STDERR "\tdiff_file: cc_diff output file\n";
+    exit (1);
+}
+
+sub add {
+   local($type) = @_;
+   if ($type == $BLANK) {
+     $blank++;   # blank lines...
+     if ($new_elem) {
+        $new_blank++;
+     } else {
+        $change_blank++;
+     }
+   } elsif ($type == $COMMENT) {
+     $comment++;
+     if ($new_elem) {
+        $new_comment++;
+     } else {
+        $change_comment++;
+     }
+   } elsif ($type == $LOC) {
+     $loc++;
+     if ($new_elem) {
+        $new_loc++;
+     } else {
+        $change_loc++;
+     }
+   }
+}
+
+sub calc_size {
+    my $ccdiff = 0, $diff=0;
+
+    open(DIFFS, "<$infile") || die "Can't open $infile\n";
+    while(<DIFFS>) {
+        if( /^#cmd=/ || /^COMMAND:/ || /^Component:/ ){
+	    $comp = 1;
+            $num_elem++; 
+            if ((/ccdiff/ ) || (/\/router\/bin\/diff/)){
+               $ccdiff=1; $diff=0;
+            } elsif ((/^#cmd=/ || /^COMMAND:/) && /cleartool diff/ ) {
+               $diff=1; $ccdiff=0;
+            } elsif (/^Component:/) {
+               $ccdiff=1; $diff=0;
+		$_=<DIFFS>;
+		$_=<DIFFS>;
+		$_=<DIFFS>;
+		$_=<DIFFS>;
+	    }
+            if (/\/main\/0 /) {
+               #print "NEW FILE: $_\n";
+               $new_elem=1;
+               $new_elem_count++;
+            } else {
+               $new_elem=0;
+               $change_elem_count++;
+            }
+            next;
+        } elsif ($comp && /^Index:/) {
+            $num_elem++; 
+            if (/\/main\/0 /) {
+               #print "NEW FILE: $_\n";
+               $new_elem=1;
+               $new_elem_count++;
+            } else {
+               $new_elem=0;
+               $change_elem_count++;
+            }
+            next;
+	}
+        # check for new block of changes 
+        if (/^\*\*\*\*\*\*\*\*\*\*\*\*/) {
+           if ($debug) { 
+              print "Found seperator $_\n";
+           }
+           $commentstate = 0;  # reset comment state
+           $modify_state = 0;  # reset modify state
+           if ($change_from > $change_to) {
+              $deleted += $change_from - $change_to;
+              $total_changed += $change_to;
+           } elsif ($change_from < $change_to) {
+              $loc += $change_to - $change_from;
+              $change_loc += $change_to - $change_from;
+              $total_changed += $change_from;
+           } else {
+              $total_changed += $change_from;
+           }
+           if ($change_from & $debug) {
+            print "change_from=$change_from change_to:$change_to loc=$loc deleted=$deleted total_changed=$total_changed\n";
+           }
+           $change_from = $change_to = 0;
+        }
+        if (/^--- .* ----/) {
+           $modify_state = 1;
+           if ($debug) { 
+              print "set modify_state= $modify_state:  $_\n";
+           }
+        }
+        if( $ccdiff ){
+           if (/^\+ /) {
+              if (/^\+\s*$/) {
+                 add ($BLANK);
+                 next;
+              }
+              # single line comment
+              if (m=/\*.*\*/=) {
+                 if (m=^\+\s*/\*.*\*/\s*$=) { #only space before & after comment
+                   add ($COMMENT);
+                 } else { # code & comment
+                   add ($LOC);
+                 }
+                 next;
+              }
+              # begin block of comment
+              if (m=/\*=) {
+                 if (/^\+\s*\/\*/)  {  # only white space in front of comment
+                    add ($COMMENT);
+                 } else { # code & comment
+                    add ($LOC);
+                 }
+                 $commentstate = 1;
+                 next;
+              }
+              # end block of comment
+              if (m=\*/=) { # closing comment
+                 if (/\*\/\s*$/) { # only white space follow the comment
+                    add ($COMMENT);
+                 } else { # code & comment
+                    add ($LOC);
+                 }
+                 $commentstate = 0;
+                 next;
+              }
+            if ($commentstate == 0) {
+               add ($LOC);
+            } else {
+               add ($COMMENT);
+            }
+            next;
+           } 
+           if (/^! /) {
+              if ($modify_state==0) {
+                 $change_from++;
+                 if ($debug) {
+                    print "modify_state= $modify_state change_from = $change_from $_\n";
+                 }
+              } else {
+                 $change_to++;
+                 if ($debug) {
+                    print "modify_state= $modify_state change_to = $change_to $_\n";
+                 }
+              }
+            next;
+           }
+           if (/^- /) {
+            $deleted++;
+            next;
+           }
+        }
+
+    }
+    close(DIFFS);
+    if ($opt_l && $new_elem_count) {
+    print "Lines added by new elements: $new_loc ($new_blank blank lines & $new_comment comments were not counted)\n";
+    print "Lines added by changed elements: $change_loc ($change_blank blank lines & $change_comment comments were not counted)\n";
+    print "Number of new elements: $new_elem_count  Number of changed elements: $change_elem_count\n\n";
+    }
+    print "Lines deleted: $deleted\n";
+    print "Lines added: $loc ($blank blank lines & $comment comments were not counted)\n";
+    print "Lines changed: $total_changed\n";
+    print "Number of elements counted: $num_elem (new elements: $new_elem_count, changed elements: $change_elem_count)\n";
+}
+
+#
+# Main
+#
+{
+    
+    &Getopts("f:lh");
+    &Usage() if ($opt_h);
+
+    $infile = $opt_f;
+    &calc_size($opt_f);
+
+    exit 0;
+}

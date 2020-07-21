@@ -1,0 +1,8 @@
+2015-03-10 18:24:07 [ERROR] cmd_xr_commit:  
+
+ERROR:
+You must be in the ACME workspace root in order to run this tool
+Current directory is: /users/soma/bin
+Please cd to the ACME workspace root directory and retry the command
+
+

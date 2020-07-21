@@ -1,0 +1,1 @@
+query.pl Project:CSC.ena and org $1 and Version:4.2.0 | table.pl 110701 120523 -weekly 

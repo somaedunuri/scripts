@@ -1,0 +1,1 @@
+rm -rf ejam-hfr ; mkdir ejam-hfr  ; cd ejam-hfr; rm /tmp/date ; date >/tmp/date ; acme nw -lineup xr-dev.lu -sb ios_ena ; cat /tmp/date ; date ; cp ~soma/soma1.sh . ; soma1.sh hfr-px ; soma1.sh hfr-px ; soma1.sh hfr-px ;

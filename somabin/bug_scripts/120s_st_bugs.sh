@@ -1,0 +1,1 @@
+ findbug -p CSC.sys -fAOINPW "((Version has 12.0) && ((Version has S) && (Version hasno SC && Version hasno SL && Version hasno SX && Version hasno SP && Version hasno 12.2)))" | bugval Identifier Severity Status Found Component DE-manager Headline

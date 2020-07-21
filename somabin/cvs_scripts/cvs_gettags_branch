@@ -1,0 +1,74 @@
+#
+#	This scripts generates the list of source files under cvs control
+#	and gets their version number
+#
+
+if [ "x$CVSROOT" = "x" ]; then
+	echo "$0: CVSROOT environment variable must be set"
+	echo "usage: $0 [revision_tag]"
+	exit 1
+fi
+
+if [ "x$1" = "x" ] ; then
+        REVISION="ELC_branch"
+else
+        REVISION="$1"
+fi
+
+#
+#       Checkout the Source Repositary for the given tag
+#
+
+cd /nfs/corerel6/tags
+
+if [ -d $REVISION ] ; then
+      rm -rf $REVISION
+fi
+
+mkdir $REVISION
+cd $REVISION
+
+cvs co -r$REVISION newworld >/tmp/1.$$ 2>/tmp/2.$$
+rm /tmp/1.$$ /tmp/2.$$
+
+
+#
+# set the directory variables
+#
+
+DIRS="Xboot Xecmon Xmicro Xsbe16 Xstr Xsubsys Xsys"
+
+#
+#       Findout the list of all Source File Names
+#       Delete the extra files like Attic etc. 
+#       and get the file version from Sticky Tag
+
+cd $CVSROOT
+
+find $DIRS -name '*,v' -print | sed /#cvs/d | sed /Attic/d | sed s/X// | \
+(
+        while read j ; do
+		SRCNAME=`dirname $j`/`basename $j ',v'`
+		cd /nfs/corerel6/tags/$REVISION
+        	if [ -d $SRCNAME ] ; then
+                        echo $SRCNAME >/dev/null
+                else
+                if [ -r $SRCNAME ] ; then
+                   	TAGREV=`cvs stat $SRCNAME | grep "Working revision:" | awk '{print $3}'`
+                   	echo "$SRCNAME $TAGREV" >>/tmp/temp.$$
+                fi
+           	fi
+		cd $CVSROOT
+        done
+)
+
+cat /tmp/temp.$$ | awk '{print $1"	"$2}' | sort -u 
+
+# Delete the temp file and checked out tree 
+
+rm /tmp/temp.$$
+cd /nfs/corerel6/tags
+rm -rf $REVISION
+
+
+

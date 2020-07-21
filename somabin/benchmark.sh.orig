@@ -1,0 +1,30 @@
+rm -rf /nobackup/soma/ci-521-bugfix
+cd /nobackup/soma
+mkdir ci-521-bugfix
+cd ci-521-bugfix
+/usr/cisco/bin/acme nw -lineup ci-521-bugfix.lu
+cp /users/soma/soma.sh .
+/users/soma/soma.sh asr9k-px; 
+/users/soma/soma.sh arr9k-px; 
+/users/soma/soma.sh arr9k-px; 
+/users/soma/soma.sh arr9k-px; 
+jam clean ;
+/users/soma/soma.sh c12k; 
+/users/soma/soma.sh c12k; 
+/users/soma/soma.sh c12k; 
+/users/soma/soma.sh c12k; 
+jam clean ;
+/users/soma/soma.sh hfr-px; 
+/users/soma/soma.sh hfr-px; 
+/users/soma/soma.sh hfr-px; 
+/users/soma/soma.sh hfr-px; 
+jam clean ;
+/users/soma/soma.sh ncs4k; 
+/users/soma/soma.sh ncs4k; 
+/users/soma/soma.sh ncs4k; 
+/users/soma/soma.sh ncs4k; 
+jam clean ;
+/users/soma/soma.sh ncs6k; 
+/users/soma/soma.sh ncs6k; 
+/users/soma/soma.sh ncs6k; 
+/users/soma/soma.sh ncs6k; 

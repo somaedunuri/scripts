@@ -1,0 +1,1 @@
+rm -rf jam-hfr ; mkdir jam-hfr  ; cd jam-hfr; rm /tmp/date ; date >/tmp/date ; acme nw -lineup xr-dev.lu -sb ios_ena ; cat /tmp/date ; date ; cp ~soma/soma.sh . ; soma.sh hfr-px ; soma.sh hfr-px ; soma.sh hfr-px ;

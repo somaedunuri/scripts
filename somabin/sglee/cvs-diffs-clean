@@ -1,0 +1,58 @@
+#!/usr/local/bin/perl
+
+# This program accepts the cvs diffs as input file and generates a 
+# clean version (deletes unwanted lines) of the same file 
+
+if (@ARGV < 2) {
+	die("Usage : $0 <input filename> <times> \n");
+}
+
+$inputfile  = $ARGV[0];
+$outputfile = $ARGV[0].clean;
+$times      = $ARGV[1];
+
+unless (open(infile, "$inputfile")) {
+	die ("Can not open input file $inputfile \n");
+}
+
+unless (open(outfile, ">$outputfile")) {
+	die ("Can not open output file $outputfile \n");
+}
+
+while (($line=<infile>) ne "") {
+
+	print outfile ($line);
+	@array = split(/:/,$line);
+	if ($array[0] ne "Index") {
+		next;
+        }
+
+	$line=<infile>;
+	print outfile ($line);
+	if ($line ne "===================================================================\n") {
+		next;
+	}
+
+        $line=<infile>;
+        print outfile ($line);
+	@array = split(/:/,$line);
+	if ($array[0] ne "RCS file") {
+                next;
+	}
+	$count = 0;
+	while ($count < $times) {
+		if (($line = <infile>) eq ""){
+			last;
+		}
+		if ($line eq "***************\n"){
+			$count++;
+		}
+	}
+
+#	Skip the next 5 lines after the stars
+
+	for ($i=0; $i<5; $i++) {
+		$line=<infile>;
+	}
+}
+	

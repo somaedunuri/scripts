@@ -1,0 +1,46 @@
+#
+#	This scripts generates the list of source files under cvs control
+#	and gets their version number
+#
+
+if [ "x$CVSROOT" = "x" ]; then
+	echo "$0: CVSROOT environment variable must be set"
+	echo "usage: $0 [revision_tag]"
+	exit 1
+fi
+
+if [ "x$1" = "x" ] ; then
+        REVISION="ELC_branch"
+else
+        REVISION="$1"
+fi
+
+
+cd $CVSROOT
+
+#
+# set the directory variables
+#
+
+DIRS="Xboot Xecmon Xmicro Xsbe16 Xsnmp-em Xstr Xsubsys Xsys"
+#DIRS="Xboot"
+
+#
+#       Findout the list of all Source File Names
+#
+
+find $DIRS -name '*,v' -print | sed /#cvs/d | sed /Attic/d | sed /CVS/d | \
+(
+        while read SRCNAME ; do
+		TAGREV=`grep -w $REVISION $SRCNAME`
+		if [ "x$TAGREV" != "x" ] ; then
+                	echo "$SRCNAME $TAGREV" 	>>/tmp/temp1.$$
+		fi
+        done
+)
+
+cat /tmp/temp1.$$ | sed s/X// | sed s/,v// | sed s/$REVISION:// >/tmp/temp2.$$
+cat /tmp/temp2.$$ | awk '{print $1"	"$2}' | sort -u 
+
+rm /tmp/temp1.$$  /tmp/temp2.$$
+
