@@ -1,0 +1,34 @@
+date
+cp /users/soma/soma.sh .
+./soma.sh ncs1k
+./soma.sh ncs1k
+./soma.sh ncs1k
+/router/bin/jam clean 
+./soma.sh ncs1001 
+./soma.sh ncs1001 
+./soma.sh ncs1001 
+/router/bin/jam clean 
+./soma.sh ncs4k
+./soma.sh ncs4k
+./soma.sh ncs4k
+/router/bin/jam clean 
+./soma.sh ncs5k
+./soma.sh ncs5k
+./soma.sh ncs5k
+/router/bin/jam clean 
+./soma.sh ncs5500
+./soma.sh ncs5500
+./soma.sh ncs5500
+/router/bin/jam clean 
+./soma.sh ncs6k
+./soma.sh ncs6k
+./soma.sh ncs6k
+/router/bin/jam clean 
+./soma.sh xrv9k
+./soma.sh xrv9k
+./soma.sh xrv9k
+/router/bin/jam clean 
+./soma.sh asr9k-x64
+./soma.sh asr9k-x64
+./soma.sh asr9k-x64
+/router/bin/jam clean 
