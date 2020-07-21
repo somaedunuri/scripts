@@ -1,0 +1,3 @@
+/ws/ealyon-sjc/defect-tracking/xr_warnings -log xr_bld.asr9k-px.log,xr_bld.asr9k-x64.log,xr_bld.hfr-px.log,xr_bld.ncs1k.log,xr_bld.ncs4k.log,xr_bld.ncs5500.log,xr_bld.ncs5k.log,xr_bld.ncs6k.log,xr_bld.xrv9k.log,xr_bld.xrvr.log,xrmk-asr9k-x86_64-sdk.log,xrmk-clean.log,xrmk-ncs1k-x86_64-sdk.log,xrmk-ncs4k-x86_64-sdk.log,xrmk-ncs5500-arm-initrd.log,xrmk-ncs5500-x86_64-sdk.log,xrmk-ncs5k-x86_64-sdk.log,xrmk-ncs6k-x86_64-sdk.log,xrmk-xrv9k-x86_64-sdk.log -type gcc 
+
+/ws/ealyon-sjc/defect-tracking/xr_warnings_html -report gcc:soma_ws.rpt -output /auto/web-xrops/prod/htdocs/warnings/gcc/baseline/xxxx.html
